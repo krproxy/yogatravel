@@ -1,0 +1,191 @@
+{{--{{dd($service)}}--}}
+{{--{{dd($service->pointImages)}}--}}
+{{--{{dd($service->user)}}--}}
+@extends('layouts.app')
+
+@section('title', $service->address)
+
+@section('description', $service->description)
+
+@section('content')
+    <div class="container spark-screen">
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+                <div>
+                    <div class="w70p inline">
+                        @if($service->type=='teaService')
+                            <p class="color-tea f25-400">
+                                <img src='/img/SVG/geometka_tea_12x20.svg' class='img18' alt=''>
+                                {{$service->address}}
+                            </p>
+                        @elseif($service->type=='checkInn')
+                            <p class="corporateBlue">
+                                <img src='/img/SVG/geometka_check-in_12x20.svg' class='img18' alt=''>
+                                {{$service->address}}
+                            </p>
+                        @elseif($service->type=='couchService')
+                            <p class="color-sleep f25-400">
+                                <img src='/img/SVG/geometka_couch_12x20.svg' class='img18' alt=''>
+                                {{$service->address}}
+                            </p>
+                        @elseif($service->type=='walkServices')
+                            <p class="color-walk f25-400">
+                                <img src='/img/SVG/geometka_walk_12x20.svg' class='img18' alt=''>
+                                {{$service->address}}
+                            </p>
+                        @endif
+                    </div>
+                    <div class="w29p inline text-right f300-16">
+                        <img src='/img/SVG/clock_14x14.svg' class='w14 mt--5'>
+                        {{ date("d,m,Y", strtotime($service->created_at))}}
+                    </div>
+                </div>
+
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators">
+                        <?php $isActive = true;?>
+                        @for($i=0; $i<count($service->pointImages); $i++)
+                            <li data-target="#carousel-example-generic" data-slide-to="{{$i}}"
+                            <?php
+                                    if ($isActive) {
+                                        echo 'class="active"';
+                                        $isActive = false;
+                                    }
+                                    ?>
+                            ></li>
+                        @endfor
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <?php $isActive = true;?>
+                        @foreach($service->pointImages as $pointImage)
+                            <div class="item
+                                        <?php
+                            if ($isActive) {
+                                echo 'active';
+                                $isActive = false;
+                            }
+                            ?>
+                                    ">
+                                <img src="/img/PointImages/{{$pointImage->name}}" alt="...">
+                            </div>
+                        @endforeach
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <p class="f300-16">{{$service->description}}</p>
+                <div class="w100p">
+                    @if($service->type=='teaService')
+                        <a href="{{URL::to('messages/create/' . $service->user->id)}}" class="btn btn-all btn-tea-bg">
+                            <img src="/img/SVG/message_21x15.svg" alt="" class="img18">
+                            Принять приглашение
+                        </a>
+                    @elseif($service->type=='couchService')
+                        <a href="{{URL::to('messages/create/' . $service->user->id)}}"
+                           class="btn  btn-all btn-sleep-bg">
+                            <img src="/img/SVG/message_21x15.svg" alt="" class="img18">
+                            Принять приглашение
+                        </a>
+                    @elseif($service->type=='walkServices')
+                        <a href="{{URL::to('messages/create/' . $service->user->id)}}" class="btn btn-all btn-walk-bg">
+                            <img src="/img/SVG/message_21x15.svg" alt="" class="img18">
+                            Принять приглашение
+                        </a>
+                    @endif
+                    <img src="{{$service->user->avatar}}" alt="" class="circle img37 .mt--5">
+                    <div class="inline">
+                        <p class="f300-14 pm-0">Автор:</p>
+                        @if($service->type=='teaService')
+                            <a href="{{URL::to('/profile/' . $service->user->id)}}">
+                                <p class="f600-16 color-tea pm-0">{{$service->user->name}}</p>
+                            </a>
+                    </div>
+                    <img src='/img/SVG/share_tea_18x18.svg' class='img18 pull-right mt14' alt=''>
+                    @elseif($service->type=='checkInn')
+                        <a href="{{URL::to('/profile/' . $service->user->id)}}">
+                            <p class="f600-16 corporateBlue pm-0">{{$service->user->name}}</p>
+                        </a>
+                </div>
+                <img src='/img/SVG/share_check-in_18x18.svg' class='img18 pull-right mt14' alt=''>
+                @elseif($service->type=='couchService')
+                    <a href="{{URL::to('/profile/' . $service->user->id)}}">
+                        <span class="f600-16 color-sleep">{{$service->user->name}}</span>
+                    </a>
+            </div>
+            <img src='/img/SVG/share_couch_18x18.svg' class='img18 pull-right mt14' alt=''>
+            @elseif($service->type=='walkServices')
+                <a href="{{URL::to('/profile/' . $service->user->id)}}">
+                    <span class="f600-16 color-walk">{{$service->user->name}}</span>
+                </a>
+        </div>
+        <img src='/img/SVG/share_walk_18x18.svg' class='img18 pull-right mt14' alt=''>
+        @endif
+
+    </div>
+    @if(Auth::check())
+        <form class="form-horizontal " role="form" method="POST" action="{{ url('addComment') }}">
+            {!! csrf_field() !!}
+            <input type="hidden" name="yoga_point_id" value="{{$service->id}}">
+
+            <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
+
+                <textarea class="form-control w100p mt14" name="comment" placeholder="Комментарий" rows="5"></textarea>
+
+                @if ($errors->has('comment'))
+                    <span class="help-block">
+                            <strong>{{ $errors->first('comment') }}</strong>
+                        </span>
+                @endif
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn btn-green pull-right">
+                    <span>Комментировать</span>
+                </button>
+            </div>
+        </form>
+    @else
+        <div class="text-center">
+            <a href="{{asset('auth/login')}}" class="btn btn-green w100p mt14">
+                Зарегистрируйтесь чтобы оставитькомментарий</a>
+        </div>
+
+        @endif
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-offset-3 col-md-6">
+                @foreach($service->comments as $comment)
+                    <a href="/profile/{{$comment->user_id}}">
+                        <img src="{{$comment->user->avatar}}" alt="" class="img20 circle">
+                       <span class="f600-16 color-grey-name">{{$comment->user->name}}</span>
+                    </a>,
+                    <span class="color-date">
+                        <img src="/img/SVG/clock_14x14.svg" class="w14 mt--5">
+                        {{ date("d.m.Y, H:m", strtotime($comment->created_at)) }}
+                    </span>
+                    <br>
+                    {{$comment->text}}
+                    <hr>
+                @endforeach
+            </div>
+        </div>
+
+        </div>
+@endsection
