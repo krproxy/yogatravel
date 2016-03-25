@@ -9,6 +9,7 @@ use Cmgmyr\Messenger\Models\Thread;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class MessagesController extends Controller
@@ -146,13 +147,13 @@ class MessagesController extends Controller
             $thread->addParticipants(Input::get('recipients'));
         }
 
-        dd($thread->participantsUserIds());
-
-        foreach ($thread->participantsUserIds() as $member) {
-            dd($member);
-//            Mail::raw('новое сообщение', function ($message) use ($recipient) {
-//                $message->to($recipient->email)->subject('действия по кабинету ZOG');
-//            });
+        foreach ($thread->participantsUserIds() as $userId) {
+            if ($userId != Auth::id()) {
+                $recipient = User::find($userId);
+                Mail::raw("Вам пришло новое сообщение от {$thread->creator()->name}", function ($message) use ($recipient) {
+                    $message->to($recipient->email)->subject('новое сообщение YogaTravel');
+                });
+            }
         }
 
         return redirect('messages/' . $id);

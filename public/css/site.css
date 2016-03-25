@@ -793,7 +793,7 @@ label:hover + span {
 
 .circle-div {
     position: relative;
-    height: 375px;
+    /*height: 375px;*/
     border-radius: 25px;
     overflow: hidden;
 }
