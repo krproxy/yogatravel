@@ -1,3 +1,8 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     color: #50616b;
@@ -5,6 +10,46 @@ body {
     font-size: 16px;
     line-height: 165%;
     font-weight: 300;
+
+    /* Margin bottom by footer height */
+    margin-bottom: 170px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 150px;
+    background-color: #fafafa;
+    color: #77868f;
+    /*box-shadow: 0 0 5px rgba(0,0,0,0.5); !* Параметры тени *!*/
+    /*Open Sans Regular (400) 13 пикс*/
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.footer a{
+    color: #77868f;
+    text-decoration: underline;
+}
+
+.footer-social {
+    padding-top: 30px;
+    vertical-align: top;
+}
+
+.footer-social-btn {
+    width: 40px;
+    height: 41px;
+    padding: 0 3px 0px;
+}
+
+.footer-text {
+    padding-top: 35px;
+    padding-left: 20px!important;
+    vertical-align: top;
 }
 
 .yoga-screen {
@@ -15,6 +60,12 @@ body {
     background-size: cover;
     margin-top: -20px;
     color: white;
+}
+
+.yoga-copyright{
+    font-size: 11px;
+    padding-top: 20px;
+    padding-bottom: 20px;
 }
 
 .mainYogaBox {
@@ -75,9 +126,11 @@ body {
     width: 28px;
     display: inline-block;
 }
+
 .corporateBlue {
     color: #0480ae;
 }
+
 .corporateDark {
     color: #50616b;
 }
@@ -559,18 +612,23 @@ body {
 .color-tea {
     color: #d0a102;
 }
+
 .btn-tea-bg {
     background-color: #d0a102;
 }
+
 .color-sleep {
     color: #e67a00;
 }
-.btn-sleep-bg{
+
+.btn-sleep-bg {
     background-color: #e67a00;
 }
+
 .color-walk {
     color: #70b700;
 }
+
 .btn-walk-bg {
     background-color: #70b700;
 }
@@ -812,15 +870,18 @@ label:hover + span {
     border-radius: 50px;
     font-size: large;
 }
-.btn-all{
+
+.btn-all {
     color: white;
     border: none;
     border-radius: 50px;
     font-size: large;
 }
+
 .btn-couch {
     background-color: #e67a00;
 }
+
 .btn-walk {
     background-color: #87d21a;
 }
@@ -847,8 +908,9 @@ input[type="password"].inputNew {
     vertical-align: baseline;
     height: 18px;
 }
+
 /*.img12 {*/
-    /*width: 12px;*/
+/*width: 12px;*/
 /*}*/
 .f300-14 {
     font-weight: 300;
@@ -869,22 +931,27 @@ input[type="password"].inputNew {
     font-weight: 300;
     font-size: 21px;
 }
+
 .f300-25 {
     font-weight: 300;
     font-size: 25px;
 }
+
 .f400-24 {
     font-weight: 400;
     font-size: 24px;
 }
+
 .f400-25 {
     font-weight: 400;
     font-size: 25px;
 }
+
 .f600-14 {
     font-weight: 600;
     font-size: 14px;
 }
+
 .f600-16 {
     font-weight: 600;
     font-size: 16px;
@@ -949,7 +1016,8 @@ input[type="password"].inputNew {
     font-weight: bold;
     cursor: pointer;
 }
-.under-geo{
+
+.under-geo {
     text-decoration: underline;
 }
 
@@ -1018,42 +1086,54 @@ input[type="password"].inputNew {
 .w70p {
     width: 69%;
 }
+
 .w29p {
     width: 29%;
 }
+
 .inline {
     display: inline-block;
 }
-.circle{
+
+.circle {
     border: none;
     border-radius: 150px;
 }
+
 .img37 {
     height: 37px;
     vertical-align: top;
 }
-.w100p{
+
+.w100p {
     width: 100%;
 }
-.w14{
+
+.w14 {
     width: 14px;
 }
+
 .pm-0 {
     margin-bottom: 0;
     line-height: 19px;
 }
+
 .mt--5 {
     margin-top: -5px;
 }
+
 .color-we {
     color: #074e6b;
 }
+
 .color-date {
     color: #a7a7a7;
 }
+
 .color-grey-name {
     color: #50616b;
 }
+
 .gm-style-iw {
     max-width: 320px;
 }
