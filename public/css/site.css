@@ -35,6 +35,10 @@ body {
     text-decoration: underline;
 }
 
+.footer a:hover{
+    color: #50616b;
+}
+
 .footer-social {
     padding-top: 30px;
     vertical-align: top;
