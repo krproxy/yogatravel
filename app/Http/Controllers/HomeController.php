@@ -2,12 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests;
 use App\User;
 use App\YogaPoint;
-use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
@@ -55,11 +52,14 @@ class HomeController extends Controller
 
     private function parseToXML($xmlStr)
     {
-        $xmlStr=str_replace('<','&lt;',$xmlStr);
-        $xmlStr=str_replace('>','&gt;',$xmlStr);
-        $xmlStr=str_replace('"','&quot;',$xmlStr);
-        $xmlStr=str_replace("'",'&#39;',$xmlStr);
-        $xmlStr=str_replace("&",'&amp;',$xmlStr);
+        $xmlStr = str_replace('<', '&lt;', $xmlStr);
+        $xmlStr = str_replace('>', '&gt;', $xmlStr);
+        $xmlStr = str_replace('"', '&quot;', $xmlStr);
+        $xmlStr = str_replace("'", '&#39;', $xmlStr);
+        $xmlStr = str_replace("&", '&amp;', $xmlStr);
+        // убираем перенос строки
+        $xmlStr = preg_replace("/(\r\n|\n|\r)/", "", $xmlStr);
+
         return $xmlStr;
     }
 
