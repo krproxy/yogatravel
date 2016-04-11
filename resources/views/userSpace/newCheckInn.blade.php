@@ -8,7 +8,8 @@
 
                     <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data"
                           action="{{ url('/NewYogaPoint') }}"
-                          enctype="multipart/form-data">
+                          enctype="multipart/form-data"
+                          id="boatAddForm">
                         {!! csrf_field() !!}
 
                         <input type="hidden" name="type" value="checkInn">
@@ -16,7 +17,8 @@
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 
 
-                            <p class="text-left"><span class="markedText">#stickeryogatravel</span>– это маркер, которым осознанные
+                            <p class="text-left"><span class="markedText">#stickeryogatravel</span>– это маркер, которым
+                                осознанные
                                 путешественники обозначают кафе, хостелы, гостиницы, экстрим-парки,
                                 достопримечательности, ашрамы йоги и другие впечатляющие места.</p>
                             <p class="text-left">Для этого:</p>
@@ -56,27 +58,25 @@
                         </div>
 
                         <div class="form-group">
-
                             <input id="pac-input" class="pac-input1 form-control inputNew" type="text" name="address"
                                    placeholder=" расположение">
                         </div>
-                        <br>
-
 
                         {{--<div class="form-group" >--}}
-                            {{--<div class="col-md-7 col-md-offset-3">--}}
-                            {{--<label for=""><span class="markedText"><ins>Выберите фотографию:</ins></span> </label>--}}
-                            {{--<input type="file" id="upload" name="images[]" class="cursor" multiple accept="image/jpeg,image/png,image/gif">--}}
-                            {{--</div>--}}
-                            {{--<div class="fileform">--}}
-                                {{--<input id="upload" type="file" name="images[]" class="cursor"--}}
-                                       {{--multiple accept="image/jpeg,image/png,image/gif"/>--}}
-                                {{--<div class="selectbutton"><img id="photo-upload" src="/img/SVG/icon_photosticker_35x34.svg" alt="">--}}
-                                    {{--Выбрать фото со стикером--}}
-                                {{--</div>--}}
-                                {{--<div id="close-open"></div>--}}
-                            {{--</div>--}}
-                            <div class="form-group" >
+                        {{--<div class="col-md-7 col-md-offset-3">--}}
+                        {{--<label for=""><span class="markedText"><ins>Выберите фотографию:</ins></span> </label>--}}
+                        {{--<input type="file" id="upload" name="images[]" class="cursor" multiple accept="image/jpeg,image/png,image/gif">--}}
+                        {{--</div>--}}
+                        {{--<div class="fileform">--}}
+                        {{--<input id="upload" type="file" name="images[]" class="cursor"--}}
+                        {{--multiple accept="image/jpeg,image/png,image/gif"/>--}}
+                        {{--<div class="selectbutton"><img id="photo-upload" src="/img/SVG/icon_photosticker_35x34.svg" alt="">--}}
+                        {{--Выбрать фото со стикером--}}
+                        {{--</div>--}}
+                        {{--<div id="close-open"></div>--}}
+                        {{--</div>--}}
+
+                                <!--div class="form-group" >
                                 <p  class="text-center">Количество выбраных фото: <span id="remove_0">0</span><span id="uploadName"> </span></p>
                                 <div class="fileform">
                                     <input id="upload" type="file" name="images[]" class="cursor"
@@ -87,7 +87,15 @@
                                     {{--<div id="close-open"></div>--}}
 
                                 </div>
+                            </div-->
+
+                        <div class="form-group">
+                            <div action="/happy"
+                                 class="dropzone"
+                                 id="myDropzone">
                             </div>
+                        </div>
+
 
                         {{--</div>--}}
 
@@ -142,11 +150,50 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
 
-        $(function(){
-            $('#upload').change(function(){
+        $(function () {
+            $('#upload').change(function () {
                 $('#uploadName').text($(this.files).length);
                 $('#remove_0').remove();
             });
         });
+    </script>
+    <script>
+        // myDropzone is the configuration for the element that has an id attribute
+        // with the value my-dropzone (or myDropzone)
+        Dropzone.options.myDropzone = {
+            url: '/happy',
+            dictDefaultMessage: "Кликните, чтобы добавить фото. Также фото можно перетащить мышкой",
+            init: function () {
+//                this.on("addedfile", function (file) {
+//
+//                    // Create the remove button
+//                    var removeButton = Dropzone.createElement("<button>Remove file</button>");
+//
+//
+//                    // Capture the Dropzone instance as closure.
+//                    var _this = this;
+//
+//                    // Listen to the click event
+//                    removeButton.addEventListener("click", function (e) {
+//                        // Make sure the button click doesn't submit the form:
+//                        e.preventDefault();
+//                        e.stopPropagation();
+//
+//                        // Remove the file preview.
+//                        _this.removeFile(file);
+//                        // If you want to the delete the file on the server as well,
+//                        // you can do the AJAX request here.
+//                    });
+//
+//                    // Add the button to the file preview element.
+//                    file.previewElement.appendChild(removeButton);
+//                });
+                this.on("success", function (file, responseText) {
+                    $("#boatAddForm").append($('<input type="hidden" ' +
+                            'name="photos[]" ' +
+                            'value="' + responseText.fileName + '">'));
+                });
+            }
+        };
     </script>
 @endsection

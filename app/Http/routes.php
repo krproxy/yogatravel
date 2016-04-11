@@ -130,3 +130,27 @@ Route::group(['prefix' => 'messages'], function () {
     Route::get('{id}', ['as' => 'messages.show', 'uses' => 'MessagesController@show']);
     Route::put('{id}', ['as' => 'messages.update', 'uses' => 'MessagesController@update']);
 });
+
+Route::post('happy', function () {
+    if (Request::ajax()) { // Becuase you are uploading with ajax / dropzone
+        $file = Input::file('file');
+
+        $destinationPath = public_path() . '/uploads/' . Auth::id();
+
+        $filename = $file->getClientOriginalName();
+        $upload_success = Input::file('file')->move($destinationPath, $filename);
+        if ($upload_success) {
+//            return Response::json('success', 200);
+            $value = $destinationPath . '/' . $filename;
+
+            return [
+                'url' => asset($value),
+                'value' => $value,
+                'fileName' => $value,
+            ];
+        } else {
+            return Response::json('error', 400);
+
+        }
+    }
+});

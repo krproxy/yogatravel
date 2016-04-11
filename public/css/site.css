@@ -30,12 +30,12 @@ body {
     line-height: 1.5;
 }
 
-.footer a{
+.footer a {
     color: #77868f;
     text-decoration: underline;
 }
 
-.footer a:hover{
+.footer a:hover {
     color: #50616b;
 }
 
@@ -52,7 +52,7 @@ body {
 
 .footer-text {
     padding-top: 35px;
-    padding-left: 20px!important;
+    padding-left: 20px !important;
     vertical-align: top;
 }
 
@@ -66,7 +66,7 @@ body {
     color: white;
 }
 
-.yoga-copyright{
+.yoga-copyright {
     font-size: 11px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -1140,4 +1140,9 @@ input[type="password"].inputNew {
 
 .gm-style-iw {
     max-width: 320px;
+}
+
+.dropzone {
+    border: 2px solid #83CC15 !important;
+    border-radius: 25px;
 }
