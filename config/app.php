@@ -142,6 +142,7 @@ return [
         SocialiteProviders\Manager\ServiceProvider::class,
         Cmgmyr\Messenger\MessengerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        Angrydeer\Attachfiles\AttachfilesServiceProvider::class,
 
         /*
          * Application Service Providers...

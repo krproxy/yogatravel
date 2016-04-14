@@ -135,13 +135,14 @@ Route::post('happy', function () {
     if (Request::ajax()) { // Becuase you are uploading with ajax / dropzone
         $file = Input::file('file');
 
-        $destinationPath = public_path() . '/uploads/' . Auth::id();
+        $filePath = '/uploads/' . Auth::id();
+        $destinationPath = public_path($filePath);
 
         $filename = $file->getClientOriginalName();
         $upload_success = Input::file('file')->move($destinationPath, $filename);
         if ($upload_success) {
 //            return Response::json('success', 200);
-            $value = $destinationPath . '/' . $filename;
+            $value = $filePath . '/' . $filename;
 
             return [
                 'url' => asset($value),
@@ -154,3 +155,10 @@ Route::post('happy', function () {
         }
     }
 });
+
+//Route::get('attaches/{date}/{filename}', function ($date,$filename) {
+//    return Storage::get('attaches/'.$date.'/'.$filename);
+//});
+
+Route::get('attaches/{dateImg}/{filename}/{width}/{height}/{type?}/{anchor?}', 'ImageController@whResize');
+Route::get('attaches/{dateImg}/{filename}/', 'ImageController@fullImage');

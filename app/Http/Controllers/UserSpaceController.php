@@ -105,28 +105,31 @@ class UserSpaceController extends Controller
 
         $imgNameCounter = 0;
 
-        foreach ($request->file('images') as $image)
-            if ($image) {
-                $imageName = \Auth::id() . '_' . ++$imgNameCounter . '_' . time() . '.' .
-                    $image->getClientOriginalExtension();
+//        foreach ($request->file('images') as $image)
+//            if ($image) {
+//                $imageName = \Auth::id() . '_' . ++$imgNameCounter . '_' . time() . '.' .
+//                    $image->getClientOriginalExtension();
+//
+////                Image::make($image)
+////                    ->resize(null, 1500, function ($constraint) {
+////                        $constraint->aspectRatio();
+////                    })
+////                    ->save(base_path() . '/public/img/PointImages/' . $imageName);
+//
+//                $resizer = new ImageResizer($image, 3000, 1500);
+//                $_image = $resizer->Resize();
+//                Image::make($_image)->save(base_path() . '/public/img/PointImages/' . $imageName);
+//
+//
+//                $pointImage = new PointImage();
+//                $pointImage->name = $imageName;
+//                $pointImage->alt = "";
+//
+//                $point->pointImages()->save($pointImage);
+//            }
 
-//                Image::make($image)
-//                    ->resize(null, 1500, function ($constraint) {
-//                        $constraint->aspectRatio();
-//                    })
-//                    ->save(base_path() . '/public/img/PointImages/' . $imageName);
-
-                $resizer = new ImageResizer($image, 3000, 1500);
-                $_image = $resizer->Resize();
-                Image::make($_image)->save(base_path() . '/public/img/PointImages/' . $imageName);
-
-
-                $pointImage = new PointImage();
-                $pointImage->name = $imageName;
-                $pointImage->alt = "";
-
-                $point->pointImages()->save($pointImage);
-            }
+        foreach($request->photos as $photo)
+            $point->updateOrNewAttach($photo);
 
         return redirect()->action('HomeController@Map', ['Lat' => $request->checkIn_lat, 'Lng' => $request->checkIn_lng]);
     }

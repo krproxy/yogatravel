@@ -15,7 +15,9 @@ class HomeController extends Controller
         $markerXML = '<markers>';
         foreach (YogaPoint::all() as $yogaPoint) {//var_dump($yogaPoint->pointImages);
 
-            $image = !empty($yogaPoint->pointImages[0]) ? $yogaPoint->pointImages[0]->name : "default.svg";
+//            $image = !empty($yogaPoint->pointImages[0]) ? $yogaPoint->pointImages[0]->name : "default.svg";
+
+            $image = !empty($yogaPoint->attaches->first()->filename) ? $yogaPoint->attaches->first()->filename : "default.svg";
 
             $avatar = !empty(User::findOrNew($yogaPoint->user_id)->avatar) ? User::findOrNew($yogaPoint->user_id)->avatar : "/img/Avatars/photo_default.svg";
 

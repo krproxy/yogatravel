@@ -1,6 +1,3 @@
-{{--{{dd($service)}}--}}
-{{--{{dd($service->pointImages)}}--}}
-{{--{{dd($service->user)}}--}}
 @extends('layouts.app')
 
 @section('title', $service->address)
@@ -11,7 +8,6 @@
     <div class="container spark-screen">
         <div class="row">
             <div class="col-md-offset-3 col-md-6">
-                <div>
                     <div class="w70p inline">
                         @if($service->type=='teaService')
                             <p class="color-tea f25-400">
@@ -39,7 +35,6 @@
                         <img src='/img/SVG/clock_14x14.svg' class='w14 mt--5'>
                         {{ date("d,m,Y", strtotime($service->created_at))}}
                     </div>
-                </div>
 
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                     <!-- Indicators -->
@@ -47,12 +42,10 @@
                         <?php $isActive = true;?>
                         @for($i=0; $i<count($service->pointImages); $i++)
                             <li data-target="#carousel-example-generic" data-slide-to="{{$i}}"
-                            <?php
-                                    if ($isActive) {
-                                        echo 'class="active"';
-                                        $isActive = false;
-                                    }
-                                    ?>
+                            <?php if ($isActive) {
+                                echo 'class="active"';
+                                $isActive = false;
+                            } ?>
                             ></li>
                         @endfor
                     </ol>
@@ -60,34 +53,36 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <?php $isActive = true;?>
-                        @foreach($service->pointImages as $pointImage)
-                            <div class="item
-                                        <?php
-                            if ($isActive) {
+                        @foreach($service->attaches as $attach)
+                            <div class="item <?php if ($isActive) {
                                 echo 'active';
                                 $isActive = false;
-                            }
-                            ?>
-                                    ">
-                                <img src="/img/PointImages/{{$pointImage->name}}" alt="...">
+                            }  ?>">
+                                <a class="fancybox" rel="group" href="{{URL::to($attach->filename)}}"><img
+                                            src="{{URL::to($attach->filename.'/800/500/chunk')}}" alt="{{$attach->alt}}"
+                                            title="{{$attach->title}}"/></a>
                             </div>
                         @endforeach
                     </div>
 
                     <!-- Controls -->
-                    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                    <a class="left carousel-control" href="#carousel-example-generic" role="button"
+                       data-slide="prev">
                         <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
                         <span class="sr-only">Previous</span>
                     </a>
-                    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                    <a class="right carousel-control" href="#carousel-example-generic" role="button"
+                       data-slide="next">
                         <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
+
                 <p class="f300-16">{{$service->description}}</p>
                 <div class="w100p">
                     @if($service->type=='teaService')
-                        <a href="{{URL::to('messages/create/' . $service->user->id)}}" class="btn btn-all btn-tea-bg">
+                        <a href="{{URL::to('messages/create/' . $service->user->id)}}"
+                           class="btn btn-all btn-tea-bg">
                             <img src="/img/SVG/message_21x15.svg" alt="" class="img18">
                             Принять приглашение
                         </a>
@@ -98,7 +93,8 @@
                             Принять приглашение
                         </a>
                     @elseif($service->type=='walkServices')
-                        <a href="{{URL::to('messages/create/' . $service->user->id)}}" class="btn btn-all btn-walk-bg">
+                        <a href="{{URL::to('messages/create/' . $service->user->id)}}"
+                           class="btn btn-all btn-walk-bg">
                             <img src="/img/SVG/message_21x15.svg" alt="" class="img18">
                             Принять приглашение
                         </a>
@@ -140,7 +136,8 @@
 
             <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
 
-                <textarea class="form-control w100p mt14" name="comment" placeholder="Комментарий" rows="5"></textarea>
+                    <textarea class="form-control w100p mt14" name="comment" placeholder="Комментарий"
+                              rows="5"></textarea>
 
                 @if ($errors->has('comment'))
                     <span class="help-block">
@@ -160,7 +157,6 @@
             <a href="{{asset('auth/login')}}" class="btn btn-green w100p mt14">
                 Зарегистрируйтесь чтобы оставитькомментарий</a>
         </div>
-
         @endif
         </div>
         </div>
@@ -174,7 +170,7 @@
                 @foreach($service->comments as $comment)
                     <a href="/profile/{{$comment->user_id}}">
                         <img src="{{$comment->user->avatar}}" alt="" class="img20 circle">
-                       <span class="f600-16 color-grey-name">{{$comment->user->name}}</span>
+                        <span class="f600-16 color-grey-name">{{$comment->user->name}}</span>
                     </a>,
                     <span class="color-date">
                         <img src="/img/SVG/clock_14x14.svg" class="w14 mt--5">
@@ -188,4 +184,30 @@
         </div>
 
         </div>
+        @stop
+
+        @section('customScripts')
+
+                <!-- Add mousewheel plugin (this is optional) -->
+        <script type="text/javascript" src="/fancybox/lib/jquery.mousewheel-3.0.6.pack.js"></script>
+
+        <!-- Add fancyBox -->
+        <link rel="stylesheet" href="/fancybox/source/jquery.fancybox.css?v=2.1.5" type="text/css" media="screen"/>
+        <script type="text/javascript" src="/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+        <!-- Optionally add helpers - button, thumbnail and/or media -->
+        <link rel="stylesheet" href="/fancybox/source/helpers/jquery.fancybox-buttons.css?v=1.0.5" type="text/css"
+              media="screen"/>
+        <script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-buttons.js?v=1.0.5"></script>
+        <script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+
+        <link rel="stylesheet" href="/fancybox/source/helpers/jquery.fancybox-thumbs.css?v=1.0.7" type="text/css"
+              media="screen"/>
+        <script type="text/javascript" src="/fancybox/source/helpers/jquery.fancybox-thumbs.js?v=1.0.7"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $(".fancybox").fancybox();
+            });
+        </script>
 @endsection

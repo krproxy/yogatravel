@@ -2,10 +2,14 @@
 
 namespace App;
 
+use Angrydeer\Attachfiles\AttachableInterface;
+use Angrydeer\Attachfiles\AttachableTrait;
 use Illuminate\Database\Eloquent\Model;
 
-class YogaPoint extends Model
+class YogaPoint extends Model implements AttachableInterface
 {
+    use AttachableTrait;
+
     /**
      * The database table used by the model.
      *

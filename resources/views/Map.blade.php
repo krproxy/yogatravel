@@ -265,31 +265,33 @@
                 colorShare = "<img src='/img/SVG/share_check-in_18x18.svg' class='img18' alt=''>";
             }
 
-            else if (type === "teaService"){
+            else if (type === "teaService") {
                 colorStyle = "style='color: #d0a102; vertical-align: top; padding-bottom: 5px'";
                 colorGeo = "<img src='/img/SVG/geometka_tea_12x20.svg' class='img18' alt=''>";
                 colorShare = "<img src='/img/SVG/share_tea_18x18.svg' class='img18' alt=''>";
             }
 
-            else if (type === "couchService"){
+            else if (type === "couchService") {
                 colorStyle = "style='color: #e67a00; vertical-align: top; padding-bottom: 5px'";
                 colorGeo = "<img src='/img/SVG/geometka_couch_12x20.svg' class='img18' alt=''>";
                 colorShare = "<img src='/img/SVG/share_couch_18x18.svg' class='img18' alt='' style='vertical-align: middle'>";
             }
 
-            else if (type === "walkServices"){
+            else if (type === "walkServices") {
                 colorStyle = "style='color: #87d21a; vertical-align: top; padding-bottom: 5px'";
                 colorGeo = "<img src='/img/SVG/geometka_walk_12x20.svg' class='img18' alt=''>";
                 colorShare = "<img src='/img/SVG/share_walk_18x18.svg' class='img18' alt=''>";
             }
 
 
-            var html = "<table width='270px; border-radius: 125px;'>"
+            var html = "<link  href=\"http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css\" rel=\"stylesheet\">"
+                    + "<script src=\"http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js\"><\/script>"
+                    + "<table width='270px; border-radius: 125px;'>"
                     + "<tr>"
                     + "<td colspan=\"2\">" +
                     "<table>" +
                     "<tr style='line-height: 120%;'>" +
-                    "<td width='20px' " + colorStyle + ">" + colorGeo  + "</td>" +
+                    "<td width='20px' " + colorStyle + ">" + colorGeo + "</td>" +
                     "<td width='165px'  " + colorStyle + "><b>" + address + "</b></td>" +
                     "<td width='85px' style='vertical-align: top'><img width='14px' src='/img/SVG/clock_14x14.svg'>" + " " + date + "</td>" +
                     "</tr>" +
@@ -297,7 +299,9 @@
                     + "</td>"
                     + "</tr>"
                     + "<tr>"
-                    + "<td colspan=\"2\">" +"<div class='overflow-h'><IMG BORDER=\"0\" ALIGN=\"Left\" width='270px' SRC=\"/img/PointImages/" + image + "\"></div></td>"
+                    + "<td colspan=\"2\"><div class='overflow-h'><IMG BORDER=\"0\" ALIGN=\"Left\" width='270px' SRC=" + image + "></div></td>"
+                    + "<td colspan=\"2\">"
+                    + "</td>"
                     + "</tr>"
                     + "<tr>"
                     + "<td colspan=\"2\" style='padding-bottom: 5px;'>" + description + " <a href='/service/" + serviceId + "'>подробнее</a></td>"
@@ -311,7 +315,7 @@
                     "</tr>" +
                     "</table>"
                     + "</td>"
-                    + "<td style='float: right'>"+colorShare+"</td>"
+                    + "<td style='float: right'>" + colorShare + "</td>"
                     + "</tr>"
                     + "</table>";
             bindInfoWindow(marker, map, infoWindow, html);
