@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
-use Exception;
-use Redirect;
-use Socialite;
-use Validator;
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
+use BW\Vkontakte;
+use Facebook\Exceptions\FacebookSDKException;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Redirect;
+use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
+use Session;
+use Validator;
 
 class AuthController extends Controller
 {
@@ -40,7 +42,7 @@ class AuthController extends Controller
     /**
      * Get a validator for an incoming registration request.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function validator(array $data)
@@ -55,7 +57,7 @@ class AuthController extends Controller
     /**
      * Create a new user instance after a valid registration.
      *
-     * @param  array  $data
+     * @param  array $data
      * @return User
      */
     protected function create(array $data)
@@ -68,38 +70,147 @@ class AuthController extends Controller
     }
 
 
-
-
-
-    /**
-     * Redirect the user to the GitHub authentication page.
-     *
-     * @return Response
-     */
-    public function redirectToProvider($socialProvider)
+    public function fbLoginPost(LaravelFacebookSdk $fb)
     {
-        //return Socialite::driver('vkontakte')->redirect();
-        return Socialite::with($socialProvider)->redirect();
-    }
-
-    /**
-     * Obtain the user information from GitHub.
-     *
-     * @return Response
-     */
-    public function handleProviderCallback($socialProvider)
-    {
+        // Obtain an access token.
         try {
-            $user = Socialite::driver($socialProvider)->user();
-        } catch (Exception $e) {
-            return Redirect::to("auth/$socialProvider");
+            $token = $fb->getAccessTokenFromRedirect();
+        } catch (FacebookSDKException $e) {
+            dd($e->getMessage());
         }
 
-        //dd($user->user);
+        // Access token will be null if the user denied the request
+        // or if someone just hit this URL outside of the OAuth flow.
+        if (!$token) {
+            // Get the redirect helper
+            $helper = $fb->getRedirectLoginHelper();
+
+            if (!$helper->getError()) {
+                abort(403, 'Unauthorized action.');
+            }
+
+            // User denied the request
+            dd(
+                $helper->getError(),
+                $helper->getErrorCode(),
+                $helper->getErrorReason(),
+                $helper->getErrorDescription()
+            );
+        }
+
+        if (!$token->isLongLived()) {
+            // OAuth 2.0 client handler
+            $oauth_client = $fb->getOAuth2Client();
+
+            // Extend the access token.
+            try {
+                $token = $oauth_client->getLongLivedAccessToken($token);
+            } catch (FacebookSDKException $e) {
+                dd($e->getMessage());
+            }
+        }
+
+        $fb->setDefaultAccessToken($token);
+
+        // Save for later
+        Session::put('fb_user_access_token', (string)$token);
+
+        // Get basic info on the user from Facebook.
+        try {
+            $response = $fb->get('/me?fields=id,name,email');
+        } catch (FacebookSDKException $e) {
+            dd($e->getMessage());
+        }
+
+        // Convert the response to a `Facebook/GraphNodes/GraphUser` collection
+        $facebook_user = $response->getGraphUser();
+
+        // Create the user if it does not exist or update the existing entry.
+        // This will only work if you've added the SyncableGraphNodeTrait to your User model.
+        $user = User::createOrUpdateGraphNode($facebook_user);
+
+        // Log the user into Laravel
+        Auth::login($user);
+
+
+        return redirect('/')->with('message', 'Successfully logged in with Facebook');
+
+
+//        $linkData = [
+//            'link' => 'http://www.example.com',
+//            'message' => 'User provided message',
+//        ];
+//
+//        try {
+//            // Returns a `Facebook\FacebookResponse` object
+//            $response = $fb->post('/me/feed', $linkData, $token);
+//        } catch (FacebookResponseException $e) {
+//            echo 'Graph returned an error: ' . $e->getMessage();
+//            exit;
+//        } catch (FacebookSDKException $e) {
+//            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+//            exit;
+//        }
+//
+//        $graphNode = $response->getGraphNode();
+//
+//        echo 'Posted with id: ' . $graphNode['id'];
+//
+//
+//        /* PHP SDK v5.0.0 */
+//        /* make the API call */
+//        $request = $fb->request(
+//            'POST',
+//            '/1870804253146606/feed',
+//            array(
+//                'message' => 'This is a test message',
+//            )
+//        );
+//
+//
+//// Send the request to Graph
+//        try {
+//            $response = $fb->getClient()->sendRequest($request);
+//        } catch (FacebookResponseException $e) {
+//            // When Graph returns an error
+//            echo 'Graph returned an error: ' . $e->getMessage();
+//            exit;
+//        } catch (FacebookSDKException $e) {
+//            // When validation fails or other local issues
+//            echo 'Facebook SDK returned an error: ' . $e->getMessage();
+//            exit;
+//        }
+//
+//        $graphNode = $response->getGraphNode();
+//
+//        dd($graphNode);
+//
+//
+//        $response = $request->execute();
+//        $graphObject = $response->getGraphObject();
+//        /* handle the result */
+    }
+
+    public function vkLoginPost(Vkontakte $vk)
+    {
+        $vk->authenticate();
+
+        $userId = $vk->getUserId();
+        $userEmail = $vk->getUserEmail();
+
+        $user = $vk->api('users.get', [
+            'user_id' => $userId,
+            'fields' => [
+                'photo_max',
+                'city',
+                'sex',
+            ],
+        ]);
+        $user[0]['email'] = $userEmail;
 
         $authUser = $this->findOrCreateUser($user);
 
-        Auth::login($authUser, true);
+        Auth::login($authUser);
 
         return Redirect::to('home');
     }
@@ -112,16 +223,14 @@ class AuthController extends Controller
      */
     private function findOrCreateUser($socialUser)
     {
-        if ($authUser = User::where('social_id', $socialUser->id)->first()) {
+        if ($authUser = User::where('vkontakte_user_id', $socialUser[0]['id'])->first()) {
             return $authUser;
         }
-//dd($socialUser);
         return User::create([
-            'name' => $socialUser->user['first_name'],
-            'surname' => $socialUser->user['last_name'],
-            'email' => $socialUser->email,
-            'social_id' => $socialUser->id,
-            'avatar' => $socialUser->avatar
+            'name' => $socialUser[0]['first_name'] . ' ' . $socialUser[0]['last_name'],
+            'email' => $socialUser[0]['email'],
+            'vkontakte_user_id' => $socialUser[0]['id'],
+            'avatar' => $socialUser[0]['photo_max']
         ]);
     }
 }

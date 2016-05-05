@@ -245,6 +245,12 @@ body {
     height: calc(100vh - 87px);
 }
 
+.mapButtonLabel {
+    padding: 10px;
+    display: table-cell;
+    vertical-align: middle
+}
+
 #over_map {
     position: absolute;
     top: 67px;

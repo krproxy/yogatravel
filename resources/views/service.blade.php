@@ -1,10 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.master')
+
+@section('ogUrl', asset('/service/'.$service->id))
+@section('ogType', "article")
+@section('ogTitle', $service->address)
+@section('ogDescription', $service->description)
+@section('ogImage', asset($service->attaches->first()->filename))
 
 @section('title', $service->address)
 
 @section('description', $service->description)
 
-@section('content')
+@section('body')
     <div class="container spark-screen">
         <div class="row">
             <div class="col-md-offset-3 col-md-6">

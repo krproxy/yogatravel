@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('title', 'Пить кофе, переночевать, прогуляться. Yoga Friends - каучсерфинг')
 
 @section('description', 'Yoga Friends – couchsurfing для йогов по всем странам мира. Альтернатива хостелам, отелям, гостиницам, кемпингу. Развитие культуры путешествия.')
 
-@section('content')
+@section('body')
     <div class="container spark-screen">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-left">

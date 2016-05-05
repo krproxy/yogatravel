@@ -14,9 +14,9 @@
                                 <img class="wh100" src="{!! asset(Auth::user()->avatar) !!}" alt="">
                             @endif
                             <div id="foto-load-transparent" class="cursor">
-                                <p >
+                                <p>
                                     <img src="/img/SVG/photo.svg" alt="" class="img18 mr10">
-                                     Загрузить фото
+                                    Загрузить фото
                                 </p>
                             </div>
                         </div>
@@ -45,8 +45,8 @@
                         </div>
                     </div>
                     {{--<div class="form-group">--}}
-                        {{--<input id="pac-input" class="pac-input1 form-control inputNew" type="text" name="address"--}}
-                               {{--placeholder=" расположение" onchange="disableFalse()">--}}
+                    {{--<input id="pac-input" class="pac-input1 form-control inputNew" type="text" name="address"--}}
+                    {{--placeholder=" расположение" onchange="disableFalse()">--}}
                     {{--</div>--}}
 
                     <a href="{{ URL::to('messages') }}"
@@ -106,12 +106,14 @@
                     {{--</div>--}}
 
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <input type="text" class="form-control inputNew" value="{{ isset(Auth::user()->email)?Auth::user()->email:'' }}"  onchange="disableFalse()"  >
+                        <input type="text" class="form-control inputNew"
+                               value="{{ isset(Auth::user()->email)?Auth::user()->email:'' }}"
+                               onchange="disableFalse()">
                         {{--<p id="newMail">--}}
-                                {{--<span onclick="visibleMail()" id="span-mail" class=" inputNew" name="email">--}}
-                                     {{--{{ isset(Auth::user()->email)?Auth::user()->email:'' }}--}}
-                                    {{--<img src="/img/SVG/edit_11x11.svg" class="imgMenu-icons cursor" alt="Редактировать">--}}
-                                {{--</span>--}}
+                        {{--<span onclick="visibleMail()" id="span-mail" class=" inputNew" name="email">--}}
+                        {{--{{ isset(Auth::user()->email)?Auth::user()->email:'' }}--}}
+                        {{--<img src="/img/SVG/edit_11x11.svg" class="imgMenu-icons cursor" alt="Редактировать">--}}
+                        {{--</span>--}}
                         {{--</p>--}}
                         @if ($errors->has('email'))
                             <span class="help-block">
@@ -125,8 +127,28 @@
                         <input type="password" class="form-control inputNew" placeholder="новый пароль">
                         <input type="password" class="form-control inputNew" placeholder="повторить новый пароль">
                         <input type="password" class="form-control inputNew" placeholder="старый пароль"
-                                                                                onchange="disableFalse()">
+                               onchange="disableFalse()">
                     </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"
+                                   name="facebook_posting_allowed"
+                                   {{Auth::user()->facebook_posting_allowed ? 'checked="checked"' : ''}}
+                                   onchange="disableFalse()">
+                            Постить мои приглашения и рекомендации в facebook
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"
+                                   name="vkontakte_posting_allowed"
+                                   {{Auth::user()->vkontakte_posting_allowed ? 'checked="checked"' : ''}}
+                                   onchange="disableFalse()">
+                            Постить мои приглашения и рекомендации в vkontakte
+                        </label>
+                    </div>
+
                     <div class="form-group">
                         <input type="submit" id="load" class="btn inputNew submit" value="Сохранить изменения" disabled>
                     </div>
@@ -151,14 +173,18 @@
 
                 <div class="col-md-9 pleft37">
                     <p id="newName">
-                        <span class="corporateBlue f400-24" id="nameDel">{{ isset(Auth::user()->name)?Auth::user()->name:'' }}</span>
-                        <img src="/img/SVG/edit_profile_normal_16x16.svg" alt="" class="img20 cursor" id="imgDel" onclick="visibleInput()">
+                        <span class="corporateBlue f400-24"
+                              id="nameDel">{{ isset(Auth::user()->name)?Auth::user()->name:'' }}</span>
+                        <img src="/img/SVG/edit_profile_normal_16x16.svg" alt="" class="img20 cursor" id="imgDel"
+                             onclick="visibleInput()">
 
 
                     </p>
                     <p id="newStatus">
-                        <span class="f300-16" id="span-area">{{ isset(Auth::user()->shortStory)?Auth::user()->shortStory:'' }}</span>
-                        <img src="/img/SVG/edit_profile_normal_16x16.svg" class="imgMenu-icons cursor" alt="" onclick="visibleArea()" id="imgArea">
+                        <span class="f300-16"
+                              id="span-area">{{ isset(Auth::user()->shortStory)?Auth::user()->shortStory:'' }}</span>
+                        <img src="/img/SVG/edit_profile_normal_16x16.svg" class="imgMenu-icons cursor" alt=""
+                             onclick="visibleArea()" id="imgArea">
                     </p>
 
                     <p>
@@ -208,45 +234,45 @@
 
 @section('customScripts')
     <script>
-        $(function(){
+        $(function () {
             $('#foto_load_visible').hover(
-                    function() {
-                        $('#foto-load-transparent').css('opacity','0.5');
+                    function () {
+                        $('#foto-load-transparent').css('opacity', '0.5');
                     },
-                    function() {
-                        $('#foto-load-transparent').css('opacity','0');
+                    function () {
+                        $('#foto-load-transparent').css('opacity', '0');
                     }
             )
         });
 
-        $(function(){
+        $(function () {
             $('#file-load-tr').hover(
-                    function() {
-                        $('#foto-load-transparent').css('opacity','0.5');
+                    function () {
+                        $('#foto-load-transparent').css('opacity', '0.5');
                     },
-                    function() {
-                        $('#foto-load-transparent').css('opacity','0');
+                    function () {
+                        $('#foto-load-transparent').css('opacity', '0');
                     }
             )
         });
 
-        $(function(){
+        $(function () {
             $('#imgDel').hover(
-                    function() {
-                        $(this).attr("src","/img/SVG/edit_profile_active_16x16.svg");
+                    function () {
+                        $(this).attr("src", "/img/SVG/edit_profile_active_16x16.svg");
                     },
-                    function() {
-                        $(this).attr("src","/img/SVG/edit_profile_normal_16x16.svg");
+                    function () {
+                        $(this).attr("src", "/img/SVG/edit_profile_normal_16x16.svg");
                     }
             )
         });
-        $(function(){
+        $(function () {
             $('#imgArea').hover(
-                    function() {
-                        $(this).attr("src","/img/SVG/edit_profile_active_16x16.svg");
+                    function () {
+                        $(this).attr("src", "/img/SVG/edit_profile_active_16x16.svg");
                     },
-                    function() {
-                        $(this).attr("src","/img/SVG/edit_profile_normal_16x16.svg");
+                    function () {
+                        $(this).attr("src", "/img/SVG/edit_profile_normal_16x16.svg");
                     }
             )
         });
@@ -258,7 +284,7 @@
             newName.removeChild(sp);
             var inp = document.createElement("input");
             newName.appendChild(inp);
-            inp.oninput = function(){
+            inp.oninput = function () {
                 disableFalse();
             };
             inp.setAttribute("autofocus", "autofocus");
@@ -282,11 +308,11 @@
             newName.removeChild(s2);
             newName.removeChild(s1);
             var sps = document.createElement("span");
-            newName.insertBefore(sps,i3);
+            newName.insertBefore(sps, i3);
             sps.innerHTML = "{{ isset(Auth::user()->name)?Auth::user()->name:'' }} ";
             sps.classList.add("corporateBlue");
             sps.classList.add("f400-24");
-            sps.setAttribute("id","nameDel");
+            sps.setAttribute("id", "nameDel");
             i3.setAttribute("width", "20px");
         }
         function visibleArea() {
@@ -296,7 +322,7 @@
             var inp = document.createElement("textarea");
             newStatus.appendChild(inp);
             inp.innerHTML = "{{ isset(Auth::user()->shortStory)?Auth::user()->shortStory:'' }}";
-            inp.oninput = function() {
+            inp.oninput = function () {
                 disableFalse();
             };
             inp.setAttribute("autofocus", "autofocus");
@@ -311,7 +337,7 @@
             close.classList.add("span-close");
             close.setAttribute("id", "close-area");
             close.setAttribute("onclick", "closeVisibleArea()");
-            i3.setAttribute("width","0");
+            i3.setAttribute("width", "0");
         }
         function closeVisibleArea() {
             var s1 = document.getElementById("newNameArea");
@@ -320,10 +346,10 @@
             newStatus.removeChild(s2);
             newStatus.removeChild(s1);
             var sps = document.createElement("span");
-            newStatus.insertBefore(sps,i3);
+            newStatus.insertBefore(sps, i3);
             sps.innerHTML = "{{ isset(Auth::user()->shortStory)?Auth::user()->shortStory:'' }}";
-            sps.setAttribute("id","span-area");
-            i3.setAttribute("width","20px");
+            sps.setAttribute("id", "span-area");
+            i3.setAttribute("width", "20px");
         }
 
         function disableFalse() {

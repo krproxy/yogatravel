@@ -10,11 +10,13 @@
         "laravel/socialite": "^2.0",
         "barryvdh/laravel-ide-helper": "^2.1",
         "laravelcollective/html": "^5.1",
-        "socialiteproviders/vkontakte": "^1.1",
         "cmgmyr/messenger": "~2.0",
         "intervention/image": "^2.3",
         "angrydeer/attachfiles": "dev-master",
-        "intervention/imagecache": "^2.3"
+        "intervention/imagecache": "^2.3",
+        "sammyk/laravel-facebook-sdk": "^3.0",
+        "bocharsky-bw/vkontakte-php-sdk": "dev-master",
+        "guzzlehttp/guzzle": "^5.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

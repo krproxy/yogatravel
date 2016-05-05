@@ -1,51 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<?php
+/**
+ * Created by PhpStorm.
+ * User: totorro
+ * Date: 20.04.16
+ * Time: 17:34
+ */ ?>
 
-    <title>@yield('title')</title>
-    <meta name="Description" content="@yield('description')">
-
-    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
-
-    <!-- Fonts -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel='stylesheet'
-          type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-
-    <!-- Styles -->
-
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-    {{--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">--}}
-
-            <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
-          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="/css/site.css" type='text/css'>
-
-    <link rel="stylesheet" href="/js/jquery-ui-1.11.4/jquery-ui.min.css" type='text/css'>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/basic.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.css">
-
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
-          integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="//oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    @yield('customHeader')
-
-</head>
-<body id="app-layout">
+<div id="fb-root"></div>
+<script>(function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.6&appId=1608911852682283";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
 
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
@@ -86,12 +56,8 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <a class="btn btn-login navbar-btn" href="/auth/login">Войти</a>
-                            {{--<li><a href="/auth/register">Register</a></li>--}}
                         @else
                             <div class="btn-group" role="group">
-                                {{--<button type="button" class="btn btn-default">1</button>--}}
-                                {{--<button type="button" class="btn btn-default">2</button>--}}
-
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-login navbar-btn dropdown-toggle"
                                             id="bg-grey-img" data-toggle="dropdown" aria-haspopup="true"
@@ -155,56 +121,3 @@
         </div>
     </div>
 </nav>
-
-@yield('content')
-
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-9 col-md-offset-3">
-                <ul class="list-inline">
-                    <li class="footer-social">
-                        <a href="https://vk.com/yoga_travel_all"><img class="footer-social-btn"
-                                                                      src="/img/SVG/footer_vk_40x41.svg" alt=""></a>
-                        <a href="https://www.facebook.com/YogaTravel.All"><img class="footer-social-btn"
-                                                                               src="/img/SVG/footer_fb_40x41.svg"
-                                                                               alt=""></a>
-                    </li>
-                    <li class="footer-text">
-                        <ul style="list-style-type:none">
-                            <li><a href="#">Написать нам</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#FAQ">
-                                    Часто задаваемые вопросы
-                                </a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#rules">
-                                    Правила пользования сайтом
-                                </a></li>
-                            <li class="yoga-copyright">&#169; {{date("Y")}} YogaTravel</li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</footer>
-
-<!-- JavaScripts -->
-{{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
-        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
-        crossorigin="anonymous"></script>
-
-<script src="/js/jquery-ui-1.11.4/jquery-ui.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/dropzone-amd-module.js"></script>
-
-<!-- fotorama.css & fotorama.js. -->
-<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
-<script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
-
-@yield('customScripts')
-
-</body>
-</html>

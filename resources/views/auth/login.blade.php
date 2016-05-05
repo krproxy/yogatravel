@@ -129,21 +129,21 @@
                         </div>
 
                         {{--<div class="form-group">--}}
-                            {{--<div class="col-md-6">--}}
-                                {{--<div class="checkbox">--}}
-                                    {{--<label class="cursor" for="remember">--}}
-                                        {{--<input type="checkbox" name="remember" id="check-remember">--}}
-                                        {{--<span onclick="check()">Запомнить&nbsp;меня</span>--}}
-                                    {{--</label>--}}
-                                {{--</div>--}}
-                            {{--</div>--}}
+                        {{--<div class="col-md-6">--}}
+                        {{--<div class="checkbox">--}}
+                        {{--<label class="cursor" for="remember">--}}
+                        {{--<input type="checkbox" name="remember" id="check-remember">--}}
+                        {{--<span onclick="check()">Запомнить&nbsp;меня</span>--}}
+                        {{--</label>--}}
+                        {{--</div>--}}
+                        {{--</div>--}}
                         {{--</div>--}}
 
                         <div class="form-group">
                             <div class="col-md-6">
                                 <button type="submit" class="btn btn-registration">Войти</button>
                                 {{--<a class="btn btn-link" href="{{ url('/password/email') }}">--}}
-                                    {{--<ins>Забыли пароль?</ins>--}}
+                                {{--<ins>Забыли пароль?</ins>--}}
                                 {{--</a>--}}
                             </div>
                         </div>
@@ -159,9 +159,25 @@
             <div class="col-md-6 col-md-offset-3 text-center">
                 <div>
                     <p>Войти через соцсети:
-                        <a class="btn btn-socials" href="{{asset('auth/social/facebook')}}">
+                        <?php
+                        /**
+                         * получаем фейсбук обработчик и генерим урл для авторизации
+                         */
+                        $fb = app(SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
+                        $fb_login_url = $fb->getLoginUrl(['email', 'publish_actions']);
+                        /**
+                         * получаем вконтакте обработчик и генерим урл для авторизации
+                         */
+                        $vk = app(BW\Vkontakte::class);
+                        $vk_login_url = $vk->getLoginUrl();
+                        ?>
+                        {{--<a class="btn btn-socials" href="{{asset('auth/social/facebook')}}">--}}
+                        {{--<i id="facebook-registration" class="fa fa-facebook-official"></i> Facebook</a>--}}
+                        <a class="btn btn-socials" href="{{asset($fb_login_url)}}">
                             <i id="facebook-registration" class="fa fa-facebook-official"></i> Facebook</a>
-                        <a class="btn btn-socials" href="{{asset('auth/social/vkontakte')}}"><i class="fa fa-vk"></i>
+                        {{--<a class="btn btn-socials" href="{{asset('auth/social/vkontakte')}}"><i class="fa fa-vk"></i>--}}
+                            {{--Vkontakte</a>--}}
+                        <a class="btn btn-socials" href="{{asset($vk_login_url)}}"><i class="fa fa-vk"></i>
                             Vkontakte</a>
                     </p>
                 </div>

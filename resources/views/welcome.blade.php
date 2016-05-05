@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('title', 'О йоге и путешествиях для странников Земли. Без рекламы – только опыт')
 
 @section('description', 'Сайт проекта Украинской Федерации Йоги Yoga Travel.  Информация о гостиницах, хостелах, транспорте. Новости мира от йогов и путешественников')
 
-@section('content')
+@section('body')
     <div class="container-fluid yoga-screen">
         <div class="container">
             <div class="row">

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('title', 'Стикеры Yoga Travel обозначают важные места на карте мира')
 
@@ -8,7 +8,7 @@
     <link href="/css/jquery.bxslider.css" rel="stylesheet"/>
 @endsection
 
-@section('content')
+@section('body')
     <div class="container spark-screen">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-left">

@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\CustomUtilities\ImageResizer;
-use App\PointImage;
+use App\Http\Requests;
 use App\User;
 use App\YogaPoint;
+use Facebook\Exceptions\FacebookResponseException;
+use Facebook\Exceptions\FacebookSDKException;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 use PhpParser\Comment;
+use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
+use Session;
 
 class UserSpaceController extends Controller
 {
@@ -38,11 +37,14 @@ class UserSpaceController extends Controller
 
     public function SettingPost(Request $request)
     {
+//        dd($request);
         $user = User::findOrNew(\Auth::id());
         if (isset($request->name)) $user->name = $request->name;
         if (isset($request->surname)) $user->surname = $request->surname;
         if (isset($request->shortStory)) $user->shortStory = $request->shortStory;
         if (isset($request->email)) $user->email = $request->email;
+        $user->facebook_posting_allowed = isset($request->facebook_posting_allowed) ? true : false;
+        $user->vkontakte_posting_allowed = isset($request->vkontakte_posting_allowed) ? true : false;
 
         //dd($request->file('avatar')->getError());
 
@@ -50,8 +52,10 @@ class UserSpaceController extends Controller
             $imageName = \Auth::id() . '.' .
                 $request->file('avatar')->getClientOriginalExtension();
 
-            $resizer = new ImageResizer($request->file('avatar'), 1000, 1000);
-            $_avatar = $resizer->Resize();
+//            $resizer = new ImageResizer($request->file('avatar'), 1000, 1000);
+//            $_avatar = $resizer->Resize();
+
+            $_avatar = $request->file('avatar');
 
 //            Image::make($request->file('avatar'))
 //                ->resize(null, 1000, function ($constraint) {
@@ -69,7 +73,7 @@ class UserSpaceController extends Controller
         return redirect('Settings');
     }
 
-    public function NewYogaPoint(Request $request)
+    public function NewYogaPoint(Request $request, LaravelFacebookSdk $fb)
     {
 //        dd($request);
 
@@ -128,13 +132,37 @@ class UserSpaceController extends Controller
 //                $point->pointImages()->save($pointImage);
 //            }
 
-        foreach($request->photos as $photo)
-            $point->updateOrNewAttach($photo);
+        if (isset($request->photos))
+            foreach ($request->photos as $photo)
+                $point->updateOrNewAttach($photo);
+
+
+        /**
+         * проверяем есть ли фесбук токен в сесии, если есть - значит постим
+         */
+        if (\Auth::user()->facebook_posting_allowed && Session::has('fb_user_access_token')) {
+            $linkData = [
+                'link' => asset('/service/' . $point->id),
+                'message' => $point->description,
+            ];
+
+            try {
+                // Returns a `Facebook\FacebookResponse` object
+                $response = $fb->post('/me/feed', $linkData, Session::get('fb_user_access_token'));
+            } catch (FacebookResponseException $e) {
+                echo 'Graph returned an error: ' . $e->getMessage();
+                exit;
+            } catch (FacebookSDKException $e) {
+                echo 'Facebook SDK returned an error: ' . $e->getMessage();
+                exit;
+            }
+        }
 
         return redirect()->action('HomeController@Map', ['Lat' => $request->checkIn_lat, 'Lng' => $request->checkIn_lng]);
     }
 
-    public function editYogaPointPost(Request $request)
+    public
+    function editYogaPointPost(Request $request)
     {
         if (isset($request->pointId)) {
             $point = YogaPoint::findOrNew($request->pointId);
@@ -150,7 +178,8 @@ class UserSpaceController extends Controller
         return redirect()->action('HomeController@Map', ['Lat' => $point->latitude, 'Lng' => $point->longitude]);
     }
 
-    public function deleteYogaPoint($PointId)
+    public
+    function deleteYogaPoint($PointId)
     {
 
         $point = YogaPoint::findOrNew($PointId);
@@ -164,7 +193,8 @@ class UserSpaceController extends Controller
         return redirect()->back();
     }
 
-    public function searchYogaPointsPost(Request $request)
+    public
+    function searchYogaPointsPost(Request $request)
     {
 //        dd($request);
         $users = \DB::table('users')
@@ -206,7 +236,8 @@ class UserSpaceController extends Controller
         return view('userSpace.searchYogaPoints', compact('yogaPoints', 'types', 'usersNames'));
     }
 
-    public function addComment(Request $request)
+    public
+    function addComment(Request $request)
     {
         $comment = new \App\Comment();
         $comment->user_id = Auth::id();

@@ -64,6 +64,57 @@
                     </div>
                     <div class="hidden-xs hidden-sm col-md-2 col-lg-3 mapSearchRowRight"></div>
                 </div>
+                {{--<div class="row">--}}
+                    {{--<div class="col-xs-12">--}}
+                        {{--<div class="col-xs-12 text-center">--}}
+                            {{--<ul class="list-inline">--}}
+                                {{--<li><div class="hidden-xs hidden-sm mapSearchRowLeft">wqerqwre</div></li>--}}
+                                {{--<li><div class="mapSearchRowCenter" data-toggle="buttons" style="display: table;margin-left: auto;margin-right: auto">--}}
+                                        {{--<label class="btn btn-checkInn" data-toggle="tooltip" data-placement="top"--}}
+                                               {{--title="ЧекИны" onclick="toggleGreyAll()" id="bla-bla">--}}
+                                            {{--<input class="checkInnBox" type="checkbox" autocomplete="off" id="inputAll">--}}
+                                        {{--</label>--}}
+                                    {{--<span class="checkInnString mapButtonLabel" id="checkInnAll">--}}
+                                        {{--{{ isset($checkInnCount) ? $checkInnCount : 0 }}--}}
+                                    {{--</span>--}}
+
+                                        {{--<label class="btn btn-tea" data-toggle="tooltip" data-placement="top"--}}
+                                               {{--title="Чаепитие" onclick="toggleGreyTea()" id="bla-bla1">--}}
+                                            {{--<input class="teaPointsBox" type="checkbox" autocomplete="off" id="inputTea">--}}
+                                        {{--</label>--}}
+                                    {{--<span class="teaString mapButtonLabel process" id="checkInnTea">--}}
+                                        {{--{{ isset($teaServiceCount) ? $teaServiceCount : 0 }}--}}
+                                    {{--</span>--}}
+
+                                        {{--<label class="btn btn-couch" data-toggle="tooltip" data-placement="top"--}}
+                                               {{--title="Ночлег" onclick="toggleGreySleep()" id="bla-bla2">--}}
+                                            {{--<input class="couchPointsBox" type="checkbox" autocomplete="off"--}}
+                                                   {{--id="inputSleep">--}}
+                                        {{--</label>--}}
+                                    {{--<span class="couchString mapButtonLabel process" id="checkInnSleep">--}}
+                                        {{--{{ isset($couchServiceCount) ? $couchServiceCount : 0 }}--}}
+                                    {{--</span>--}}
+
+                                        {{--<label class="btn btn-walk" data-toggle="tooltip" data-placement="top"--}}
+                                               {{--title="Прогулки" onclick="toggleGreyWalk()" id="bla-bla3">--}}
+                                            {{--<input class="walkPointsBox" type="checkbox" autocomplete="off" id="inputWalk">--}}
+                                        {{--</label>--}}
+                                    {{--<span class="walkString mapButtonLabel process" id="checkInnWalk">--}}
+                                        {{--{{ isset($walkServicesCount) ? $walkServicesCount : 0 }}--}}
+                                    {{--</span>--}}
+                                    {{--</div></li>--}}
+                                {{--<li><div class="hidden-xs hidden-sm mapSearchRowRight">qwerqwerqwr</div></li>--}}
+                            {{--</ul>--}}
+
+
+
+                        {{--</div>--}}
+
+                        {{--<ul class="list-inline">--}}
+                        {{--<li>three</li>--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                {{--</div>--}}
             </div>
         </div>
     </div>
@@ -284,9 +335,7 @@
             }
 
 
-            var html = "<link  href=\"http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css\" rel=\"stylesheet\">"
-                    + "<script src=\"http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js\"><\/script>"
-                    + "<table width='270px; border-radius: 125px;'>"
+            var html = "<table width='270px; border-radius: 125px;'>"
                     + "<tr>"
                     + "<td colspan=\"2\">" +
                     "<table>" +
@@ -316,6 +365,7 @@
                     "</table>"
                     + "</td>"
                     + "<td style='float: right'>" + colorShare + "</td>"
+//                    + "<td style='float: right'><span class='fb-share-button' data-href='/service/" + serviceId + "' data-layout='icon' data-mobile-iframe='true'></span></td>"
                     + "</tr>"
                     + "</table>";
             bindInfoWindow(marker, map, infoWindow, html);
@@ -337,7 +387,6 @@
             google.maps.event.addListener(marker, 'click', function () {
                 infoWindow.setContent(html);
                 infoWindow.open(map, marker);
-
             });
         }
 

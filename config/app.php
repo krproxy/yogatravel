@@ -139,10 +139,11 @@ return [
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         //Laravel\Socialite\SocialiteServiceProvider::class,
-        SocialiteProviders\Manager\ServiceProvider::class,
+//        SocialiteProviders\Manager\ServiceProvider::class,
         Cmgmyr\Messenger\MessengerServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         Angrydeer\Attachfiles\AttachfilesServiceProvider::class,
+        SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -151,6 +152,10 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        /**
+         * My custom
+         */
+        App\Providers\SocialServiceProvider::class,
 
     ],
 
