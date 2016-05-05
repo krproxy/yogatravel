@@ -18,7 +18,7 @@ class SocialServiceProvider extends ServiceProvider
             return new Vkontakte([
                 'client_id' => '5077814',
                 'client_secret' => 'YSTQ59AAxjL4XgDQiaGo',
-                'redirect_uri' => 'http://yogatravel.local/vk/callback',
+                'redirect_uri' => 'http://yogatravel.guru/vk/callback',
                 'scope' => ['email', 'wall '],
             ]);
         });
