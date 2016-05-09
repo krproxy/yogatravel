@@ -31,8 +31,13 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="/">
+                    <a class="navbar-brand hidden-xs hidden-sm visible-md visible-lg" href="/">
                         <img style="height:67px; margin: 0; padding: 0" alt="Brand" src="{{asset('img/SVG/logo.svg')}}">
+                        {{--<img class="img-responsive" style="height: 100%; margin: 0; padding: 0" alt="Brand" src="{{asset('img/SVG/logo.svg')}}">--}}
+                    </a>
+                    <a class="navbar-brand visible-xs visible-sm hidden-md hidden-lg" href="/">
+                        <img style="height:67px; margin: 0; padding: 0" alt="Brand" src="{{asset('img/SVG/logo_small.png')}}">
+                        {{--<img class="img-responsive" style="height: 100%; margin: 0; padding: 0" alt="Brand" src="{{asset('img/SVG/logo.svg')}}">--}}
                     </a>
                 </div>
             </div>

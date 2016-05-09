@@ -14,27 +14,23 @@
                             aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title" id="myModalLabel">Отправить нам сообщение</h4>
             </div>
-
             <div class="modal-body">
-                <div class="panel-body">
-                    <form class="form-horizontal " role="form" method="POST" action="{{ url('/feedback') }}">
-                        {!! csrf_field() !!}
-                        @include('widgets.form._formitem_text', ['name' => 'name', 'title' => 'Ваше имя', 'placeholder' => 'Укажите Ваше имя' ])
-                        @include('widgets.form._formitem_text', ['name' => 'email', 'title' => 'Email', 'placeholder' => 'Укажите Ваш Email' ])
-                        @include('widgets.form._formitem_textarea', ['name' => 'text', 'title' => 'Ваше сообщение', 'placeholder' => 'Напишите текст сообщения' ])
-                        @include('widgets.form._formitem_btn_submit', ['title' => 'Отправить сообщение'])
-                        {{--<button type="button" class="btn btn-success" data-dismiss="modal">Закрыть</button>--}}
-                    </form>
-
-                </div>
+                <form class="form-horizontal " role="form" method="POST" action="{{ url('/feedback') }}">
+                    {!! csrf_field() !!}
+                    @include('widgets.form._formitem_text', ['name' => 'name', 'lable'=>true, 'title' => 'Ваше имя', 'placeholder' => 'Укажите Ваше имя' ])
+                    @include('widgets.form._formitem_text', ['name' => 'email', 'lable'=>true, 'title' => 'Email', 'placeholder' => 'Укажите Ваш Email' ])
+                    @include('widgets.form._formitem_textarea', ['name' => 'text', 'lable'=>true, 'title' => 'Ваше сообщение', 'placeholder' => 'Напишите текст сообщения' ])
+                    @include('widgets.form._formitem_btn_submit', ['title' => 'Отправить сообщение'])
+                    {{--<button type="button" class="btn btn-success" data-dismiss="modal">Закрыть</button>--}}
+                </form>
             </div>
             {{--<div class="modal-footer">--}}
-                {{--<div class="panel-body">--}}
-                    {{--<ul class="list-inline">--}}
-                        {{--<li>--}}
-                        {{--</li>--}}
-                    {{--</ul>--}}
-                {{--</div>--}}
+            {{--<div class="panel-body">--}}
+            {{--<ul class="list-inline">--}}
+            {{--<li>--}}
+            {{--</li>--}}
+            {{--</ul>--}}
+            {{--</div>--}}
             {{--</div>--}}
         </div>
     </div>

@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "e02de68fb7550af13d1f385971473592",
-    "content-hash": "65745fc767d2a1b6f317dac64e2c0887",
+    "hash": "df79c1225ba133d018028c01c349c0e6",
+    "content-hash": "8dc762c5eedec7dd1d5130fb3a2835f1",
     "packages": [
         {
             "name": "angrydeer/attachfiles",
@@ -170,6 +170,46 @@
                 "vkontakte"
             ],
             "time": "2015-11-02 10:53:08"
+        },
+        {
+            "name": "caouecs/laravel-lang",
+            "version": "3.0.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/caouecs/Laravel-lang.git",
+                "reference": "21b4df6d025231102e96eb1d17dc2a8f02b8dbcc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/caouecs/Laravel-lang/zipball/21b4df6d025231102e96eb1d17dc2a8f02b8dbcc",
+                "reference": "21b4df6d025231102e96eb1d17dc2a8f02b8dbcc",
+                "shasum": ""
+            },
+            "require-dev": {
+                "fabpot/php-cs-fixer": "^1.10"
+            },
+            "suggest": {
+                "overtrue/laravel-lang": "Command to add languages in your project"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "caouecs",
+                    "email": "caouecs@caouecs.net"
+                }
+            ],
+            "description": "Languages for Laravel",
+            "keywords": [
+                "lang",
+                "languages",
+                "laravel",
+                "lpm"
+            ],
+            "time": "2016-05-07 06:40:52"
         },
         {
             "name": "classpreloader/classpreloader",

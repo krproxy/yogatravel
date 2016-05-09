@@ -16,7 +16,8 @@
         "intervention/imagecache": "^2.3",
         "sammyk/laravel-facebook-sdk": "^3.0",
         "bocharsky-bw/vkontakte-php-sdk": "dev-master",
-        "guzzlehttp/guzzle": "^5.0"
+        "guzzlehttp/guzzle": "^5.0",
+        "caouecs/laravel-lang": "^3.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

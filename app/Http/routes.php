@@ -155,9 +155,7 @@ Route::get('TravelNotes', function (BW\Vkontakte $vk, LaravelFacebookSdk $fb) {
 Route::get('Settings', 'UserSpaceController@Settings');
 Route::post('SettingPost', 'UserSpaceController@SettingPost');
 
-Route::get('NewCheckInn', function () {
-    return view('userSpace.newCheckInn');
-});
+Route::get('NewCheckInn', 'UserSpaceController@newCheckInn');
 Route::get('AllCheckInns', function () {
     $allCheckInns = \DB::table('yoga_points')
         ->where('user_id', \Auth::id())
@@ -166,9 +164,7 @@ Route::get('AllCheckInns', function () {
     return view('userSpace.allCheckInns', compact('allCheckInns'));
 });
 
-Route::get('NewServicePoint', function () {
-    return view('userSpace.newServicePoint');
-});
+Route::get('NewServicePoint', 'UserSpaceController@newServicePoint');
 Route::get('AllServicePoints', function () {
     $myServices = \DB::table('yoga_points')
         ->where('user_id', \Auth::id())

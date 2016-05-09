@@ -21,6 +21,16 @@ class UserSpaceController extends Controller
         $this->middleware('auth');
     }
 
+    public function newServicePoint()
+    {
+        return view('userSpace.newServicePoint');
+    }
+
+    public function newCheckInn()
+    {
+        return view('userSpace.newCheckInn');
+    }
+
     public function Settings()
     {
         $myCheckInns = YogaPoint::all()

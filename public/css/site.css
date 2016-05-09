@@ -590,6 +590,7 @@ body {
 /* Dima css */
 
 .listbar {
+    margin-top: 37px;
     line-height: 14px;
 }
 
@@ -604,7 +605,7 @@ body {
 /* FORM */
 .form-control {
     border-radius: 15px;
-    width: 250px;
+    width: 100%;
 }
 
 .btn-registration {
@@ -792,11 +793,14 @@ h1 {
 
 .form-group {
     clear: both;
+    margin-left: 0!important;
+    margin-right: 0!important;
     /*text-align: right;*/
 }
 
-.form-control {
-    width: 100%;
+.auth-space{
+    padding-left: 30px;
+    padding-right: 30px;
 }
 
 #123 {

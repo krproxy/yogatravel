@@ -8,7 +8,7 @@
     <div class="container spark-screen">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-left">
-                <h1 class="corporateBlue pleft37">YogaFriends</h1><br>
+                <h1 class="corporateBlue pleft37"><span class="string600">Yoga</span>Friends</h1><br>
             </div>
         </div>
         <div class="row">
@@ -79,7 +79,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-5">
-                        <br><a href="{{asset('NewServicePoint')}}" class="btn btn-yoga btn-block">Пригласить</a>
+                        <br><a href="{{asset('NewServicePoint')}}" class="btn btn-yoga-custom btn-block"><span style="font-size: 24px">Пригласить</span></a>
                     </div>
                 </div>
             </div>

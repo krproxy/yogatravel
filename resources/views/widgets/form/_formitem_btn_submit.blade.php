@@ -6,6 +6,6 @@
  * Time: 10:10
  */?>
 <div class="form-group">
-    {!! Form::submit($title, array('class' => 'btn btn-login')) !!}
+    {!! Form::submit($title, array('class' => 'btn btn-yoga-custom')) !!}
 </div>
 {{--btn-registration--}}
