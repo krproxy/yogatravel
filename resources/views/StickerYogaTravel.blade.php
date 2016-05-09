@@ -12,7 +12,8 @@
     <div class="container spark-screen">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-left">
-                <h1 class="corporateBlue pleft37"># Sticker <span class="sans400">Yoga</span>Travel</h1><br>
+                <p class="corporateBlue string pleft37"># Sticker <span class="string400">Yoga</span>Travel</p><br>
+
             </div>
         </div>
         <div class="row">
@@ -85,7 +86,8 @@
 
         <div class="row">
             <div class="col-xs-12 text-center">
-                <br><a href="{{asset('NewCheckInn')}}" class="btn btn-yoga">Выложить свой #‎stickeryogatravel</a>
+{{--                <br><a href="{{asset('NewCheckInn')}}" class="btn btn-yoga">Выложить свой #‎stickeryogatravel</a>--}}
+                <br><a href="{{asset('NewCheckInn')}}" class="btn btn-yoga-custom">Выложить свой #‎stickeryogatravel</a>
             </div>
         </div>
 

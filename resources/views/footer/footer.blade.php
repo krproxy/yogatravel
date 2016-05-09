@@ -20,7 +20,7 @@
                     </li>
                     <li class="footer-text">
                         <ul style="list-style-type:none">
-                            <li><a href="#">Написать нам</a></li>
+                            <li><a href="#" data-toggle="modal" data-target="#FEEDBACK">Написать нам</a></li>
                             <li><a href="#" data-toggle="modal" data-target="#FAQ">
                                     Часто задаваемые вопросы
                                 </a></li>
@@ -36,5 +36,6 @@
     </div>
 </footer>
 
+@include('modals.feedback')
 @include('modals.FAQ')
 @include('modals.rules')

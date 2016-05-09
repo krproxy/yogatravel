@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\User;
 use App\YogaPoint;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -63,6 +65,21 @@ class HomeController extends Controller
         $xmlStr = preg_replace("/(\r\n|\n|\r)/", "", $xmlStr);
 
         return $xmlStr;
+    }
+
+    public function feedback(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'email' => 'required|email',
+            'text' => 'required',
+        ]);
+//        dd($request);
+        Mail::raw($request->text, function ($message) {
+            $message->to('krproxy@gmail.com')->subject('Новое сообщение с сайта YOGATRAWEL');
+        });
+
+        return redirect()->back();
     }
 
 }

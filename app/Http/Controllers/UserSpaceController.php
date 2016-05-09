@@ -236,8 +236,7 @@ class UserSpaceController extends Controller
         return view('userSpace.searchYogaPoints', compact('yogaPoints', 'types', 'usersNames'));
     }
 
-    public
-    function addComment(Request $request)
+    public function addComment(Request $request)
     {
         $comment = new \App\Comment();
         $comment->user_id = Auth::id();

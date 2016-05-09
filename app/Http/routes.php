@@ -277,3 +277,5 @@ Route::post('happy', function () {
 
 Route::get('attaches/{dateImg}/{filename}/{width}/{height}/{type?}/{anchor?}', 'ImageController@whResize');
 Route::get('attaches/{dateImg}/{filename}/', 'ImageController@fullImage');
+
+Route::post('feedback','HomeController@feedback');
