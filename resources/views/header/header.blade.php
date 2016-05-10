@@ -36,7 +36,8 @@
                         {{--<img class="img-responsive" style="height: 100%; margin: 0; padding: 0" alt="Brand" src="{{asset('img/SVG/logo.svg')}}">--}}
                     </a>
                     <a class="navbar-brand visible-xs visible-sm hidden-md hidden-lg" href="/">
-                        <img style="height:67px; margin: 0; padding: 0" alt="Brand" src="{{asset('img/SVG/logo_small.png')}}">
+                        <img style="height:67px; margin: 0; padding: 0" alt="Brand"
+                             src="{{asset('img/SVG/logo_small.png')}}">
                         {{--<img class="img-responsive" style="height: 100%; margin: 0; padding: 0" alt="Brand" src="{{asset('img/SVG/logo.svg')}}">--}}
                     </a>
                 </div>
@@ -121,6 +122,59 @@
                         {{--<li class="langItemDelimiter">|</li>--}}
                         {{--<li><a class="langItem" href="#">En</a></li>--}}
                     </div>
+
+                    @if(isset($currentPage)&&$currentPage=='Map')
+                        <div class="nav navbar-nav visible-xs well">
+                            <div data-toggle="buttons">
+                                {{--<p>--}}
+                                    <label class="btn btn-checkInn" data-toggle="tooltip" data-placement="top"
+                                           title="ЧекИны" onclick="toggleGreyAll()" id="bla-bla">
+                                        <input class="checkInnBox" type="checkbox" autocomplete="off"
+                                               id="inputAll">
+                                    </label>
+                                    <span class="checkInnString" id="checkInnAll"
+                                          style="margin-right: 20px;margin-left: 10px">
+                                        {{ isset($checkInnCount) ? $checkInnCount : 0 }}
+                                    </span>
+
+                                    <label class="btn btn-tea" data-toggle="tooltip" data-placement="top"
+                                           title="Чаепитие" onclick="toggleGreyTea()" id="bla-bla1">
+                                        <input class="teaPointsBox" type="checkbox" autocomplete="off"
+                                               id="inputTea">
+                                    </label>
+                                    <span class="teaString process" id="checkInnTea"
+                                          style="margin-right: 20px;margin-left: 10px">
+                                        {{ isset($teaServiceCount) ? $teaServiceCount : 0 }}
+                                    </span><br><br>
+                                {{--</p>--}}
+                                {{--<p>--}}
+                                    <label class="btn btn-couch" data-toggle="tooltip" data-placement="top"
+                                           title="Ночлег" onclick="toggleGreySleep()" id="bla-bla2">
+                                        <input class="couchPointsBox" type="checkbox" autocomplete="off"
+                                               id="inputSleep">
+                                    </label>
+                                    <span class="couchString process" id="checkInnSleep"
+                                          style="margin-right: 10px;margin-left: 10px">
+                                        {{ isset($couchServiceCount) ? $couchServiceCount : 0 }}
+                                    </span>
+
+                                    <label class="btn btn-walk" data-toggle="tooltip" data-placement="top"
+                                           title="Прогулки" onclick="toggleGreyWalk()" id="bla-bla3">
+                                        <input class="walkPointsBox" type="checkbox" autocomplete="off"
+                                               id="inputWalk">
+                                    </label>
+                                    <span class="walkString process" id="checkInnWalk" style="margin-left: 10px;">
+                                        {{ isset($walkServicesCount) ? $walkServicesCount : 0 }}
+                                    </span><br><br>
+                                {{--</p>--}}
+                                {{--<p>--}}
+                                    <input id="pac-input" class="controls pac-input pac-input1" type="text"
+                                           placeholder="расположение">
+                                {{--</p>--}}
+                            </div>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>
