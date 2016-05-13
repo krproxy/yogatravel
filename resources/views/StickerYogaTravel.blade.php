@@ -16,10 +16,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-xs-12 col-sm-4 col-md-3">
                 <img class="img-responsive" src="/img/SVG/stickeryogatravel.svg" alt="">
             </div>
-            <div class="col-md-9 text-justify pleft37">
+            <div class="col-xs-12 col-sm-8 col-md-9 text-justify pleft37">
                 <div class="row">
                     <div class="col-md-12">
                         <p>Яркие <span class="markedText">#‎stickeryogatravel</span> в виде логотипа Yoga Travel – это
@@ -41,42 +41,6 @@
 
                         <p> Всем желающим взять в свое путешествие <span class="markedText">#‎stickeryogatravel</span>
                             можно обратится в следующие места:</p>
-
-                        <div class="col-md-4 listbar">
-                            <p><img class="h100" width="180px" src="/img/SVG/logo_zaal.svg" alt="logo"></p>
-                            <p class="text-uppercase text-big">zaal</p>
-                            <p>Ночной клуб-Бар</p>
-                            <p class="markedText"><img class="teaMarker" src="/img/SVG/geometka_tea.svg" alt=""> Киев
-                            </p>
-                            <p>
-                                <ins>Верхний вал 30а</ins>
-                            </p>
-                            <p>+38 (093) 857 13 75</p>
-                            <p>+38 (050) 691 30 23</p>
-                        </div>
-
-                        <div class="col-md-4 listbar">
-                            <p><img class="h100" src="/img/SVG/logo_pacha_mama_105x105.svg" alt="logo"></p>
-                            <p class="text-big">Pacha Mama</p>
-                            <p>Ресторан-бар</p>
-                            <p class="markedText"><img class="teaMarker" src="/img/SVG/geometka_tea.svg" alt=""> Харьков
-                            </p>
-                            <p>
-                                <ins>Петровского 38</ins>
-                            </p>
-                            <p>+38 (066) 689 99 22</p>
-                        </div>
-
-                        <div class="col-md-4 listbar">
-                            <p><img class="h100" src="/img/SVG/logo_UFY_105x105.png" alt="logo"></p>
-                            <p class="text-big">Инструктора УФЙ</p>
-                            <p>Школа йоги</p>
-                            <p class="markedText"><img class="teaMarker" src="/img/SVG/geometka_tea.svg" alt="">
-                                yoga.net.ua</p>
-                            <p class="text-left">
-                                <ins>Филиалы УФЙ в разных городах</ins>
-                            </p>
-                        </div>
                     </div>
 
                 </div>
@@ -84,14 +48,55 @@
         </div>
 
         <div class="row">
+            <div class="col-md-offset-3 col-md-9 pleft37">
+                <div class="row text-center">
+                    <div class="col-sm-4 listbar">
+                        <p><img class="h100" width="180px" src="/img/SVG/logo_zaal.svg" alt="logo"></p>
+                        <p class="text-uppercase text-big">zaal</p>
+                        <p>Ночной клуб-Бар</p>
+                        <p class="markedText"><img class="teaMarker" src="/img/SVG/geometka_tea.svg" alt=""> Киев
+                        </p>
+                        <p>
+                            <ins>Верхний вал 30а</ins>
+                        </p>
+                        <p>+38 (093) 857 13 75</p>
+                        <p>+38 (050) 691 30 23</p>
+                    </div>
+
+                    <div class="col-sm-4 listbar">
+                        <p><img class="h100" src="/img/SVG/logo_pacha_mama_105x105.svg" alt="logo"></p>
+                        <p class="text-big">Pacha Mama</p>
+                        <p>Ресторан-бар</p>
+                        <p class="markedText"><img class="teaMarker" src="/img/SVG/geometka_tea.svg" alt=""> Харьков
+                        </p>
+                        <p>
+                            <ins>Петровского 38</ins>
+                        </p>
+                        <p>+38 (066) 689 99 22</p>
+                    </div>
+
+                    <div class="col-sm-4 listbar">
+                        <p><img class="h100" src="/img/SVG/logo_UFY_105x105.png" alt="logo"></p>
+                        <p class="text-big">Инструктора УФЙ</p>
+                        <p>Школа йоги</p>
+                        <p class="markedText"><img class="teaMarker" src="/img/SVG/geometka_tea.svg" alt="">
+                            yoga.net.ua</p>
+                        <p class="text-left">
+                            <ins>Филиалы УФЙ в разных городах</ins>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
             <div class="col-md-6 col-md-offset-3 pleft37 text-center">
-{{--                <br><a href="{{asset('NewCheckInn')}}" class="btn btn-yoga">Выложить свой #‎stickeryogatravel</a>--}}
+                {{--                <br><a href="{{asset('NewCheckInn')}}" class="btn btn-yoga">Выложить свой #‎stickeryogatravel</a>--}}
                 <br><a href="{{asset('NewCheckInn')}}" class="btn btn-yoga-custom"><span style="font-size: 24px">Выложить свой #‎stickeryogatravel</span></a>
             </div>
         </div>
 
         <div class="row">
-
             <div class="col-md-12 text-center">
                 <h1 class="corporateBlue">Новые места отмеченные стикерами <strong>Yoga</strong>travel:</h1><br>
             </div>

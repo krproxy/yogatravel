@@ -20,7 +20,7 @@
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 ">
+            <div class="col-md-1 col-lg-3 ">
                 <div class="navbar-header">
                     <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -31,18 +31,18 @@
                         <span class="icon-bar"></span>
                     </button>
                     <!-- Branding Image -->
-                    <a class="navbar-brand hidden-xs hidden-sm visible-md visible-lg" href="/">
+                    <a class="navbar-brand hidden-xs hidden-sm hidden-md visible-lg" href="/">
                         <img style="height:67px; margin: 0; padding: 0" alt="Brand" src="{{asset('img/SVG/logo.svg')}}">
                         {{--<img class="img-responsive" style="height: 100%; margin: 0; padding: 0" alt="Brand" src="{{asset('img/SVG/logo.svg')}}">--}}
                     </a>
-                    <a class="navbar-brand visible-xs visible-sm hidden-md hidden-lg" href="/">
+                    <a class="navbar-brand visible-xs visible-sm visible-md hidden-lg" href="/">
                         <img style="height:67px; margin: 0; padding: 0" alt="Brand"
                              src="{{asset('img/SVG/logo_small.png')}}">
                         {{--<img class="img-responsive" style="height: 100%; margin: 0; padding: 0" alt="Brand" src="{{asset('img/SVG/logo.svg')}}">--}}
                     </a>
                 </div>
             </div>
-            <div class="col-md-8">
+            <div class="col-md-11 col-lg-9">
                 <div class="collapse navbar-collapse" id="spark-navbar-collapse">
                     <!-- Left Side Of Navbar -->
 
@@ -68,8 +68,9 @@
                                     <button type="button" class="btn btn-login navbar-btn dropdown-toggle"
                                             id="bg-grey-img" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
-                                        {{ Auth::user()->name }}
-                                        <span class="caret"></span>
+                                        <span class="visible-sm">{{ substr(explode(" ", Auth::user()->name)[0],0,1) }}... <span class="caret"></span></span>
+                                        <span class="hidden-sm">{{ explode(" ", Auth::user()->name)[0] }} <span class="caret"></span></span>
+
                                     </button>
 
                                     <ul class="dropdown-menu menu-login">

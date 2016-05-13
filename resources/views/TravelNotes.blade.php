@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('title', 'Новости и блоги йогов, путешественников всех стран мира')
 
 @section('description', 'Новости о тревеле, переездах, личном опыте, развитии через путешествия от йогов. Рассказы странников о культуре, кухне, людях разных стран мира')
 
-@section('content')
+@section('body')
     <div class="container spark-screen">
         <div class="row">
             <div class="col-md-10 col-md-offset-1">

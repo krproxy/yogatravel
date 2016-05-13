@@ -1,17 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
-@section('content')
+@section('body')
 
     <div class="container spark-screen">
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/SettingPost') }}"
               enctype="multipart/form-data">
             {!! csrf_field() !!}
             <div class="row">
-                <div class="col-md-3">
+                <div class="col-xs-12 col-sm-4 col-md-3">
                     <div id="foto_load_visible">
                         <div class="circle-div sizeToNI text-center" id="circle-div-file">
                             @if(isset(Auth::user()->avatar))
                                 <img class="wh100" src="{!! asset(Auth::user()->avatar) !!}" alt="">
+                            @else
+                                <img class="wh100" src="{!! asset('img/SVG/profile_12x13.svg') !!}" alt="">
                             @endif
                             <div id="foto-load-transparent" class="cursor">
                                 <p>
@@ -129,26 +131,17 @@
                         <input type="password" class="form-control inputNew" placeholder="старый пароль"
                                onchange="disableFalse()">
                     </div>
-
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"
-                                   name="facebook_posting_allowed"
-                                   {{Auth::user()->facebook_posting_allowed ? 'checked="checked"' : ''}}
-                                   onchange="disableFalse()">
-                            Постить мои приглашения и рекомендации в facebook
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"
-                                   name="vkontakte_posting_allowed"
-                                   {{Auth::user()->vkontakte_posting_allowed ? 'checked="checked"' : ''}}
-                                   onchange="disableFalse()">
-                            Постить мои приглашения и рекомендации в vkontakte
-                        </label>
-                    </div>
-
+                    @if(Session::has('fb_user_access_token'))
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"
+                                       name="facebook_posting_allowed"
+                                       {{Auth::user()->facebook_posting_allowed ? 'checked="checked"' : ''}}
+                                       onchange="disableFalse()">
+                                Постить мои приглашения и рекомендации в facebook
+                            </label>
+                        </div><br>
+                    @endif
                     <div class="form-group">
                         <input type="submit" id="load" class="btn inputNew submit" value="Сохранить изменения" disabled>
                     </div>
@@ -171,7 +164,7 @@
                     {{--</button>--}}
                 </div>
 
-                <div class="col-md-9 pleft37">
+                <div class="col-xs-12 col-sm-8 col-md-9 pleft37">
                     <p id="newName">
                         <span class="corporateBlue f400-24"
                               id="nameDel">{{ isset(Auth::user()->name)?Auth::user()->name:'' }}</span>

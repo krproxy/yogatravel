@@ -304,52 +304,6 @@
             }
         };
     </script>
-
-    @if(Auth::user()->vkontakte_posting_allowed)
-
-        <script src="//vk.com/js/api/openapi.js" type="text/javascript"></script>
-
-        <div id="login_button" onclick="VK.Auth.login(scope=friends,video,offline );"></div>
-
-        <script language="javascript">
-            VK.init({
-                apiId: 5077814
-            });
-            function authInfo(response) {
-                console.log(response);
-                if (response.session) {
-                    VK.Api.call('users.get', {user_ids: response.session.mid}, function (r) {
-                        if (r.response) {
-//                        console.log(r.response)
-//                        alert('Привет, ' + r.response[0].first_name);
-                        }
-                    });
-                } else {
-//                alert('not auth');
-                }
-            }
-            VK.Auth.getLoginStatus(authInfo);
-            //    VK.UI.button('login_button');
-            // Post node to vk wall
-            function VKShare() {
-                var text = $("#textareaNew").val();
-
-                VK.Api.call(
-                        'wall.post',
-                        {
-//                        owner_id: '-GROUP_ID', // '-9089845' минус оставляем для группы'
-                            message: text,
-                            attachments:'http://yogatravel.guru/StickerYogaTravel'
-                        },
-                        function (response) {
-// If captcha needed.
-                            console.log(response);
-                        }
-                );
-            }
-
-        </script>
-    @endif
 @endsection
 <script>
 

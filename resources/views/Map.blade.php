@@ -10,58 +10,61 @@
             <div id="map-wrapper">
                 <div id="map"></div>
             </div>
-
-            <div id="over_map">
+            <div id="over_map" class="hidden-xs">
                 <div class="row mapSearchRow hidden-xs">
-                    <div class="hidden-xs hidden-sm col-md-2 col-lg-3 mapSearchRowLeft"></div>
-                    <div class="col-xs-12 col-md-8 col-lg-6 mapSearchRowCenter">
-                        <div class="row mapMenuRow">
-                            <div class="col-xs-12 col-sm-7 col-md-9 text-center">
-                                <div data-toggle="buttons">
-                                    <label class="btn btn-checkInn" data-toggle="tooltip" data-placement="top"
-                                           title="ЧекИны" onclick="toggleGreyAll()" id="bla-bla">
-                                        <input class="checkInnBox" type="checkbox" autocomplete="off" id="inputAll">
-                                    </label>
+                    <div class="hidden-sm col-md-2 col-lg-3 mapSearchRowLeft"></div>
+                    <div class="col-sm-12 col-md-8 col-lg-6 mapSearchRowCenter">
+                        <div class="">
+                            <div class="row mapMenuRow">
+                                <div class="col-sm-offset-1 col-sm-6 col-md-offset-0 col-md-9 text-center">
+                                    <div data-toggle="buttons">
+                                        <label class="btn btn-checkInn" data-toggle="tooltip" data-placement="top"
+                                               title="ЧекИны" onclick="toggleGreyAll()" id="bla-bla">
+                                            <input class="checkInnBox" type="checkbox" autocomplete="off" id="inputAll">
+                                        </label>
                                     <span class="checkInnString" id="checkInnAll"
                                           style="margin-right: 20px;margin-left: 10px">
                                         {{ isset($checkInnCount) ? $checkInnCount : 0 }}
                                     </span>
 
-                                    <label class="btn btn-tea" data-toggle="tooltip" data-placement="top"
-                                           title="Чаепитие" onclick="toggleGreyTea()" id="bla-bla1">
-                                        <input class="teaPointsBox" type="checkbox" autocomplete="off" id="inputTea">
-                                    </label>
+                                        <label class="btn btn-tea" data-toggle="tooltip" data-placement="top"
+                                               title="Чаепитие" onclick="toggleGreyTea()" id="bla-bla1">
+                                            <input class="teaPointsBox" type="checkbox" autocomplete="off"
+                                                   id="inputTea">
+                                        </label>
                                     <span class="teaString process" id="checkInnTea"
                                           style="margin-right: 20px;margin-left: 10px">
                                         {{ isset($teaServiceCount) ? $teaServiceCount : 0 }}
                                     </span>
 
-                                    <label class="btn btn-couch" data-toggle="tooltip" data-placement="top"
-                                           title="Ночлег" onclick="toggleGreySleep()" id="bla-bla2">
-                                        <input class="couchPointsBox" type="checkbox" autocomplete="off"
-                                               id="inputSleep">
-                                    </label>
+                                        <label class="btn btn-couch" data-toggle="tooltip" data-placement="top"
+                                               title="Ночлег" onclick="toggleGreySleep()" id="bla-bla2">
+                                            <input class="couchPointsBox" type="checkbox" autocomplete="off"
+                                                   id="inputSleep">
+                                        </label>
                                     <span class="couchString process" id="checkInnSleep"
                                           style="margin-right: 10px;margin-left: 10px">
                                         {{ isset($couchServiceCount) ? $couchServiceCount : 0 }}
                                     </span>
 
-                                    <label class="btn btn-walk" data-toggle="tooltip" data-placement="top"
-                                           title="Прогулки" onclick="toggleGreyWalk()" id="bla-bla3">
-                                        <input class="walkPointsBox" type="checkbox" autocomplete="off" id="inputWalk">
-                                    </label>
+                                        <label class="btn btn-walk" data-toggle="tooltip" data-placement="top"
+                                               title="Прогулки" onclick="toggleGreyWalk()" id="bla-bla3">
+                                            <input class="walkPointsBox" type="checkbox" autocomplete="off"
+                                                   id="inputWalk">
+                                        </label>
                                     <span class="walkString process" id="checkInnWalk" style="margin-left: 10px;">
                                         {{ isset($walkServicesCount) ? $walkServicesCount : 0 }}
                                     </span>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-5 col-md-3 text-left">
-                                <input id="pac-input" class="controls pac-input pac-input1" type="text"
-                                       placeholder="расположение">
+                                <div class="col-sm-4 col-md-3 text-left">
+                                    <input id="pac-input" class="controls pac-input pac-input1" type="text"
+                                           placeholder="расположение">
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="hidden-xs hidden-sm col-md-2 col-lg-3 mapSearchRowRight"></div>
+                    <div class="hidden-sm col-md-2 col-lg-3 mapSearchRowRight"></div>
                 </div>
             </div>
         </div>

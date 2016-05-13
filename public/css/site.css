@@ -92,7 +92,8 @@ body {
     /*background-color: rgba(4, 128, 174, 0.75);*/
     /**/
     background: url("/img/SVG/bg_text_1920.png") no-repeat center bottom;
-    background-size: 100%, 100%; /* Фон занимает всю доступную площадь */
+    /*background-size: 100%, 100%; !* Фон занимает всю доступную площадь *!*/
+    background-size: cover; /* Фон занимает всю доступную площадь */
 
     border: 1px solid transparent;
     border-radius: 20px;
@@ -577,7 +578,7 @@ body {
     background-color: #fff;
     /*padding: 0 30px 0 13px;*/
     text-overflow: ellipsis;
-    border: #cecece solid;
+    border: 2px solid #cecece;
     border-radius: 50px;
     width: 100%;
     padding-left: 12px;

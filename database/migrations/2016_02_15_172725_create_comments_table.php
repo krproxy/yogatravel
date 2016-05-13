@@ -16,15 +16,8 @@ class CreateCommentsTable extends Migration
             $table->increments('id');
 
             $table->integer('user_id')->unsigned();
-            $table->foreign('user_id')
-                ->references('id')->on('users')
-                ->onDelete('cascade');
-
             $table->integer('yoga_point_id')->unsigned();
-            $table->foreign('yoga_point_id')
-                ->references('id')->on('yoga_points')
-                ->onDelete('cascade');
-
+            
             $table->string('text');
 
             $table->timestamps();

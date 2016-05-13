@@ -23,6 +23,7 @@
 <html class="no-js"> <!--<![endif]-->
 <head>
     @include('header.head')
+    @yield('customHeader')
 </head>
 <body>
 <!--[if lt IE 7]>

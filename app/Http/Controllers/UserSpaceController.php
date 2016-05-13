@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CustomUtilities\SocialConnector;
 use App\Http\Requests;
 use App\User;
 use App\YogaPoint;
@@ -16,9 +17,12 @@ use Session;
 
 class UserSpaceController extends Controller
 {
+    private $socialConnector;
+
     public function __construct()
     {
         $this->middleware('auth');
+        $this->socialConnector = new SocialConnector();
     }
 
     public function newServicePoint()
@@ -147,32 +151,12 @@ class UserSpaceController extends Controller
                 $point->updateOrNewAttach($photo);
 
 
-        /**
-         * проверяем есть ли фесбук токен в сесии, если есть - значит постим
-         */
-        if (\Auth::user()->facebook_posting_allowed && Session::has('fb_user_access_token')) {
-            $linkData = [
-                'link' => asset('/service/' . $point->id),
-                'message' => $point->description,
-            ];
-
-            try {
-                // Returns a `Facebook\FacebookResponse` object
-                $response = $fb->post('/me/feed', $linkData, Session::get('fb_user_access_token'));
-            } catch (FacebookResponseException $e) {
-                echo 'Graph returned an error: ' . $e->getMessage();
-                exit;
-            } catch (FacebookSDKException $e) {
-                echo 'Facebook SDK returned an error: ' . $e->getMessage();
-                exit;
-            }
-        }
+$this->socialConnector->postNews($point);
 
         return redirect()->action('HomeController@Map', ['Lat' => $request->checkIn_lat, 'Lng' => $request->checkIn_lng]);
     }
 
-    public
-    function editYogaPointPost(Request $request)
+    public function editYogaPointPost(Request $request)
     {
         if (isset($request->pointId)) {
             $point = YogaPoint::findOrNew($request->pointId);
@@ -188,8 +172,7 @@ class UserSpaceController extends Controller
         return redirect()->action('HomeController@Map', ['Lat' => $point->latitude, 'Lng' => $point->longitude]);
     }
 
-    public
-    function deleteYogaPoint($PointId)
+    public function deleteYogaPoint($PointId)
     {
 
         $point = YogaPoint::findOrNew($PointId);
@@ -203,8 +186,7 @@ class UserSpaceController extends Controller
         return redirect()->back();
     }
 
-    public
-    function searchYogaPointsPost(Request $request)
+    public function searchYogaPointsPost(Request $request)
     {
 //        dd($request);
         $users = \DB::table('users')

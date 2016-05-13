@@ -7,19 +7,32 @@
 @section('body')
     <div class="container-fluid yoga-screen">
         <div class="container">
-            <div class="row">
-                <div style="margin-left: 0; margin-right: 0" class="col-md-3 ">
+            <div class="row hidden-xs visible-sm visible-md visible-lg">
+                <div style="margin-left: 0; margin-right: 0" class="col-xs-6 col-md-3 ">
                     <img class="mainString" src="/img/SVG/tagline.svg" alt="">
                 </div>
-                <div class="col-md-6">
+                <div class="col-xs-6 col-md-6">
                     <p class="mainString">Дорога &mdash; в сердце йоги. Road is in heart of yoga</p>
                 </div>
-                <div class="col-md-2">
+                <div class="col-xs-8 col-md-2">
                     <img class="mainImage img-responsive" src="/img/SVG/logo_white.svg" alt="">
                 </div>
-                <div class="col-md-1">
+                <div class="col-xs-4 col-md-1">
                     <a href="https://vk.com/yoga_travel_all"><img class="socialBtn" src="/img/SVG/vk.svg" alt=""></a>
                     <a href="https://www.facebook.com/YogaTravel.All"><img class="socialBtn" src="/img/SVG/fb.svg" alt=""></a>
+                </div>
+            </div>
+            <div class="row visible-xs hidden-sm hidden-md hidden-lg">
+                <div class="col-xs-12 text-center">
+                    <a href="https://vk.com/yoga_travel_all"><img class="socialBtn" src="/img/SVG/vk.svg" alt=""></a>
+                    <a href="https://www.facebook.com/YogaTravel.All"><img class="socialBtn" src="/img/SVG/fb.svg" alt=""></a>
+                    <hr>
+                </div>
+                <div class="col-xs-5">
+                    <img class="img-responsive" src="/img/SVG/tagline.svg" alt="">
+                </div>
+                <div class="col-xs-7">
+                    <p class="">Дорога &mdash; в сердце йоги. Road is in heart of yoga</p>
                 </div>
             </div>
             <div class="row">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\CustomUtilities\SocialConnector;
 use App\Http\Requests;
 use App\User;
 use App\YogaPoint;
@@ -10,6 +11,13 @@ use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
+    private $socialConnector;
+
+    public function __construct()
+    {
+        $this->socialConnector = new SocialConnector();
+    }
+
     public function Map()
     {
         $currentPage = 'Map';
@@ -21,7 +29,7 @@ class HomeController extends Controller
 
             $image = !empty($yogaPoint->attaches->first()->filename) ? $yogaPoint->attaches->first()->filename : "default.svg";
 
-            $avatar = !empty(User::findOrNew($yogaPoint->user_id)->avatar) ? User::findOrNew($yogaPoint->user_id)->avatar : "/img/Avatars/photo_default.svg";
+            $avatar = !empty(User::findOrNew($yogaPoint->user_id)->avatar) ? User::findOrNew($yogaPoint->user_id)->avatar : "/img/SVG/profile_12x13.svg";
 
             $markerXML .= '<marker description="' . $this->parseToXML($yogaPoint->description)
                 . '" address="' . $this->parseToXML($yogaPoint->address)
@@ -82,4 +90,10 @@ class HomeController extends Controller
         return redirect()->back();
     }
 
+    public function travelNotes()
+    {
+        $posts = $this->socialConnector->getNews();
+        
+        return view('TravelNotes', ['currentPage' => 'TravelNotes', 'posts' => $posts]);
+    }
 }

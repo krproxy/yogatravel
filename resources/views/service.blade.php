@@ -46,7 +46,7 @@
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
                         <?php $isActive = true;?>
-                        @for($i=0; $i<count($service->pointImages); $i++)
+                        @for($i=0; $i<count($service->attaches); $i++)
                             <li data-target="#carousel-example-generic" data-slide-to="{{$i}}"
                             <?php if ($isActive) {
                                 echo 'class="active"';
