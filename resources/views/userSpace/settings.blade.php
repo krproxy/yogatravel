@@ -52,7 +52,7 @@
                     {{--</div>--}}
 
                     <a href="{{ URL::to('messages') }}"
-                       class="btn btn-green inputNew form-control f300-22 padding-0 sizeToNI">
+                       class="btn btn-yoga-custom inputNew form-control f300-22 padding-0 sizeToNI">
                         <img src="/img/SVG/message_21x15.svg" alt="" class="img18">
                         Мои сообщения
                         <span> {{ Auth::user()->newMessagesCount() }}</span>
@@ -143,7 +143,8 @@
                         </div><br>
                     @endif
                     <div class="form-group">
-                        <input type="submit" id="load" class="btn inputNew submit" value="Сохранить изменения" disabled>
+                        <input type="submit" id="load" class="btn inputNew submit"
+                               value="Сохранить изменения" disabled>
                     </div>
 
                     {{--<p class="f300-21 ">Связанные аккаунты:</p>--}}

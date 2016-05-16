@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
-@section('content')
+@section('body')
     <div class="container spark-screen">
         <form class="form-horizontal" role="form" method="POST" action="{{ url('/SettingPost') }}"
               enctype="multipart/form-data">

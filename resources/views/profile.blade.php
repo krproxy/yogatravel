@@ -1,11 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
 @section('title', $user->name)
 
 @section('description', $user->shortStory)
 
-@section('content')
-
+@section('body')
     <div class="container spark-screen">
         <div class="row">
             <div class="col-md-3">
@@ -15,12 +14,6 @@
                          alt="">
                 </div>
                 <br>
-
-                {{--<div class="form-group">--}}
-                    {{--<input id="pac-input" class="pac-input1 form-control inputNew" type="text" name="address"--}}
-                           {{--placeholder=" расположение" onchange="disableFalse()">--}}
-                {{--</div>--}}
-
                 <a href="{{URL::to('messages/create/' . $user->id)}}"
                    class="btn btn-green inputNew form-control f300-22 padding-0 sizeToNI">
                     <img src="/img/SVG/message_21x15.svg" alt="" class="img18">
@@ -71,11 +64,6 @@
                         </p>
                     @endif
                 @endforeach<br>
-
-
-                <ul>
-
-                </ul>
                 <br>
                 <p>
                     <span class="corporateBlue f600-16">Мои путевые заметки:</span>

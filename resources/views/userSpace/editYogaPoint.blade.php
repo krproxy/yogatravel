@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
-@section('content')
+@section('body')
     <div class="container spark-screen">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">

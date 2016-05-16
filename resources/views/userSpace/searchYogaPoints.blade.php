@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
-@section('content')
+@section('body')
 {{--    {{dd($types)}}--}}
     <div class="container spark-screen">
         <div class="row">

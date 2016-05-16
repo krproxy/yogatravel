@@ -1,9 +1,9 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
-@section('content')
+@section('body')
     <div class="container spark-screen">
         <div class="row">
-            <div class="col-md-6 col-md-offset-3">
+            <div class="col-sm-6 col-sm-offset-3">
                 <div class="col-md-8 col-md-offset-2">
 
                     <form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data"

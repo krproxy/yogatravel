@@ -286,7 +286,7 @@
             }
 
 
-            var html = "<table width='270px; border-radius: 125px;'>"
+            var html = "<div><table>"
                     + "<tr>"
                     + "<td colspan=\"2\">" +
                     "<table>" +
@@ -318,7 +318,7 @@
                     + "<td style='float: right'>" + colorShare + "</td>"
 //                    + "<td style='float: right'><span class='fb-share-button' data-href='/service/" + serviceId + "' data-layout='icon' data-mobile-iframe='true'></span></td>"
                     + "</tr>"
-                    + "</table>";
+                    + "</table></div>";
             bindInfoWindow(marker, map, infoWindow, html);
             return marker;
         }
@@ -337,7 +337,18 @@
         function bindInfoWindow(marker, map, infoWindow, html) {
             google.maps.event.addListener(marker, 'click', function () {
                 infoWindow.setContent(html);
-                infoWindow.open(map, marker);
+
+                var lat = map.getBounds().getSouthWest().lat();
+                var lng = map.getBounds().getSouthWest().lng() + ((map.getBounds().getNorthEast().lng() - map.getBounds().getSouthWest().lng())/2);
+
+                infoWindow.setPosition({
+                    lat: lat,
+                    lng: lng
+                });
+                // в этом случае позиция биндится на маркер
+//                infoWindow.open(map, marker);
+                // в этом случае позиция биндится на позишн
+                infoWindow.open(map);
             });
         }
 

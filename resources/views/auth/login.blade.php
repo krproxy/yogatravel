@@ -67,34 +67,43 @@
                 </div>
             </div>
         </div>
-        <div><img src="" alt=""></div>
-        <br><br>
+        {{--<div><img src="" alt=""></div>--}}
+        {{--<br><br>--}}
+        <div class="row">
+            <div class="hidden-xs col-md-8 col-md-offset-2 text-right auth-space">
+                <hr>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-center">
-                <div>
-                    <p>Войти через соцсети:
-                        <?php
-                        /**
-                         * получаем фейсбук обработчик и генерим урл для авторизации
-                         */
-                        $fb = app(SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
-                        $fb_login_url = $fb->getLoginUrl(['email', 'publish_actions']);
-                        /**
-                         * получаем вконтакте обработчик и генерим урл для авторизации
-                         */
-                        $vk = app(BW\Vkontakte::class);
-                        $vk_login_url = $vk->getLoginUrl();
-                        ?>
-                        {{--<a class="btn btn-socials" href="{{asset('auth/social/facebook')}}">--}}
-                        {{--<i id="facebook-registration" class="fa fa-facebook-official"></i> Facebook</a>--}}
+                Войти через соцсети:
+                <?php
+                /**
+                 * получаем фейсбук обработчик и генерим урл для авторизации
+                 */
+                $fb = app(SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
+                $fb_login_url = $fb->getLoginUrl(['email', 'publish_actions']);
+                /**
+                 * получаем вконтакте обработчик и генерим урл для авторизации
+                 */
+                $vk = app(BW\Vkontakte::class);
+                $vk_login_url = $vk->getLoginUrl();
+                ?>
+                {{--<a class="btn btn-socials" href="{{asset('auth/social/facebook')}}">--}}
+                {{--<i id="facebook-registration" class="fa fa-facebook-official"></i> Facebook</a>--}}
+                <div class="row"><br>
+                    <div class="col-sm-6 auth-space">
                         <a class="btn btn-socials" href="{{asset($fb_login_url)}}">
                             <i id="facebook-registration" class="fa fa-facebook-official"></i> Facebook</a>
-                        {{--<a class="btn btn-socials" href="{{asset('auth/social/vkontakte')}}"><i class="fa fa-vk"></i>--}}
-                        {{--Vkontakte</a>--}}
+                    </div>
+                    <hr class="visible-xs">
+                    <div class="col-sm-6 auth-space">
                         <a class="btn btn-socials" href="{{asset($vk_login_url)}}"><i class="fa fa-vk"></i>
                             Vkontakte</a>
-                    </p>
+                    </div>
                 </div>
+                {{--<a class="btn btn-socials" href="{{asset('auth/social/vkontakte')}}"><i class="fa fa-vk"></i>--}}
+                {{--Vkontakte</a>--}}
             </div>
         </div>
     </div>
