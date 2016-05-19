@@ -108,8 +108,10 @@
 
 
                             <p class="text-left">
-                                Опыт человека состоит из связей и коммуникаций с другими людьми. Чем шире и разнообразнее
-                                ваш круг общения, тем богаче опыт! Ресурс YogaFriends позволяет йогинам из разных городов и
+                                Опыт человека состоит из связей и коммуникаций с другими людьми. Чем шире и
+                                разнообразнее
+                                ваш круг общения, тем богаче опыт! Ресурс YogaFriends позволяет йогинам из разных
+                                городов и
                                 стран встречаться за кофе во время путешествия, селиться друг у друга и знакомиться для
                                 совместной поездки:
                             </p>
@@ -118,24 +120,31 @@
                                 <div class="form-group">
                                     <div class="row  text-center">
                                         <div class="col-md-3">
-                                            <label for="type" onclick="inCheckR()" class="label-radio">
-                                                <img class="img-newService" src="/img/SVG/button_tea_135x135.svg" alt=""><br>
+                                            <label for="type" onclick="inCheckR()" class="label-radio"
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   title="Чаепитие">
+                                                <img class="img-newService" src="/img/SVG/button_tea_135x135.svg"
+                                                     alt=""><br>
                                                 <input type="radio" checked name="type" id="itr" value="teaService"><br>
-                                                <span > чаепитие</span>
+
                                             </label>
                                         </div>
-                                        <div class="col-md-3">
-                                            <label for="type" onclick="inCheckR2()" class="label-radio">
-                                                <img class="img-newService" src="/img/SVG/button_couch_203_135.svg" alt=""><br>
+                                        <div class="col-md-3 text-center">
+                                            <label for="type" onclick="inCheckR2()" class="label-radio"
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   title="Ночлег">
+                                                <img class="img-newService" src="/img/SVG/button_couch_203_135.svg"
+                                                     alt=""><br>
                                                 <input type="radio" name="type" id="itr2" value="couchService"><br>
-                                                <span> ночлег</span>
                                             </label>
                                         </div>
                                         <div class="col-md-3">
-                                            <label for="type" onclick="inCheckR3()" class="label-radio">
-                                                <img class="img-newService" src="/img/SVG/button_walk_172x135 (1).svg" alt=""><br>
+                                            <label for="type" onclick="inCheckR3()" class="label-radio"
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   title="Прогулка">
+                                                <img class="img-newService" src="/img/SVG/button_walk_172x135 (1).svg"
+                                                     alt=""><br>
                                                 <input type="radio" name="type" id="itr3" value="walkServices"><br>
-                                                <span> прогулка</span>
                                             </label>
                                         </div>
                                     </div>
@@ -143,10 +152,11 @@
 
                                 <li>Оставьте комментарий о сути вашего приглашения, фото и укажите место:</li>
                                 <p class="text-left smaller-text">
-                                    Чем уникальнее ваше предложение, тем понятнее станет для путешественников, что они хотят
+                                    Чем уникальнее ваше предложение, тем понятнее станет для путешественников, что они
+                                    хотят
                                     именно к вам.
                                 </p>
-                            </ol >
+                            </ol>
 
                             {{--<input type="text" class="form-control inputNew" name="name"--}}
                             {{--value="" placeholder="Название" autofocus>--}}
@@ -172,7 +182,6 @@
                         </div>
 
 
-
                         <div class="form-group">
 
                             <input id="pac-input" class="pac-input1 form-control inputNew" type="text" name="address"
@@ -181,9 +190,6 @@
 
                         <div id="latFromSearch"></div>
                         <div id="longFromSearch"></div>
-
-
-
 
 
                         {{--<div class="form-group" >--}}
@@ -206,13 +212,10 @@
                             </div>
                         </div>
 
-
-
+                        <input type="submit" id="load" class="btn btn-yoga-custom" disabled="disabled" value="Пригласить">
 
                         <div class="form-group">
-
-                            <input type="reset" class="btn-form1" value="Отменить">
-                            <input type="submit" id="load" class="btn-form1" disabled="disabled" value="Пригласить">
+                            {{--<input type="reset" class="btn-form1" value="Отменить">--}}
                         </div>
 
 
@@ -258,8 +261,8 @@
 
         google.maps.event.addDomListener(window, 'load', initialize);
 
-        $(function(){
-            $('#upload').change(function(){
+        $(function () {
+            $('#upload').change(function () {
                 $('#uploadName').text($(this.files).length);
                 $('#remove_0').remove();
             });
@@ -310,14 +313,14 @@
 
     function inCheckR() {
         var r1 = document.getElementById("itr");
-            r1.checked = true;
+        r1.checked = true;
     }
     function inCheckR2() {
         var r1 = document.getElementById("itr2");
-            r1.checked = true;
+        r1.checked = true;
     }
     function inCheckR3() {
         var r1 = document.getElementById("itr3");
-            r1.checked = true;
+        r1.checked = true;
     }
 </script>

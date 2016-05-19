@@ -6,17 +6,6 @@
  * Time: 17:34
  */ ?>
 
-<div id="fb-root"></div>
-<script>(function (d, s, id) {
-        var js, fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.6&appId=1608911852682283";
-        fjs.parentNode.insertBefore(js, fjs);
-    }(document, 'script', 'facebook-jssdk'));
-</script>
-
 <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="row">
@@ -124,57 +113,46 @@
                         {{--<li><a class="langItem" href="#">En</a></li>--}}
                     </div>
 
+
                     @if(isset($currentPage)&&$currentPage=='Map')
-                        <div class="nav navbar-nav visible-xs well">
+                        <div class="visible-xs well">
                             <div data-toggle="buttons">
-                                {{--<p>--}}
-                                    <label class="btn btn-checkInn" data-toggle="tooltip" data-placement="top"
-                                           title="ЧекИны" onclick="toggleGreyAll()" id="bla-bla">
-                                        <input class="checkInnBox" type="checkbox" autocomplete="off"
-                                               id="inputAll">
-                                    </label>
-                                    <span class="checkInnString" id="checkInnAll"
-                                          style="margin-right: 20px;margin-left: 10px">
+                                <label class="mapInfoPanelBtn btn btn-checkInn" onclick="toggleGreyAll()">
+                                    <input class="checkInnBox" type="checkbox" autocomplete="off" id="inputAllXs">
+                                </label>
+                                    <span class="mapInfoPanelCell checkInnString" id="checkInnAllXs">
                                         {{ isset($checkInnCount) ? $checkInnCount : 0 }}
                                     </span>
 
-                                    <label class="btn btn-tea" data-toggle="tooltip" data-placement="top"
-                                           title="Чаепитие" onclick="toggleGreyTea()" id="bla-bla1">
-                                        <input class="teaPointsBox" type="checkbox" autocomplete="off"
-                                               id="inputTea">
-                                    </label>
-                                    <span class="teaString process" id="checkInnTea"
-                                          style="margin-right: 20px;margin-left: 10px">
+                                <label class="mapInfoPanelBtn btn btn-tea" onclick="toggleGreyTea()">
+                                    <input class="teaPointsBox" type="checkbox" autocomplete="off"
+                                           id="inputTeaXs">
+                                </label>
+                                    <span class="mapInfoPanelCell teaString" id="checkInnTeaXs">
                                         {{ isset($teaServiceCount) ? $teaServiceCount : 0 }}
-                                    </span><br><br>
-                                {{--</p>--}}
-                                {{--<p>--}}
-                                    <label class="btn btn-couch" data-toggle="tooltip" data-placement="top"
-                                           title="Ночлег" onclick="toggleGreySleep()" id="bla-bla2">
-                                        <input class="couchPointsBox" type="checkbox" autocomplete="off"
-                                               id="inputSleep">
-                                    </label>
-                                    <span class="couchString process" id="checkInnSleep"
-                                          style="margin-right: 10px;margin-left: 10px">
+                                    </span>
+                                <hr >
+                                <label class="mapInfoPanelBtn btn btn-couch" onclick="toggleGreySleep()">
+                                    <input class="couchPointsBox" type="checkbox" autocomplete="off"
+                                           id="inputSleepXs">
+                                </label>
+                                    <span class="mapInfoPanelCell couchString" id="checkInnSleepXs">
                                         {{ isset($couchServiceCount) ? $couchServiceCount : 0 }}
                                     </span>
 
-                                    <label class="btn btn-walk" data-toggle="tooltip" data-placement="top"
-                                           title="Прогулки" onclick="toggleGreyWalk()" id="bla-bla3">
-                                        <input class="walkPointsBox" type="checkbox" autocomplete="off"
-                                               id="inputWalk">
-                                    </label>
-                                    <span class="walkString process" id="checkInnWalk" style="margin-left: 10px;">
+                                <label class="mapInfoPanelBtn btn btn-walk" onclick="toggleGreyWalk()">
+                                    <input class="tableCell walkPointsBox" type="checkbox" autocomplete="off"
+                                           id="inputWalkXs">
+                                </label>
+                                    <span class="mapInfoPanelCell walkString" id="checkInnWalkXs">
                                         {{ isset($walkServicesCount) ? $walkServicesCount : 0 }}
-                                    </span><br><br>
-                                {{--</p>--}}
-                                {{--<p>--}}
-                                    <input id="pac-input" class="controls pac-input pac-input1" type="text"
-                                           placeholder="расположение">
-                                {{--</p>--}}
+                                    </span>
                             </div>
                         </div>
                     @endif
+
+
+
 
                 </div>
             </div>

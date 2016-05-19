@@ -270,9 +270,15 @@ body {
     background-size: contain, contain;
 }
 
+.test {
+    height: 85px;
+    background: url("/img/SVG/menu_map/outside_part.png") repeat-x;
+    background-size: contain, contain;
+}
+
 .mapSearchRowCenter {
     height: 85px;
-
+    padding: 15px;
     background: url("/img/SVG/menu_map/central_part_Xx85.png") repeat-x;
     background-size: contain;
 }
@@ -282,10 +288,6 @@ body {
 
     background: url("/img/SVG/menu_map/right_circle_98x85.png") no-repeat left, url("/img/SVG/menu_map/outside_part.png") repeat-x;
     background-size: contain, contain;
-}
-
-.mapSearchRow {
-    /*margin-top: 25px;*/
 }
 
 .mapSearchIcon {
@@ -354,7 +356,6 @@ body {
 
 .checkInnString {
     color: #1099cc;
-    margin-right: 5px;
     font-weight: 300 !important;
     font-size: 24px;
 }
@@ -392,10 +393,8 @@ body {
 
 .teaString {
     color: #d0a102;
-    margin-right: 5px;
     font-weight: 300;
     font-size: 24px;
-
 }
 
 /*Кнопка ночлега*/
@@ -425,7 +424,6 @@ body {
 
 .couchString {
     color: #e67a00;
-    margin-right: 5px;
     font-weight: 300;
     font-size: 24px;
 }
@@ -508,15 +506,14 @@ body {
     /*border-color: #130269;*/
 }
 
-
 /*.btn-socials {*/
-    /*background-color: #4c67a1;*/
-    /*font-size: 1.2em;*/
-    /*padding: 5px;*/
-    /*border-radius: 50px;*/
-    /*width: 150px;*/
-    /*color: white;*/
-    /*margin-left: 15px;*/
+/*background-color: #4c67a1;*/
+/*font-size: 1.2em;*/
+/*padding: 5px;*/
+/*border-radius: 50px;*/
+/*width: 150px;*/
+/*color: white;*/
+/*margin-left: 15px;*/
 /*}*/
 
 .btn-socials {
@@ -598,7 +595,6 @@ body {
 
 .walkString {
     color: #70b700;
-    margin-right: 5px;
     font-weight: 300;
     font-size: 24px;
 }
@@ -608,9 +604,10 @@ body {
     background-color: #fff;
     /*padding: 0 30px 0 13px;*/
     text-overflow: ellipsis;
-    border: 2px solid #cecece;
+    /*border: 1px solid #cecece;*/
+    border: 1px solid gray;
     border-radius: 50px;
-    width: 100%;
+    /*width: 100%;*/
     padding-left: 12px;
 }
 
@@ -729,9 +726,12 @@ body {
     background-color: #b0b0b0;
     border-radius: 15px;
     border: none;
-    width: 49%;
     height: 34px;
     cursor: pointer;
+}
+
+.btn-form1:hover {
+    color: black;
 }
 
 #load {
@@ -744,10 +744,6 @@ body {
 
 #load:disabled:hover {
     color: white;
-}
-
-.btn-form1:hover {
-    color: black;
 }
 
 .string {
@@ -814,12 +810,12 @@ h1 {
 
 .form-group {
     clear: both;
-    margin-left: 0!important;
-    margin-right: 0!important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
     /*text-align: right;*/
 }
 
-.auth-space{
+.auth-space {
     padding-left: 30px;
     padding-right: 30px;
 }
@@ -1213,7 +1209,7 @@ input[type="password"].inputNew {
 }
 
 .img37 {
-    height: 37px;
+    height: 50px;
     vertical-align: top;
 }
 
@@ -1253,4 +1249,59 @@ input[type="password"].inputNew {
 .dropzone {
     border: 2px solid #83CC15 !important;
     border-radius: 25px;
+}
+
+.mapInfoPanelWrapper{
+    width: 100%;
+    /*height: 85px;*/
+    background: url("/img/SVG/menu_map/outside_part.png") repeat-x;
+}
+
+.mapInfoPanel{
+    width:  850px;
+    margin: 0 auto;
+}
+
+.mapInfoPanelCenter{
+    /*height: 85px;*/
+    width: 650px;
+    margin: -5px;
+    padding-top: 21px;
+    padding-bottom: 21px;
+    padding-right: 1px;
+    background: url("/img/SVG/menu_map/central_part_Xx85.png") repeat-x;
+    background-size: contain;
+    vertical-align: middle;
+}
+
+.mapInfoPanelBtn{
+    vertical-align: middle;
+}
+
+.mapInfoPanelCell{
+    padding-left: 5px;
+    padding-right: 10px;
+    vertical-align: middle;
+}
+/*Для мобильных устройств*/
+.mapInfoPanelWrapperXs{
+    width: 100%;
+    background: url("/img/SVG/menu_map/outside_part.png") repeat-x;
+}
+
+.mapInfoPanelXs{
+    width:  450px;
+    margin: 0 auto;
+}
+
+.mapInfoPanelCenterXs{
+    /*height: 85px;*/
+    width: 250px;
+    margin: -5px;
+    padding-top: 21px;
+    padding-bottom: 21px;
+    padding-right: 1px;
+    background: url("/img/SVG/menu_map/central_part_Xx85.png") repeat-x;
+    background-size: contain;
+    vertical-align: middle;
 }

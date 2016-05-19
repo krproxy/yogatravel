@@ -1,35 +1,34 @@
 @extends('layouts.master')
 
 @section('body')
-{{--    {{dd($types)}}--}}
+    {{--    {{dd($types)}}--}}
     <div class="container spark-screen">
         <div class="row">
             {{--<div class="ui-widget">--}}
-                {{--<label for="tags">Tags: </label>--}}
-                {{--<input id="tags">--}}
+            {{--<label for="tags">Tags: </label>--}}
+            {{--<input id="tags">--}}
             {{--</div>--}}
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/searchYogaPointsPost') }}">
                 {!! csrf_field() !!}
 
                 <div class="col-md-6 col-md-offset-3">
                     <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <input id="tags" type="text" class="form-control inputNew" name="name" placeholder="Имя пользователя">
+                        <input id="tags" type="text" class="form-control inputNew" name="name"
+                               placeholder="Имя пользователя">
 
                         @if ($errors->has('name'))
                             <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
                         @endif
                     </div>
-
-
                     <div class="form-group">
                         <input id="pac-input" class="pac-input1 form-control inputNew" type="text" name="address"
                                placeholder=" расположение">
                     </div>
-                    <br>
-
                     <div class="form-group">
-                        <input type="reset" class="btn-form1" value="Отменить">
-                        <input type="submit" class="btn-form1" value="Поиск">
+                        {{--<input type="reset" class="btn-form1" value="Отменить">--}}
+                        <div class="col-md-offset-3 col-md-6">
+                            <input type="submit" class="btn btn-yoga-custom" value="Поиск">
+                        </div>
                     </div>
 
                 </div>
@@ -67,13 +66,47 @@
         </div>
         <div class="row">
             <hr>
-            <div class="col-md-12">
+            <div class="col-md-6 col-md-offset-3">
                 @if(isset($yogaPoints))
                     @foreach($yogaPoints as $point)
-                        <h3>{{$point->address}}</h3>
-                        <p>{{$point->description}}</p>
-                        <a href="/profile/{{$point->user_id}}" class="btn btn-default">{{\app\User::findOrNew($point->user_id)->name}}</a>
-                        <a href="/service/{{$point->id}}" class="btn btn-default">подробнее</a>
+                        @if($point->type=='teaService')
+                            <?php $point_class = "color-tea";$point_img_src = "/img/SVG/button_tea_135x135.svg"; ?>
+                        @elseif($point->type=='checkInn')
+                            <?php $point_class = "corporateBlue";$point_img_src = "/img/SVG/map_check-in_47x60.svg"; ?>
+                        @elseif($point->type=='couchService')
+                            <?php $point_class = "color-sleep";$point_img_src = "/img/SVG/button_couch_203_135.svg"; ?>
+                        @elseif($point->type=='walkServices')
+                            <?php $point_class = "color-walk";$point_img_src = "/img/SVG/button_walk_172x135 (1).svg"; ?>
+                        @endif
+
+                        <div class="media">
+                            <div class="media-left">
+                                <h3><a class="{{$point_class}}" href="/service/{{$point->id}}">
+                                        <img class="img37" src="{{$point_img_src}}"
+                                             alt="">
+                                    </a>
+                                </h3>
+                            </div>
+                            <div class="media-body media-middle">
+                                <h3><a class="{{$point_class}}" href="/service/{{$point->id}}">{{$point->address}}</a>
+                                </h3>
+                            </div>
+                        </div>
+                        {{$point->description}}
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="{{URL::to('/profile/' . $point->user_id)}}">
+                                    <img src="{{isset(\app\User::findOrNew($point->user_id)->avatar)?$service->user->avatar:asset('img/SVG/profile_12x13.svg')}}"
+                                         alt="" class="img37 circle .mt--5 media-object">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading">Автор:</h4>
+                                <a href="{{URL::to('/profile/' . $point->user_id)}}">
+                                    <span class="f600-16 {{$point_class}} pm-0">{{\app\User::findOrNew($point->user_id)->name}}</span>
+                                </a>
+                            </div>
+                        </div>
                         <hr>
                     @endforeach
                 @endif
@@ -115,9 +148,9 @@
 
     </script>
     <script>
-        $(function() {
+        $(function () {
             var availableTags = {!! $usersNames !!};
-            $( "#tags" ).autocomplete({
+            $("#tags").autocomplete({
                 source: availableTags
             });
         });

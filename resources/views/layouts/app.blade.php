@@ -7,7 +7,6 @@
 
     <title>@yield('title')</title>
     <meta name="Description" content="@yield('description')">
-
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
     <!-- Fonts -->
@@ -86,11 +85,11 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <a class="btn btn-login navbar-btn" href="/auth/login">Войти</a>
-                            {{--<li><a href="/auth/register">Register</a></li>--}}
+                            <li><a href="/auth/register">Register</a></li>
                         @else
                             <div class="btn-group" role="group">
-                                {{--<button type="button" class="btn btn-default">1</button>--}}
-                                {{--<button type="button" class="btn btn-default">2</button>--}}
+                                <button type="button" class="btn btn-default">1</button>
+                                <button type="button" class="btn btn-default">2</button>
 
                                 <div class="btn-group" role="group">
                                     <button type="button" class="btn btn-login navbar-btn dropdown-toggle"
@@ -141,14 +140,14 @@
                                 <a href="{{URL::to('messages')}}" class="btn btn-mail navbar-btn" role="button"
                                    aria-expanded="false">
                                     <img src="/img/SVG/message_21x15.svg" class="imgMenu-icons">
-                                    {{-- menuBtn menuBtnMail--}}
+                                     menuBtn menuBtnMail
                                     <span> {{ Auth::user()->newMessagesCount() }}</span>
                                 </a>
                             </div>
                         @endif
-                        {{--<li><a class="langItemActive" href="#">Ru</a></li>--}}
-                        {{--<li class="langItemDelimiter">|</li>--}}
-                        {{--<li><a class="langItem" href="#">En</a></li>--}}
+                        <li><a class="langItemActive" href="#">Ru</a></li>
+                        <li class="langItemDelimiter">|</li>
+                        <li><a class="langItem" href="#">En</a></li>
                     </div>
                 </div>
             </div>

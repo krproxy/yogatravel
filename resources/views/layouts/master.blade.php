@@ -25,7 +25,7 @@
     @include('header.head')
     @yield('customHeader')
 </head>
-<body>
+<body id="app-layout">
 <!--[if lt IE 7]>
 <p class="browsehappy">Вы используете <strong>слишком старый</strong> браузер. Пожалуйста <a
         href="http://browsehappy.com/">обновите ваш браузер</a> для нормального серфинга по современным сайтам.</p>
@@ -33,10 +33,8 @@
 <header id="header" class="">
     @include('header.header')
 </header>
-<section>
-    @include('errors.errmsg')
-    @yield('body')
-</section>
+@include('errors.errmsg')
+@yield('body')
 @include('footer.footer')
 @include('footer.foot_script')
 @yield('customScripts')
