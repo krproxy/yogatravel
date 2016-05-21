@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Auth;
 use BW\Vkontakte;
+use Exception;
 use Facebook\Exceptions\FacebookSDKException;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
+use Laravel\Socialite\Facades\Socialite;
 use Redirect;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 use Session;
@@ -69,6 +71,55 @@ class AuthController extends Controller
         ]);
     }
 
+    /**
+     * Redirect the user to the GitHub authentication page.
+     *
+     * @param $socialProvider
+     * @return Response
+     */
+    public function redirectToProvider($socialProvider)
+    {
+        return Socialite::with($socialProvider)->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return Response
+     */
+    public function handleProviderCallback($socialProvider)
+    {
+        try {
+            $socialUser = Socialite::driver($socialProvider)->user();
+        } catch (Exception $e) {
+            return Redirect::to("auth/$socialProvider");
+        }
+
+        $authUser = $this->findOrCreateUser($socialUser);
+
+        Auth::login($authUser, true);
+
+        return Redirect::to('home');
+    }
+
+    /**
+     * Return user if exists; create and return if doesn't
+     *
+     * @param $socialUser
+     * @return static
+     */
+    private function findOrCreateUser($socialUser)
+    {
+        if ($authUser = User::where('social_id', $socialUser->getId())->first()) {
+            return $authUser;
+        }
+        return User::create([
+            'name' => $socialUser->getName(),
+            'email' => $socialUser->getEmail(),
+            'social_id' => $socialUser->getId(),
+            'avatar' => $socialUser->getAvatar()
+        ]);
+    }
 
     public function fbLoginPost(LaravelFacebookSdk $fb)
     {
@@ -213,24 +264,5 @@ class AuthController extends Controller
         Auth::login($authUser);
 
         return Redirect::to('home');
-    }
-
-    /**
-     * Return user if exists; create and return if doesn't
-     *
-     * @param $githubUser
-     * @return User
-     */
-    private function findOrCreateUser($socialUser)
-    {
-        if ($authUser = User::where('vkontakte_user_id', $socialUser[0]['id'])->first()) {
-            return $authUser;
-        }
-        return User::create([
-            'name' => $socialUser[0]['first_name'] . ' ' . $socialUser[0]['last_name'],
-            'email' => $socialUser[0]['email'],
-            'vkontakte_user_id' => $socialUser[0]['id'],
-            'avatar' => $socialUser[0]['photo_max']
-        ]);
     }
 }

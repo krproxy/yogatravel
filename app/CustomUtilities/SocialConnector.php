@@ -9,23 +9,18 @@
 namespace App\CustomUtilities;
 
 
-use BW\Vkontakte;
 use Facebook\Exceptions\FacebookResponseException;
 use Facebook\Exceptions\FacebookSDKException;
-use Illuminate\Support\Facades\Session;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 
 class SocialConnector
 {
-    private $vk;
-    private $fb;
     private $fb_app_id;
     private $fb_app_secret;
-    private $facebook_group_id = 123;
-    
+    private $facebook_group_id = 1870804253146606;
+
     public function __construct()
     {
-        $this->vk = new Vkontakte();
         $this->fb = app(LaravelFacebookSdk::class);;
         $this->fb_app_id = env('FACEBOOK_APP_ID');
         $this->fb_app_secret = env('FACEBOOK_APP_SECRET');
@@ -124,18 +119,19 @@ class SocialConnector
         /**
          * проверяем есть ли фесбук токен в сесии, если есть - значит постим
          */
-        if (\Auth::user()->facebook_posting_allowed && Session::has('fb_user_access_token')) {
+        if (\Auth::user()->fb_access_token) {
             $linkData = [
                 'link' => asset('/service/' . $point->id),
                 'message' => $point->description,
             ];
 
-            // почему то вылетает ошибка Graph returned an error: Unsupported post request.
-            // но при єтом постит и на стену пользователя и в группу
             try {
                 // Returns a `Facebook\FacebookResponse` object
-                $responseUser = $this->fb->post('/me/feed', $linkData, Session::get('fb_user_access_token'));
-                $responseGroup = $this->fb->post('/1870804253146606/feed', $linkData, Session::get('fb_user_access_token'));
+                // проверяем может разрешено ли пользователю постить в принципе и хочет ли он постить
+                if (\Auth::user()->can_fb_in_wall_posting && \Auth::user()->fb_in_wall_posting_allowed)
+                    $this->fb->post('/me/feed', $linkData, \Auth::user()->fb_access_token);
+                if (\Auth::user()->can_fb_in_group_posting && \Auth::user()->fb_in_group_posting_allowed)
+                    $this->fb->post("/{$this->facebook_group_id}/feed", $linkData, \Auth::user()->fb_access_token);
 
             } catch (FacebookResponseException $e) {
 //                echo 'Graph returned an error: ' . $e->getMessage();
@@ -146,4 +142,50 @@ class SocialConnector
             }
         }
     }
+
+    public function getFbToken()
+    {
+        // Obtain an access token.
+        try {
+            $token = $this->fb->getAccessTokenFromRedirect();
+        } catch (FacebookSDKException $e) {
+            dd($e->getMessage());
+        }
+
+        // Access token will be null if the user denied the request
+        // or if someone just hit this URL outside of the OAuth flow.
+        if (!$token) {
+            // Get the redirect helper
+            $helper = $this->fb->getRedirectLoginHelper();
+
+            if (!$helper->getError()) {
+                abort(403, 'Unauthorized action.');
+            }
+
+            // User denied the request
+            dd(
+                $helper->getError(),
+                $helper->getErrorCode(),
+                $helper->getErrorReason(),
+                $helper->getErrorDescription()
+            );
+        }
+
+        if (!$token->isLongLived()) {
+            // OAuth 2.0 client handler
+            $oauth_client = $this->fb->getOAuth2Client();
+
+            // Extend the access token.
+            try {
+                $token = $oauth_client->getLongLivedAccessToken($token);
+            } catch (FacebookSDKException $e) {
+                dd($e->getMessage());
+            }
+        }
+
+        $this->fb->setDefaultAccessToken($token);
+
+        return (string)$token;
+    }
+
 }

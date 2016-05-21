@@ -104,8 +104,12 @@ Route::get('auth/social/{provider}', 'Auth\AuthController@redirectToProvider');
 Route::get('auth/social/{provider}/callback', 'Auth\AuthController@handleProviderCallback');
 
 // Endpoint that is redirected to after an authentication attempt
-Route::get('/facebook/callback', 'Auth\AuthController@fbLoginPost');
-Route::get('/vk/callback', 'Auth\AuthController@vkLoginPost');
+//Route::get('/facebook/callback', 'Auth\AuthController@fbLoginPost');
+//Route::get('/vk/callback', 'Auth\AuthController@vkLoginPost');
+Route::get('fbAccountBind', 'UserSpaceController@fbAccountBind');
+Route::get('fbAccountUnbind', 'UserSpaceController@fbAccountUnbind');
+
+
 
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');

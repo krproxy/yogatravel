@@ -108,15 +108,11 @@
                     {{--</div>--}}
 
                     <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <input type="text" class="form-control inputNew"
+                        <input type="text"
+                               class="form-control inputNew"
+                               name="email"
                                value="{{ isset(Auth::user()->email)?Auth::user()->email:'' }}"
                                onchange="disableFalse()">
-                        {{--<p id="newMail">--}}
-                        {{--<span onclick="visibleMail()" id="span-mail" class=" inputNew" name="email">--}}
-                        {{--{{ isset(Auth::user()->email)?Auth::user()->email:'' }}--}}
-                        {{--<img src="/img/SVG/edit_11x11.svg" class="imgMenu-icons cursor" alt="Редактировать">--}}
-                        {{--</span>--}}
-                        {{--</p>--}}
                         @if ($errors->has('email'))
                             <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
@@ -131,38 +127,57 @@
                         <input type="password" class="form-control inputNew" placeholder="старый пароль"
                                onchange="disableFalse()">
                     </div>
-                    @if(Session::has('fb_user_access_token'))
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox"
-                                       name="facebook_posting_allowed"
-                                       {{Auth::user()->facebook_posting_allowed ? 'checked="checked"' : ''}}
-                                       onchange="disableFalse()">
-                                Постить мои приглашения и рекомендации в facebook
+                    <?php
+                    /**
+                     * получаем фейсбук обработчик и генерим урл для авторизации
+                     */
+                    $fb = app(SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
+                    $fb_login_url = $fb->getLoginUrl(['email', 'publish_actions']);
+                    ?>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon" style="color: #4c67a1;">
+                                <i id="facebook-registration" class="fa fa-facebook fa-lg"></i>
+                            </span>
+                                <span class="input-group-btn">
+                                    @if(Auth::user()->fb_access_token)
+                                        <a class="btn btn-socials"
+                                           href="{{asset('fbAccountUnbind')}}"> Отвязать аккаунт</a>
+                                    @else
+                                        <a class="btn btn-socials"
+                                           href="{{asset($fb_login_url)}}"> Привязать аккаунт</a>
+                                    @endif
+                                </span>
+                        </div><!-- /input-group -->
+                    </div>
+                    @if(Auth::user()->fb_access_token)
+                        <hr>
+                        <div class="form-group">
+                            <label><input type="checkbox"
+                                          id="my-checkbox"
+                                          data-size="small"
+                                          name="fb_in_wall_posting_allowed"
+                                          {{Auth::user()->fb_in_wall_posting_allowed?'checked':''}}
+                                          onchange="disableFalse()">
+                                <span class="corporateBlue"> Постить в ленте</span>
                             </label>
-                        </div><br>
+                        </div>
+                        <div class="form-group">
+                            <label><input type="checkbox"
+                                          id="my-checkbox"
+                                          data-size="small"
+                                          name="fb_in_group_posting_allowed"
+                                          {{Auth::user()->fb_in_group_posting_allowed?'checked':''}}
+                                          onchange="disableFalse()">
+                                <span class="corporateBlue"> Постить в группе</span>
+                            </label>
+                        </div>
+                        <hr>
                     @endif
                     <div class="form-group">
-                        <input type="submit" id="load" class="btn inputNew submit"
+                        <input type="submit" id="load" class="btn btn-yoga-custom inputNew submit"
                                value="Сохранить изменения" disabled>
                     </div>
-
-                    {{--<p class="f300-21 ">Связанные аккаунты:</p>--}}
-                    {{--<a class="f300-22 btn btn-soc facebook-color mb14">--}}
-                    {{--<i class="fa fa-facebook-official" ></i>--}}
-                    {{--Facebook--}}
-
-                    {{--</a>--}}
-                    {{--<button class="f300-22 btn btn-soc mb14 vk-color">--}}
-                    {{--<i class="fa fa-vk"></i>--}}
-                    {{--Vkontakte--}}
-
-                    {{--</button>--}}
-                    {{--<button class="f300-22 btn btn-soc google-color mb14">--}}
-                    {{--<img src="/img/SVG/googleplus_24x26.svg" alt="" class="pull-left icon-soc-btn">--}}
-                    {{--Google +--}}
-
-                    {{--</button>--}}
                 </div>
 
                 <div class="col-xs-12 col-sm-8 col-md-9 pleft37">

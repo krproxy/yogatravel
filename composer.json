@@ -17,7 +17,9 @@
         "sammyk/laravel-facebook-sdk": "^3.0",
         "bocharsky-bw/vkontakte-php-sdk": "dev-master",
         "guzzlehttp/guzzle": "^5.0",
-        "caouecs/laravel-lang": "^3.0"
+        "caouecs/laravel-lang": "^3.0",
+        "socialiteproviders/vkontakte": "^2.0",
+        "sleeping-owl/admin": "^2.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

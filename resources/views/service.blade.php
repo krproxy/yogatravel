@@ -4,13 +4,12 @@
 @section('ogType', "article")
 @section('ogTitle', $service->address)
 @section('ogDescription', $service->description)
-@if(isset($service->attaches))
+@if(count($service->attaches) != 0)
     @section('ogImage', asset($service->attaches->first()->filename))
 @endif
 @section('title', $service->address)
 
 @section('description', $service->description)
-
 @section('body')
     <div class="container spark-screen">
         <div class="row">
@@ -47,8 +46,7 @@
                     <!-- Indicators -->
                     <ol class="carousel-indicators">
                         <?php $isActive = true;?>
-                        @if(isset($service->attaches))
-
+                        @if(count($service->attaches) != 0)
                             @for($i=0; $i<count($service->attaches); $i++)
                                 <li data-target="#carousel-example-generic" data-slide-to="{{$i}}"
                                 <?php if ($isActive) {
@@ -63,14 +61,14 @@
                     <!-- Wrapper for slides -->
                     <div class="carousel-inner" role="listbox">
                         <?php $isActive = true;?>
-                        @if(isset($service->attaches))
+                        @if(count($service->attaches) != 0)
                             @foreach($service->attaches as $attach)
                                 <div class="item <?php if ($isActive) {
                                     echo 'active';
                                     $isActive = false;
                                 }  ?>">
                                     <a class="fancybox" rel="group" href="{{URL::to($attach->filename)}}"><img
-                                                src="{{URL::to($attach->filename.'/800/500/chunk')}}"
+                                                src="{{URL::to($attach->filename.'/600/400/chunk')}}"
                                                 alt="{{$attach->alt}}"
                                                 title="{{$attach->title}}"/></a>
                                 </div>

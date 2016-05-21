@@ -37,6 +37,8 @@
 <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
 <link rel="stylesheet" href="{{asset('css/site.css')}}">
+<link rel="stylesheet" href="{{asset('css/bootstrap-social.css')}}">
+<link rel="stylesheet" href="{{asset('css/bootstrap-switch.css')}}">
 
 <!-- Dropzone -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/4.3.0/basic.css">

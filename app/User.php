@@ -11,13 +11,13 @@ use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Cmgmyr\Messenger\Traits\Messagable;
 use SammyK\LaravelFacebookSdk\SyncableGraphNodeTrait;
+use SleepingOwl\Models\SleepingOwlModel;
 
-class User extends Model implements AuthenticatableContract,
+class User extends SleepingOwlModel implements AuthenticatableContract,
     AuthorizableContract,
-    CanResetPasswordContract//,
-//    UserInterface
+    CanResetPasswordContract
 {
-    use Authenticatable, Authorizable, CanResetPassword, Messagable, SyncableGraphNodeTrait;
+    use Authenticatable, Authorizable, CanResetPassword, Messagable;
 
     /**
      * The database table used by the model.
@@ -32,7 +32,7 @@ class User extends Model implements AuthenticatableContract,
      * @var array
      */
 //    protected $fillable = ['name', 'email', 'password'];
-    protected $fillable = ['name', 'shortStory', 'email', 'vkontakte_user_id', 'avatar', 'password'];
+    protected $fillable = ['name', 'shortStory', 'email', 'social_id', 'avatar', 'password'];
 
     /**
      * The attributes excluded from the model's JSON form.

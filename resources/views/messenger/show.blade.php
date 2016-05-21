@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
-@section('content')
+@section('body')
     <div class="container">
         {!! Form::open(['route' => ['messages.update', $thread->id], 'method' => 'PUT']) !!}
         <div class="col-md-offset-3 col-md-6">

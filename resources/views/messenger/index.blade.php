@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.master')
 
-@section('content')
+@section('body')
     <div class="container">
 
         {{--<div class="col-xs-12">--}}

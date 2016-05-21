@@ -6,7 +6,7 @@
  * Time: 17:38
  */ ?>
 
-        <!-- JavaScripts -->
+<!-- JavaScripts -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
@@ -20,3 +20,9 @@
 <!-- fotorama.css & fotorama.js. -->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
 <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+
+<script src="{{asset("/js/bootstrap-switch.min.js")}}"></script> <!-- 16 KB -->
+
+<script>
+    $("[id='my-checkbox']").bootstrapSwitch();
+</script>

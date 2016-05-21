@@ -6,14 +6,11 @@ use App\CustomUtilities\SocialConnector;
 use App\Http\Requests;
 use App\User;
 use App\YogaPoint;
-use Facebook\Exceptions\FacebookResponseException;
-use Facebook\Exceptions\FacebookSDKException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use PhpParser\Comment;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
-use Session;
 
 class UserSpaceController extends Controller
 {
@@ -57,8 +54,8 @@ class UserSpaceController extends Controller
         if (isset($request->surname)) $user->surname = $request->surname;
         if (isset($request->shortStory)) $user->shortStory = $request->shortStory;
         if (isset($request->email)) $user->email = $request->email;
-        $user->facebook_posting_allowed = isset($request->facebook_posting_allowed) ? true : false;
-        $user->vkontakte_posting_allowed = isset($request->vkontakte_posting_allowed) ? true : false;
+        $user->fb_in_wall_posting_allowed = isset($request->fb_in_wall_posting_allowed) ? true : false;
+        $user->fb_in_group_posting_allowed = isset($request->fb_in_group_posting_allowed) ? true : false;
 
         //dd($request->file('avatar')->getError());
 
@@ -151,7 +148,7 @@ class UserSpaceController extends Controller
                 $point->updateOrNewAttach($photo);
 
 
-$this->socialConnector->postNews($point);
+        $this->socialConnector->postNews($point);
 
         return redirect()->action('HomeController@Map', ['Lat' => $request->checkIn_lat, 'Lng' => $request->checkIn_lng]);
     }
@@ -238,5 +235,25 @@ $this->socialConnector->postNews($point);
         $comment->save();
 
         return redirect()->back();
+    }
+
+    public function fbAccountBind()
+    {
+        $user = User::findOrNew(\Auth::id());
+        $user->fb_access_token = $this->socialConnector->getFbToken();
+        $user->save();
+
+        return redirect('Settings');
+    }
+
+    public function fbAccountUnbind()
+    {
+        $user = User::findOrNew(\Auth::id());
+        $user->fb_access_token = null;
+        $user->fb_in_wall_posting_allowed = 0;
+        $user->fb_in_group_posting_allowed = 0;
+        $user->save();
+
+        return redirect('Settings');
     }
 }
