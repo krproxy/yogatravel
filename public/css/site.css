@@ -506,6 +506,25 @@ body {
     /*border-color: #130269;*/
 }
 
+.btn-yoga-custom.disabled,
+.btn-yoga-custom[disabled],
+fieldset[disabled] .btn-yoga-custom,
+.btn-yoga-custom.disabled:hover,
+.btn-yoga-custom[disabled]:hover,
+fieldset[disabled] .btn-yoga-custom:hover,
+.btn-yoga-custom.disabled:focus,
+.btn-yoga-custom[disabled]:focus,
+fieldset[disabled] .btn-yoga-custom:focus,
+.btn-yoga-custom.disabled:active,
+.btn-yoga-custom[disabled]:active,
+fieldset[disabled] .btn-yoga-custom:active,
+.btn-yoga-custom.disabled.active,
+.btn-yoga-custom[disabled].active,
+fieldset[disabled] .btn-yoga-custom.active {
+    background: no-repeat center, #adbfce !important;
+    border-color: #adbfce !important;
+}
+
 /*.btn-socials {*/
 /*background-color: #4c67a1;*/
 /*font-size: 1.2em;*/
@@ -734,17 +753,17 @@ body {
     color: black;
 }
 
-#load {
-    background-color: #83CC15;
-}
+/*#load {*/
+    /*background-color: #83CC15;*/
+/*}*/
 
-#load:disabled {
-    background-color: #b0b0b0;
-}
+/*#load:disabled {*/
+    /*background-color: #b0b0b0;*/
+/*}*/
 
-#load:disabled:hover {
-    color: white;
-}
+/*#load:disabled:hover {*/
+    /*color: white;*/
+/*}*/
 
 .string {
     font-size: 36px;

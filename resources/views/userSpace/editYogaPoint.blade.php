@@ -34,8 +34,8 @@
                         <br>
 
                         <div class="form-group">
-                            <input type="reset" class="btn-form1" value="Отменить">
-                            <input type="submit" id="load" class="btn-form1" value="Сохранить">
+                            {{--<input type="reset" class="btn-form1" value="Отменить">--}}
+                            <input type="submit" id="load" class="btn btn-yoga-custom" value="Сохранить">
                         </div>
 
                         <div id="latFromSearch"></div>

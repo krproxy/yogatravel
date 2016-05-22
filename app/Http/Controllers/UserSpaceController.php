@@ -19,6 +19,7 @@ class UserSpaceController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('banned');
         $this->socialConnector = new SocialConnector();
     }
 
@@ -42,6 +43,7 @@ class UserSpaceController extends Controller
             ->where('user_id', \Auth::id())
             ->whereIn('type', ['teaService', 'couchService', 'walkServices'])
             ->get();
+
 
         return view('userSpace.settings', compact('myCheckInns', 'myServices'));
     }
@@ -81,7 +83,7 @@ class UserSpaceController extends Controller
         $user->save();
 
         //return view('userSpace.settings');
-        return redirect('Settings');
+        return redirect('Settings')->with('customModalMessage', 'Настройки успешно сохранены.');
     }
 
     public function NewYogaPoint(Request $request, LaravelFacebookSdk $fb)
@@ -186,6 +188,18 @@ class UserSpaceController extends Controller
     public function searchYogaPointsPost(Request $request)
     {
 //        dd($request);
+
+        if (!empty($request->address)) {
+            if (!isset($request->checkIn_lat) || !isset($request->checkIn_lng))
+                return redirect('searchYogaPoints')->with('customModalMessage', 'Похоже Вы ввели не существующий адресс');
+            $tmpLat = $request->checkIn_lat;
+            $tmpLatMin = round($request->checkIn_lat, 1, PHP_ROUND_HALF_DOWN) - 0.05;
+            $tmpLatMax = round($request->checkIn_lat, 1, PHP_ROUND_HALF_DOWN) + 0.15;
+            $tmpLng = $request->checkIn_lng;
+            $tmpLngMin = round($request->checkIn_lng, 1, PHP_ROUND_HALF_DOWN) - 0.05;
+            $tmpLngMax = round($request->checkIn_lng, 1, PHP_ROUND_HALF_DOWN) + 0.15;
+        }
+
         $users = \DB::table('users')
             ->where('name', $request->name)
             ->get(['id']);
@@ -202,13 +216,17 @@ class UserSpaceController extends Controller
         !isset($request->types) ? $types = ['checkInn', 'teaService', 'couchService', 'walkServices'] : $types = $request->types;
         if (!empty($request->address) && !empty($request->name)) {
             $yogaPoints = \DB::table('yoga_points')
-                ->where('address', $request->address)
+//                ->where('address', $request->address)
+                ->whereBetween('latitude', [$tmpLatMin, $tmpLatMax])
+                ->whereBetween('longitude', [$tmpLngMin, $tmpLngMax])
                 ->whereIn('user_id', $usersId)
                 ->whereIn('type', $types)
                 ->get();
         } elseif (!empty($request->address)) {
             $yogaPoints = \DB::table('yoga_points')
-                ->where('address', $request->address)
+//                ->where('address', $request->address)
+                ->whereBetween('latitude', [$tmpLatMin, $tmpLatMax])
+                ->whereBetween('longitude', [$tmpLngMin, $tmpLngMax])
                 ->whereIn('type', $types)
                 ->get();
         } elseif (!empty($request->name)) {
@@ -222,7 +240,14 @@ class UserSpaceController extends Controller
                 ->get();
         }
 
-        return view('userSpace.searchYogaPoints', compact('yogaPoints', 'types', 'usersNames'));
+        if (count($yogaPoints) == 0)
+            $request->session()->put('customModalMessage', 'К сожалению ничего не обнаружено');
+
+        // готовим имя и адрес обратно вформу
+        $targetAuthorName = $request->name;
+        $targetAddress = $request->address;
+
+        return view('userSpace.searchYogaPoints', compact('targetAuthorName', 'targetAddress', 'tmpLat', 'tmpLng', 'yogaPoints', 'types', 'usersNames'));
     }
 
     public function addComment(Request $request)
@@ -243,7 +268,7 @@ class UserSpaceController extends Controller
         $user->fb_access_token = $this->socialConnector->getFbToken();
         $user->save();
 
-        return redirect('Settings');
+        return redirect('Settings')->with('customModalMessage', 'Аккаунт присоединен. Теперь можно выбрать настройки постинга.');
     }
 
     public function fbAccountUnbind()
@@ -254,6 +279,6 @@ class UserSpaceController extends Controller
         $user->fb_in_group_posting_allowed = 0;
         $user->save();
 
-        return redirect('Settings');
+        return redirect('Settings')->with('customModalMessage', 'Аккаунт отсоединен.');
     }
 }

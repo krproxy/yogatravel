@@ -134,6 +134,7 @@
                     $fb = app(SammyK\LaravelFacebookSdk\LaravelFacebookSdk::class);
                     $fb_login_url = $fb->getLoginUrl(['email', 'publish_actions']);
                     ?>
+                    <hr>
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon" id="basic-addon" style="color: #4c67a1;">
@@ -151,7 +152,6 @@
                         </div><!-- /input-group -->
                     </div>
                     @if(Auth::user()->fb_access_token)
-                        <hr>
                         <div class="form-group">
                             <label><input type="checkbox"
                                           id="my-checkbox"

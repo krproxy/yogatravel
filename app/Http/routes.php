@@ -12,18 +12,13 @@
 */
 
 use App\YogaPoint;
-use Facebook\Exceptions\FacebookResponseException;
-use Facebook\Exceptions\FacebookSDKException;
-use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('home', function () {
-    return view('home');
-});
+Route::get('home', 'UserSpaceController@Settings');
 
 Route::get('YogaFriends', function () {
     return view('YogaFriends', [
@@ -110,7 +105,6 @@ Route::get('fbAccountBind', 'UserSpaceController@fbAccountBind');
 Route::get('fbAccountUnbind', 'UserSpaceController@fbAccountUnbind');
 
 
-
 // Authentication routes...
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
@@ -169,4 +163,4 @@ Route::post('happy', function () {
 Route::get('attaches/{dateImg}/{filename}/{width}/{height}/{type?}/{anchor?}', 'ImageController@whResize');
 Route::get('attaches/{dateImg}/{filename}/', 'ImageController@fullImage');
 
-Route::post('feedback','HomeController@feedback');
+Route::post('feedback', 'HomeController@feedback');

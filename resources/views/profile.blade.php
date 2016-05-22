@@ -15,7 +15,7 @@
                 </div>
                 <br>
                 <a href="{{URL::to('messages/create/' . $user->id)}}"
-                   class="btn btn-green inputNew form-control f300-22 padding-0 sizeToNI">
+                   class="btn btn-yoga-custom inputNew form-control f300-22 padding-0 sizeToNI">
                     <img src="/img/SVG/message_21x15.svg" alt="" class="img18">
                     Написать сообщение</span>
                 </a>
@@ -65,10 +65,10 @@
                     @endif
                 @endforeach<br>
                 <br>
-                <p>
-                    <span class="corporateBlue f600-16">Мои путевые заметки:</span>
-                    <span></span>
-                </p>
+                {{--<p>--}}
+                    {{--<span class="corporateBlue f600-16">Мои путевые заметки:</span>--}}
+                    {{--<span></span>--}}
+                {{--</p>--}}
 
             </div>
         </div>

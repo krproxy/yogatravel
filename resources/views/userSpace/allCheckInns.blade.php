@@ -19,7 +19,7 @@
                                 <td class="active">{{$checkInn->address}}</td>
                                 <td class="warning">{{$checkInn->description}}</td>
                                 <td class="success"><a href="{{asset('editYogaPoint/'.$checkInn->id)}}"
-                                                       class="btn btn-green">редактировать</a></td>
+                                                       class="btn btn-yoga-custom">редактировать</a></td>
                                 <td class="danger"><a href="{{asset('deleteYogaPoint/'.$checkInn->id)}}"
                                                       class="btn btn-danger">удалить</a></td>
                             </tr>

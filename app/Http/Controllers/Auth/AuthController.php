@@ -31,6 +31,8 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
+    private $redirectPath = 'Settings';
+
     /**
      * Create a new authentication controller instance.
      *
@@ -99,7 +101,7 @@ class AuthController extends Controller
 
         Auth::login($authUser, true);
 
-        return Redirect::to('home');
+        return Redirect::to($this->redirectPath);
     }
 
     /**
@@ -185,61 +187,6 @@ class AuthController extends Controller
 
 
         return redirect('/')->with('message', 'Successfully logged in with Facebook');
-
-
-//        $linkData = [
-//            'link' => 'http://www.example.com',
-//            'message' => 'User provided message',
-//        ];
-//
-//        try {
-//            // Returns a `Facebook\FacebookResponse` object
-//            $response = $fb->post('/me/feed', $linkData, $token);
-//        } catch (FacebookResponseException $e) {
-//            echo 'Graph returned an error: ' . $e->getMessage();
-//            exit;
-//        } catch (FacebookSDKException $e) {
-//            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-//            exit;
-//        }
-//
-//        $graphNode = $response->getGraphNode();
-//
-//        echo 'Posted with id: ' . $graphNode['id'];
-//
-//
-//        /* PHP SDK v5.0.0 */
-//        /* make the API call */
-//        $request = $fb->request(
-//            'POST',
-//            '/1870804253146606/feed',
-//            array(
-//                'message' => 'This is a test message',
-//            )
-//        );
-//
-//
-//// Send the request to Graph
-//        try {
-//            $response = $fb->getClient()->sendRequest($request);
-//        } catch (FacebookResponseException $e) {
-//            // When Graph returns an error
-//            echo 'Graph returned an error: ' . $e->getMessage();
-//            exit;
-//        } catch (FacebookSDKException $e) {
-//            // When validation fails or other local issues
-//            echo 'Facebook SDK returned an error: ' . $e->getMessage();
-//            exit;
-//        }
-//
-//        $graphNode = $response->getGraphNode();
-//
-//        dd($graphNode);
-//
-//
-//        $response = $request->execute();
-//        $graphObject = $response->getGraphObject();
-//        /* handle the result */
     }
 
     public function vkLoginPost(Vkontakte $vk)

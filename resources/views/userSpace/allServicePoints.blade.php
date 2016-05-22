@@ -21,7 +21,7 @@
                                 <td class="active">{{$service->address}}</td>
                                 <td class="warning">{{$service->description}}</td>
                                 <td class="success"><a href="{{asset('editYogaPoint/'.$service->id)}}"
-                                                       class="btn btn-green">редактировать</a></td>
+                                                       class="btn btn-yoga-custom">редактировать</a></td>
                                 <td class="danger"><a href="{{asset('deleteYogaPoint/'.$service->id)}}"
                                                       class="btn btn-danger">удалить</a></td>
                             </tr>

@@ -26,3 +26,13 @@
 <script>
     $("[id='my-checkbox']").bootstrapSwitch();
 </script>
+
+@if(session()->has('customModalMessage'))
+    @include('modals.customModal', ['customModalMessage' => session()->pull('customModalMessage')])
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#customModal').modal('show');
+        });
+    </script>
+@endif

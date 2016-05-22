@@ -144,37 +144,6 @@
                             @endif
                         </div>
                     </div>
-
-
-                    {{--<div class="media">--}}
-                    {{--<div class="media-right">--}}
-
-                    {{--</div>--}}
-                    {{--<div class="media-body">--}}
-                    {{--<span class="f300-14 pm-0">Автор:</span><br>--}}
-                    {{--@if($service->type=='teaService')--}}
-                    {{--<a href="{{URL::to('/profile/' . $service->user->id)}}">--}}
-                    {{--<span class="f600-16 color-tea pm-0">{{$service->user->name}}</span>--}}
-                    {{--</a>--}}
-                    {{--<img src='/img/SVG/share_tea_18x18.svg' class='img18 pull-right mt14' alt=''>--}}
-                    {{--@elseif($service->type=='checkInn')--}}
-                    {{--<a href="{{URL::to('/profile/' . $service->user->id)}}">--}}
-                    {{--<span class="f600-16 corporateBlue pm-0">{{$service->user->name}}</span>--}}
-                    {{--</a>--}}
-                    {{--<img src='/img/SVG/share_check-in_18x18.svg' class='img18 pull-right mt14' alt=''>--}}
-                    {{--@elseif($service->type=='couchService')--}}
-                    {{--<a href="{{URL::to('/profile/' . $service->user->id)}}">--}}
-                    {{--<span class="f600-16 color-sleep">{{$service->user->name}}</span>--}}
-                    {{--</a>--}}
-                    {{--<img src='/img/SVG/share_couch_18x18.svg' class='img18 pull-right mt14' alt=''>--}}
-                    {{--@elseif($service->type=='walkServices')--}}
-                    {{--<a href="{{URL::to('/profile/' . $service->user->id)}}">--}}
-                    {{--<span class="f600-16 color-walk">{{$service->user->name}}</span>--}}
-                    {{--</a>--}}
-                    {{--<img src='/img/SVG/share_walk_18x18.svg' class='img18 pull-right mt14' alt=''>--}}
-                    {{--@endif--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
                 </div>
                 @if(Auth::check())
                     <form class="form-horizontal " role="form" method="POST" action="{{ url('addComment') }}">

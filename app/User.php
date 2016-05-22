@@ -2,15 +2,13 @@
 
 namespace App;
 
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Foundation\Auth\Access\Authorizable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
-use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Cmgmyr\Messenger\Traits\Messagable;
-use SammyK\LaravelFacebookSdk\SyncableGraphNodeTrait;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 use SleepingOwl\Models\SleepingOwlModel;
 
 class User extends SleepingOwlModel implements AuthenticatableContract,
@@ -32,7 +30,7 @@ class User extends SleepingOwlModel implements AuthenticatableContract,
      * @var array
      */
 //    protected $fillable = ['name', 'email', 'password'];
-    protected $fillable = ['name', 'shortStory', 'email', 'social_id', 'avatar', 'password'];
+    protected $fillable = ['name', 'shortStory', 'email', 'social_id', 'avatar', 'password', 'is_blocked'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -41,14 +39,13 @@ class User extends SleepingOwlModel implements AuthenticatableContract,
      */
     protected $hidden = ['password', 'remember_token', 'access_token'];
 
-    protected static $graph_node_field_aliases = [
-        'id' => 'facebook_user_id',
-//        'name' => 'full_name',
-//        'graph_node_field_name' => 'database_column_name',
-    ];
-
     public function yogaPoints()
     {
         return $this->hasMany('App\YogaPoint');
+    }
+
+    public function isBanned()
+    {
+        return $this->is_blocked;
     }
 }

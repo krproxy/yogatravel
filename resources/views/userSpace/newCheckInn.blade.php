@@ -101,14 +101,14 @@
 
                         <div class="form-group">
 
-                            <input type="reset" class="btn-form1" value="Отменить">
-                            <input type="submit" id="load" class="btn-form1" disabled="disabled" value="Загрузить"
-                                   onclick="VKShare()">
+                            {{--<input type="reset" class="btn-form1" value="Отменить">--}}
+                            <input type="submit" id="load" class="btn btn-yoga-custom" disabled="disabled" value="Рекомендовать">
+
+                            {{--<input type="submit" id="load" class="btn btn-yoga-custom" disabled="disabled" value="Загрузить"--}}
+                                   {{--onclick="VKShare()">--}}
 
                         </div>
 
-
-                        {{--?????????????????????????????????-----------------------}}
                         <div id="latFromSearch"></div>
                         <div id="longFromSearch"></div>
 
