@@ -17,8 +17,8 @@ Admin::model('\User')->title('Users')->as('users-alias-name')->denyCreating(func
 })->columns(function ()
 {
 	// Describing columns for table view
-	Column::string('name', 'Name');
-	Column::string('email', 'Email');
+	Column::adminString('name', 'Name');
+	Column::adminString('email', 'Email');
 })->form(function ()
 {
 	// Describing elements in create and editing forms

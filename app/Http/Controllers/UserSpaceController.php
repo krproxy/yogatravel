@@ -189,65 +189,82 @@ class UserSpaceController extends Controller
     {
 //        dd($request);
 
-        if (!empty($request->address)) {
-            if (!isset($request->checkIn_lat) || !isset($request->checkIn_lng))
-                return redirect('searchYogaPoints')->with('customModalMessage', 'Похоже Вы ввели не существующий адресс');
-            $tmpLat = $request->checkIn_lat;
-            $tmpLatMin = round($request->checkIn_lat, 1, PHP_ROUND_HALF_DOWN) - 0.05;
-            $tmpLatMax = round($request->checkIn_lat, 1, PHP_ROUND_HALF_DOWN) + 0.15;
-            $tmpLng = $request->checkIn_lng;
-            $tmpLngMin = round($request->checkIn_lng, 1, PHP_ROUND_HALF_DOWN) - 0.05;
-            $tmpLngMax = round($request->checkIn_lng, 1, PHP_ROUND_HALF_DOWN) + 0.15;
-        }
+        if (isset($request->type)) {
+            // готовим данные
+            $type = $request->type;
+            $targetAuthorName = $request->name;
+            $targetAddress = $request->address;
 
-        $users = \DB::table('users')
-            ->where('name', $request->name)
-            ->get(['id']);
-        $usersId = [];
-        foreach ($users as $user) {
-            $usersId[] = $user->id;
-        }
-        $usersNames = '[';
-        foreach (\App\User::all(['name']) as $user) {
-            $usersNames .= '"' . $user->name . '"' . ',';
-        }
-        $usersNames .= ']';
+            // создаем диапазон координат дл поиска в базе
+            if (!empty($request->address)) {
+                if (!isset($request->checkIn_lat) || !isset($request->checkIn_lng))
+                    return redirect('searchYogaPoints')->with('customModalMessage', 'Похоже Вы ввели не существующий адресс');
+                $tmpLat = $request->checkIn_lat;
+                $tmpLatMin = round($request->checkIn_lat, 1, PHP_ROUND_HALF_DOWN) - 0.05;
+                $tmpLatMax = round($request->checkIn_lat, 1, PHP_ROUND_HALF_DOWN) + 0.15;
+                $tmpLng = $request->checkIn_lng;
+                $tmpLngMin = round($request->checkIn_lng, 1, PHP_ROUND_HALF_DOWN) - 0.05;
+                $tmpLngMax = round($request->checkIn_lng, 1, PHP_ROUND_HALF_DOWN) + 0.15;
+            }
 
-        !isset($request->types) ? $types = ['checkInn', 'teaService', 'couchService', 'walkServices'] : $types = $request->types;
-        if (!empty($request->address) && !empty($request->name)) {
-            $yogaPoints = \DB::table('yoga_points')
-//                ->where('address', $request->address)
-                ->whereBetween('latitude', [$tmpLatMin, $tmpLatMax])
-                ->whereBetween('longitude', [$tmpLngMin, $tmpLngMax])
-                ->whereIn('user_id', $usersId)
-                ->whereIn('type', $types)
-                ->get();
-        } elseif (!empty($request->address)) {
-            $yogaPoints = \DB::table('yoga_points')
-//                ->where('address', $request->address)
-                ->whereBetween('latitude', [$tmpLatMin, $tmpLatMax])
-                ->whereBetween('longitude', [$tmpLngMin, $tmpLngMax])
-                ->whereIn('type', $types)
-                ->get();
-        } elseif (!empty($request->name)) {
-            $yogaPoints = \DB::table('yoga_points')
-                ->whereIn('user_id', $usersId)
-                ->whereIn('type', $types)
-                ->get();
+            switch ($type) {
+                // запрос на приглашения
+                case 'services':
+                    !isset($request->types) ? $types = ['teaService', 'couchService', 'walkServices'] : $types = $request->types;
+                    if (!empty($request->address)) {
+                        $yogaPoints = \DB::table('yoga_points')
+                            ->whereBetween('latitude', [$tmpLatMin, $tmpLatMax])
+                            ->whereBetween('longitude', [$tmpLngMin, $tmpLngMax])
+                            ->whereIn('type', $types)
+                            ->get();
+                    } else {
+                        $yogaPoints = \DB::table('yoga_points')
+                            ->whereIn('type', $types)
+                            ->get();
+                    }
+                    break;
+                // запрос на рекомендации
+                case 'checkInn':
+                    if (!empty($request->address)) {
+                        $yogaPoints = \DB::table('yoga_points')
+                            ->whereBetween('latitude', [$tmpLatMin, $tmpLatMax])
+                            ->whereBetween('longitude', [$tmpLngMin, $tmpLngMax])
+                            ->where('type', 'checkInn')
+                            ->get();
+                    } else {
+                        $yogaPoints = \DB::table('yoga_points')
+                            ->where('type', 'checkInn')
+                            ->get();
+                    }
+                    break;
+                // запрос на пользователей
+                case 'users':
+                    if (!empty($request->name)) {
+                        $users = \DB::table('users')
+                            ->where('name', $request->name)
+                            ->get();
+                    } else {
+                        $users = \DB::table('users')
+                            ->get();
+                    }
+                    break;
+                // исключительная ситуация (тип существуем но он не один из допустимых)
+                default:
+                    // что то напутано с типом запроса, он есть но не верный
+                    return redirect('searchYogaPoints')->with('customModalMessage', 'Что то не так с типом запроса');
+
+
+            }
         } else {
-            $yogaPoints = \DB::table('yoga_points')
-                ->whereIn('type', $types)
-                ->get();
+            return redirect('searchYogaPoints')->with('customModalMessage', 'Тип запроса отсутствует, это невозможно');
         }
 
-        if (count($yogaPoints) == 0)
+        if (isset($yogaPoints) && count($yogaPoints) == 0)
+            $request->session()->put('customModalMessage', 'К сожалению ничего не обнаружено');
+        if (isset($users) && count($users) == 0)
             $request->session()->put('customModalMessage', 'К сожалению ничего не обнаружено');
 
-        // готовим имя и адрес обратно вформу
-        $targetAuthorName = $request->name;
-        $targetAddress = $request->address;
-
-        return view('userSpace.searchYogaPoints', compact('targetAuthorName', 'targetAddress', 'tmpLat', 'tmpLng', 'yogaPoints', 'types', 'usersNames'));
+        return view('userSpace.searchYogaPoints', compact('targetAuthorName', 'targetAddress', 'tmpLat', 'tmpLng', 'yogaPoints', 'users', 'type', 'types'));
     }
 
     public function addComment(Request $request)

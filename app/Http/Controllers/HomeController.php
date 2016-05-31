@@ -47,10 +47,6 @@ class HomeController extends Controller
 
         $markerXML .= '</markers>';
 
-        /**
-         *
-         */
-
         $checkInnCount = count(YogaPoint::all()->where('type', 'checkInn'));
         $teaServiceCount = count(YogaPoint::all()->where('type', 'teaService'));
         $couchServiceCount = count(YogaPoint::all()->where('type', 'couchService'));

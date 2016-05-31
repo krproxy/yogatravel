@@ -1,118 +1,95 @@
 @extends('layouts.master')
 
 @section('body')
-    {{--    {{dd($types)}}--}}
     <div class="container spark-screen">
         <div class="row">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3 text-center">
-                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample"
-                            aria-expanded="false" aria-controls="collapseExample">
-                        Как искать?
-                    </button>
-                    <div class="collapse" id="collapseExample">
-                        <br>
-                        <ul class="text-left">
-                            <li>Приступая к поиску введите имя автора приглашения или рекомендации и
-                                предположительнй
-                                адрес.
-                            </li>
-                            <li>Если поле имя оставить пустым отобразятся приглашения всех пользователей по этому
-                                адресу
-                            </li>
-                            <li>Если поле адрес оставить пустым отобразяться все приглашения и рекомендации
-                                указанного
-                                пользователя
-                            </li>
-                            <li>Если оставить пустыми оба поля - отобразятся все приглашения и рекомендачии всех
-                                пользователей системы
-                            </li>
-                            <li>Чекбоксы слева позволяют фильтровать поисковую выдачу. Если убрать все галочки
-                                система
-                                воспримет это так же как если бы все галочки были установлены.
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            <div class="col-lg-offset-3 col-lg-7 col-md-offset-2 col-md-8">
+                <ul class="nav nav-tabs">
+                    <li role="presentation" class="{{$type=="services"?"active":""}}">
+                        <a href={{url('searchYogaPoints/services')}}>Поиск приглашений</a>
+                    </li>
+                    <li role="presentation" class="{{$type=="checkInn"?"active":""}}">
+                        <a href={{url('searchYogaPoints/checkInn')}}>Поиск рекомендаций</a>
+                    </li>
+                    <li role="presentation" class="{{$type=="users"?"active":""}}">
+                        <a href={{url('searchYogaPoints/users')}}>Поиск пользователей</a>
+                    </li>
+                </ul>
             </div>
-            {{--<div class="ui-widget">--}}
-            {{--<label for="tags">Tags: </label>--}}
-            {{--<input id="tags">--}}
-            {{--</div>--}}
-            <form class="form-horizontal" role="form" method="POST" action="{{ url('/searchYogaPointsPost') }}">
+            <form onkeypress="return event.keyCode != 13;" class="form-horizontal" role="form" method="POST"
+                  action="{{ url('searchYogaPointsPost') }}">
                 {!! csrf_field() !!}
 
                 <div id="latFromSearch">
                     @if(isset($tmpLat))
-                        <input name="checkIn_lat" type="hidden" readonly="readonly" value="{{$tmpLat}}" />
+                        <input name="checkIn_lat" type="hidden" readonly="readonly" value="{{$tmpLat}}"/>
                     @endif
                 </div>
 
                 <div id="longFromSearch">
                     @if(isset($tmpLng))
-                        <input name="checkIn_lng" type="hidden" readonly="readonly" value="{{$tmpLng}}" />
+                        <input name="checkIn_lng" type="hidden" readonly="readonly" value="{{$tmpLng}}"/>
                     @endif
                 </div>
 
-                <div class="col-md-6 col-md-offset-3">
-                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <br><input id="tags"
-                                   type="text"
-                                   class="form-control inputNew"
-                                   name="name"
-                                   placeholder="Имя пользователя"
-                                   value="{{isset($targetAuthorName)?$targetAuthorName:null}}">
+                <input name="type" type="hidden" readonly="readonly" value="{{$type}}"/>
 
-                        @if ($errors->has('name'))
-                            <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
-                        @endif
-                    </div>
+                <div class="col-md-6 col-md-offset-3">
+                    @if($type=='users')
+                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                            <br><input id="tags"
+                                       type="text"
+                                       class="form-control inputNew"
+                                       name="name"
+                                       placeholder="Имя пользователя"
+                                       value="{{isset($targetAuthorName)?$targetAuthorName:null}}">
+
+                            @if ($errors->has('name'))
+                                <span class="help-block"><strong>{{ $errors->first('name') }}</strong></span>
+                            @endif
+                        </div>
+                    @else
+                        <div class="form-group">
+                            <br><input id="pac-input"
+                                       class="pac-input1 form-control inputNew"
+                                       type="text"
+                                       name="address"
+                                       placeholder=" расположение"
+                                       value="{{isset($targetAddress)?$targetAddress:null}}">
+                        </div>
+                    @endif
                     <div class="form-group">
-                        <input id="pac-input"
-                               class="pac-input1 form-control inputNew"
-                               type="text"
-                               name="address"
-                               placeholder=" расположение"
-                               value="{{isset($targetAddress)?$targetAddress:null}}">
-                    </div>
-                    <div class="form-group">
-                        {{--<input type="reset" class="btn-form1" value="Отменить">--}}
                         <div class="col-md-offset-3 col-md-6">
                             <input type="submit" class="btn btn-yoga-custom" value="Поиск">
                         </div>
                     </div>
 
                 </div>
-                <div class="col-md-3">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="types[]" value="checkInn"
-                                   @if(in_array('checkInn',$types))checked="checked"@endif>
-                            Места
-                        </label>
+                @if(isset($types) && count($types)!=0)
+                    <div class="col-md-3">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="types[]" value="teaService"
+                                       @if(in_array('teaService',$types))checked="checked"@endif>
+                                Чаепитие
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="types[]" value="couchService"
+                                       @if(in_array('couchService',$types))checked="checked"@endif>
+                                Ночлег
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="types[]" value="walkServices"
+                                       @if(in_array('walkServices',$types))checked="checked"@endif>
+                                Прогулка
+                            </label>
+                        </div>
                     </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="types[]" value="teaService"
-                                   @if(in_array('teaService',$types))checked="checked"@endif>
-                            Чаепитие
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="types[]" value="couchService"
-                                   @if(in_array('couchService',$types))checked="checked"@endif>
-                            Ночлег
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" name="types[]" value="walkServices"
-                                   @if(in_array('walkServices',$types))checked="checked"@endif>
-                            Прогулка
-                        </label>
-                    </div>
-                </div>
+                @endif
             </form>
         </div>
         <div class="row">
@@ -161,6 +138,24 @@
                         <hr>
                     @endforeach
                 @endif
+                @if(isset($users))
+                    @foreach($users as $user)
+                        <div class="media">
+                            <div class="media-left">
+                                <a href="{{URL::to('/profile/' . $user->id)}}">
+                                    <img src="{{isset($user->avatar)&&$user->avatar!=''?$user->avatar:asset('img/SVG/profile_12x13.svg')}}"
+                                         alt="" class="img37 circle .mt--5 media-object">
+                                </a>
+                            </div>
+                            <div class="media-body">
+                                <h4 class="media-heading"></h4>
+                                <a href="{{URL::to('/profile/' . $user->id)}}">
+                                    <span class="f600-16 pm-0">{{$user->name}}</span>
+                                </a>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
             </div>
         </div>
     </div>
@@ -197,6 +192,16 @@
         google.maps.event.addDomListener(window, 'load', initialize);
 
     </script>
+
+    {{--тащим имена юзеров для автокомплита--}}
+    <?php
+    $usersNames = '[';
+    foreach (\App\User::all(['name']) as $user) {
+        $usersNames .= '"' . $user->name . '"' . ',';
+    }
+    $usersNames .= ']';
+    ?>
+
     <script>
         $(function () {
             var availableTags = {!! $usersNames !!};

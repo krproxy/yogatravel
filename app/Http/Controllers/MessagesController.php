@@ -101,9 +101,10 @@ class MessagesController extends Controller
         }
 
         foreach ($input['recipients'] as $recipient) {
-            dd($recipient);
-            Mail::raw('новое сообщение', function ($message) use ($recipient) {
-                $message->to($recipient->email)->subject('действия по кабинету ZOG');
+//            dd($recipient);
+            $addresat=User::find($recipient);
+            Mail::raw('Вы получили новое сообщение', function ($message) use ($addresat) {
+                $message->to($addresat->email)->subject('новое сообщение на сайте YogaTravel');
             });
         }
 
@@ -150,8 +151,8 @@ class MessagesController extends Controller
         foreach ($thread->participantsUserIds() as $userId) {
             if ($userId != Auth::id()) {
                 $recipient = User::find($userId);
-                Mail::raw("Вам пришло новое сообщение от {$thread->creator()->name}", function ($message) use ($recipient) {
-                    $message->to($recipient->email)->subject('новое сообщение YogaTravel');
+                Mail::raw("Вам пришло новое сообщение", function ($message) use ($recipient) {
+                    $message->to($recipient->email)->subject('новое сообщение на сайте YogaTravel');
                 });
             }
         }

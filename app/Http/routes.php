@@ -67,21 +67,12 @@ Route::get('editYogaPoint/{PointId}', function ($PointId) {
 Route::post('editYogaPointPost', 'UserSpaceController@editYogaPointPost');
 Route::get('deleteYogaPoint/{PointId}', 'UserSpaceController@deleteYogaPoint');
 
-Route::get('searchYogaPoints/{type?}', function ($type = null) {
-    if (isset($type) && $type === "checkInn") {
-        $types = ['checkInn'];
-    } elseif (isset($type) && $type === "services") {
+Route::get('searchYogaPoints/{type?}', function ($type = 'services') {
+    if (isset($type) && $type === "services") {
         $types = ['teaService', 'couchService', 'walkServices'];
-    } else {
-        $types = [];
     }
-    $usersNames = '[';
-    foreach (\App\User::all(['name']) as $user) {
-        $usersNames .= '"' . $user->name . '"' . ',';
-    }
-    $usersNames .= ']';
 
-    return view('userSpace.searchYogaPoints', compact('types', 'usersNames'));
+    return view('userSpace.searchYogaPoints', compact('type', 'types'));
 });
 Route::post('searchYogaPointsPost', 'UserSpaceController@searchYogaPointsPost');
 

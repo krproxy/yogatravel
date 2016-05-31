@@ -55,7 +55,7 @@
 
             <!-- Submit Form Input -->
             <div class="form-group pull-right">
-                {!! Form::submit('Отправить', ['class' => 'btn btn-green form-control']) !!}
+                {!! Form::submit('Отправить', ['class' => 'btn btn-yoga-custom form-control']) !!}
             </div>
         </div>
         {{--<div class="col-md-4 pull-right">--}}
