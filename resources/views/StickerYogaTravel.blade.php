@@ -111,7 +111,7 @@
                                         alt="{{$sticker->attaches->first()->alt}}"
                                         title="{{$sticker->attaches->first()->title}}"/></a>
                             <span class="corporateBlue">#‎stickeryogatravel</span><br>
-                            <a href="{{asset("Map?Lat={$sticker->latitude}&Lng={$sticker->longitude}")}}"
+                            <a href="{{url("Map?Lat={$sticker->latitude}&Lng={$sticker->longitude}")}}"
                                class="grey-check-map"
                                style="font-size: 12px">{{$sticker->address}}</a><br>
                             <span style="font-size: 10px">{{$sticker->description}}</span>

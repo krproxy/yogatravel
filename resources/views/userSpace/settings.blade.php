@@ -146,7 +146,7 @@
                                            href="{{asset('fbAccountUnbind')}}"> Отвязать аккаунт</a>
                                     @else
                                         <a class="btn btn-socials"
-                                           href="{{asset($fb_login_url)}}"> Привязать аккаунт</a>
+                                           href="{{asset($fb_login_url)}}"> Присоединить аккаунт</a>
                                     @endif
                                 </span>
                         </div><!-- /input-group -->
@@ -159,7 +159,7 @@
                                           name="fb_in_wall_posting_allowed"
                                           {{Auth::user()->fb_in_wall_posting_allowed?'checked':''}}
                                           onchange="disableFalse()">
-                                <span class="corporateBlue"> Постить в ленте</span>
+                                <span class="corporateBlue"> Публиковать в ленте</span>
                             </label>
                         </div>
                         <div class="form-group">
@@ -169,7 +169,7 @@
                                           name="fb_in_group_posting_allowed"
                                           {{Auth::user()->fb_in_group_posting_allowed?'checked':''}}
                                           onchange="disableFalse()">
-                                <span class="corporateBlue"> Постить в группе</span>
+                                <span class="corporateBlue"> Публиковать в группе Yoga Travel</span>
                             </label>
                         </div>
                         <hr>

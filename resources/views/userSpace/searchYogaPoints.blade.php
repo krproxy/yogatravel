@@ -4,6 +4,17 @@
     <div class="container spark-screen">
         <div class="row">
             <div class="col-lg-offset-3 col-lg-7 col-md-offset-2 col-md-8">
+                @if($type=='services')
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <ul>
+                                <li>Введите в строке поиска интересующее вас месторасположение</li>
+                                <li>С помощью фильтра выберите интересующее вас опции сервиса YogaFriends
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                @endif
                 <ul class="nav nav-tabs">
                     <li role="presentation" class="{{$type=="services"?"active":""}}">
                         <a href={{url('searchYogaPoints/services')}}>Поиск приглашений</a>
@@ -41,7 +52,7 @@
                                        type="text"
                                        class="form-control inputNew"
                                        name="name"
-                                       placeholder="Имя пользователя"
+                                       placeholder=" Имя пользователя"
                                        value="{{isset($targetAuthorName)?$targetAuthorName:null}}">
 
                             @if ($errors->has('name'))
@@ -54,7 +65,7 @@
                                        class="pac-input1 form-control inputNew"
                                        type="text"
                                        name="address"
-                                       placeholder=" расположение"
+                                       placeholder=" Поиск пользователей"
                                        value="{{isset($targetAddress)?$targetAddress:null}}">
                         </div>
                     @endif

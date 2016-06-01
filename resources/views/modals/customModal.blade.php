@@ -17,7 +17,7 @@
             {{--<h4 class="modal-title" id="memberModalLabel"></h4>--}}
             {{--</div>--}}
             <div class="modal-body text-center">
-                <p class="corporateBlue">{{$customModalMessage}}</p>
+                <p class="corporateBlue">{!! $customModalMessage !!}</p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-success" data-dismiss="modal">Закрыть</button>

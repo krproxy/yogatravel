@@ -83,7 +83,7 @@ class UserSpaceController extends Controller
         $user->save();
 
         //return view('userSpace.settings');
-        return redirect('Settings')->with('customModalMessage', 'Настройки успешно сохранены.');
+        return redirect('Settings')->with('customModalMessage', '"Настройки сохранены"');
     }
 
     public function NewYogaPoint(Request $request, LaravelFacebookSdk $fb)
@@ -260,9 +260,9 @@ class UserSpaceController extends Controller
         }
 
         if (isset($yogaPoints) && count($yogaPoints) == 0)
-            $request->session()->put('customModalMessage', 'К сожалению ничего не обнаружено');
+            $request->session()->put('customModalMessage', 'Пока ничего не обнаружено');
         if (isset($users) && count($users) == 0)
-            $request->session()->put('customModalMessage', 'К сожалению ничего не обнаружено');
+            $request->session()->put('customModalMessage', 'Пока ничего не обнаружено');
 
         return view('userSpace.searchYogaPoints', compact('targetAuthorName', 'targetAddress', 'tmpLat', 'tmpLng', 'yogaPoints', 'users', 'type', 'types'));
     }
@@ -285,7 +285,7 @@ class UserSpaceController extends Controller
         $user->fb_access_token = $this->socialConnector->getFbToken();
         $user->save();
 
-        return redirect('Settings')->with('customModalMessage', 'Аккаунт присоединен. Теперь можно выбрать настройки постинга.');
+        return redirect('Settings')->with('customModalMessage', '<div style="text-align: left"><p>Аккаунт присоединен. Теперь ваши действия на сайте будут отображаться в социальных сетях. Выберите настройки публикаций.</p><p><ol><li>Опция «Публиковать в ленте» позволяет отображать ваши действия на сайте yogatravel.guru на личной странице facebook;</li><li>Опция «Публиковать в группе Yoga Travel» позволяет отображать ваши действия на сайте yogatravel.guru в группе Yoga Travel на facebook. Это возможно, если вы являетесь участником данной группы.</li><li>Нажимая «OFF» каждой из опций, вы прекращаете публиковать свои действия на сайте yogatravel.guru в социальных сетях. Предыдущие записи не удаляются. </li></ol></p></div>');
     }
 
     public function fbAccountUnbind()
@@ -297,5 +297,10 @@ class UserSpaceController extends Controller
         $user->save();
 
         return redirect('Settings')->with('customModalMessage', 'Аккаунт отсоединен.');
+    }
+
+    public function profile($id)
+    {
+        return view('profile', ['user' => \App\User::findOrNew($id)]);
     }
 }

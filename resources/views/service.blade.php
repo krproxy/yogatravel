@@ -15,31 +15,33 @@
         <div class="row">
             <div class="col-md-offset-3 col-md-6">
                 <div class="w70p inline">
-                    @if($service->type=='teaService')
-                        <p class="color-tea f25-400">
-                            <img src='/img/SVG/geometka_tea_12x20.svg' class='img18' alt=''>
-                            {{$service->address}}
-                        </p>
-                    @elseif($service->type=='checkInn')
-                        <p class="corporateBlue">
-                            <img src='/img/SVG/geometka_check-in_12x20.svg' class='img18' alt=''>
-                            {{$service->address}}
-                        </p>
-                    @elseif($service->type=='couchService')
-                        <p class="color-sleep f25-400">
-                            <img src='/img/SVG/geometka_couch_12x20.svg' class='img18' alt=''>
-                            {{$service->address}}
-                        </p>
-                    @elseif($service->type=='walkServices')
-                        <p class="color-walk f25-400">
-                            <img src='/img/SVG/geometka_walk_12x20.svg' class='img18' alt=''>
-                            {{$service->address}}
-                        </p>
-                    @endif
+                    <a href="{{url("Map?Lat={$service->latitude}&Lng={$service->longitude}")}}">
+                        @if($service->type=='teaService')
+                            <p class="color-tea f25-400">
+                                <img src='/img/SVG/geometka_tea_12x20.svg' class='img18' alt=''>
+                                {{$service->address}}
+                            </p>
+                        @elseif($service->type=='checkInn')
+                            <p class="corporateBlue">
+                                <img src='/img/SVG/geometka_check-in_12x20.svg' class='img18' alt=''>
+                                {{$service->address}}
+                            </p>
+                        @elseif($service->type=='couchService')
+                            <p class="color-sleep f25-400">
+                                <img src='/img/SVG/geometka_couch_12x20.svg' class='img18' alt=''>
+                                {{$service->address}}
+                            </p>
+                        @elseif($service->type=='walkServices')
+                            <p class="color-walk f25-400">
+                                <img src='/img/SVG/geometka_walk_12x20.svg' class='img18' alt=''>
+                                {{$service->address}}
+                            </p>
+                        @endif
+                    </a>
                 </div>
                 <div class="w29p inline text-right f300-16">
                     <img src='/img/SVG/clock_14x14.svg' class='w14 mt--5'>
-                    {{ date("d,m,Y", strtotime($service->created_at))}}
+                    {{ date("d.m.Y", strtotime($service->created_at))}}
                 </div>
 
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">

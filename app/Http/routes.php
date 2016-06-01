@@ -76,9 +76,7 @@ Route::get('searchYogaPoints/{type?}', function ($type = 'services') {
 });
 Route::post('searchYogaPointsPost', 'UserSpaceController@searchYogaPointsPost');
 
-Route::get('profile/{id}', function ($id) {
-    return view('profile', ['user' => \App\User::findOrNew($id)]);
-});
+Route::get('profile/{id}', 'UserSpaceController@profile');
 
 Route::get('service/{id}', function ($id) {
     return view('service', ['service' => \App\YogaPoint::findOrNew($id)]);
