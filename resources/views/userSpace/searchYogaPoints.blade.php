@@ -52,7 +52,7 @@
                                        type="text"
                                        class="form-control inputNew"
                                        name="name"
-                                       placeholder=" Имя пользователя"
+                                       placeholder=" Поиск пользователей"
                                        value="{{isset($targetAuthorName)?$targetAuthorName:null}}">
 
                             @if ($errors->has('name'))
@@ -65,7 +65,7 @@
                                        class="pac-input1 form-control inputNew"
                                        type="text"
                                        name="address"
-                                       placeholder=" Поиск пользователей"
+                                       placeholder=" Поиск мест"
                                        value="{{isset($targetAddress)?$targetAddress:null}}">
                         </div>
                     @endif
