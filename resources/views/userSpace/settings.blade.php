@@ -107,34 +107,45 @@
                     {{--</div>--}}
                     {{--</div>--}}
 
-                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                        <input type="text"
-                               class="form-control inputNew"
-                               name="email"
-                               value="{{ isset(Auth::user()->email)?Auth::user()->email:'' }}"
-                               onchange="disableFalse()">
-                        @if ($errors->has('email'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                        @endif
+
+
+                    <button class="btn btn-yoga-custom inputNew form-control f300-22 padding-0 sizeToNI" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                      Настройки <span class="caret"></span>
+                    </button>
+
+                    <div class="collapse" id="collapseExample">
+                      <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                          <br><input type="text"
+                                 class="form-control inputNew"
+                                 name="email"
+                                 value="{{ isset(Auth::user()->email)?Auth::user()->email:'' }}"
+                                 onchange="disableFalse()">
+                          @if ($errors->has('email'))
+                              <span class="help-block">
+                                          <strong>{{ $errors->first('email') }}</strong>
+                                      </span>
+                          @endif
+
+                      </div>
+
+                      <div class="form-group">
+                          <input type="password" class="form-control inputNew" placeholder="новый пароль">
+                          <input type="password" class="form-control inputNew" placeholder="повторить новый пароль">
+                          <input type="password" class="form-control inputNew" placeholder="старый пароль"
+                                 onchange="disableFalse()">
+                      </div>
+
+
+
+
+                      @if(false)
+                        @include('widgets._facebookSettings')
+                      @endif
 
                     </div>
-
                     <div class="form-group">
-                        <input type="password" class="form-control inputNew" placeholder="новый пароль">
-                        <input type="password" class="form-control inputNew" placeholder="повторить новый пароль">
-                        <input type="password" class="form-control inputNew" placeholder="старый пароль"
-                               onchange="disableFalse()">
-                    </div>
-
-                    @if(false)
-                      @include('widgets._facebookSettings')
-                    @endif
-
-                    <div class="form-group">
-                        <input type="submit" id="load" class="btn btn-yoga-custom inputNew submit"
-                               value="Сохранить изменения" disabled>
+                      <br><input type="submit" id="load" class="btn btn-yoga-custom inputNew submit form-control f300-22 padding-0 sizeToNI"
+                                                     value="Сохранить изменения" disabled>
                     </div>
                 </div>
 

@@ -43,8 +43,8 @@
                             <a href="{{url('StickerYogaTravel')}}">Sticker YogaTravel</a></li>
                         <li @if(isset($currentPage)&&$currentPage=='Map')class="markedText"@endif>
                             <a href="{{url('Map')}}">Карта</a></li>
-                        <li @if(isset($currentPage)&&$currentPage=='TravelNotes')class="markedText"@endif>
-                            <a href="{{url('TravelNotes')}}">Путевые заметки</a></li>
+                        <!-- <li @if(isset($currentPage)&&$currentPage=='TravelNotes')class="markedText"@endif>
+                            <a href="{{url('TravelNotes')}}">Путевые заметки</a></li> -->
                     </ul>
 
                     <!-- Right Side Of Navbar -->

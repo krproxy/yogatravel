@@ -163,6 +163,7 @@
         // with the value my-dropzone (or myDropzone)
         Dropzone.options.myDropzone = {
             url: '/happy',
+            // maxFilesize: 10, // MB
             dictDefaultMessage: "Кликните, чтобы добавить фото. Также фото можно перетащить мышкой",
             init: function () {
 //                this.on("addedfile", function (file) {
