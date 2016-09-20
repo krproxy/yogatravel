@@ -128,7 +128,9 @@
                                onchange="disableFalse()">
                     </div>
 
-                    <!-- @include('widgets._facebookSettings') -->
+                    @if(false)
+                      @include('widgets._facebookSettings')
+                    @endif
 
                     <div class="form-group">
                         <input type="submit" id="load" class="btn btn-yoga-custom inputNew submit"
