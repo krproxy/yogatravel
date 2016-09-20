@@ -127,8 +127,8 @@
                         <input type="password" class="form-control inputNew" placeholder="старый пароль"
                                onchange="disableFalse()">
                     </div>
-                    
-                    @include('widgets._facebookSettings')
+
+                    <!-- @include('widgets._facebookSettings') -->
 
                     <div class="form-group">
                         <input type="submit" id="load" class="btn btn-yoga-custom inputNew submit"
