@@ -132,12 +132,12 @@
                                 <a href="{{URL::to('/profile/' . $service->user->id)}}">
                                     <span class="f600-16 corporateBlue pm-0">{{$service->user->name}}</span>
                                 </a>
-                                <img src='/img/SVG/share_check-in_18x18.svg' class='img18 pull-right mt14' alt=''>
+                                <!--img src='/img/SVG/share_check-in_18x18.svg' class='img18 pull-right mt14' alt=''-->
                             @elseif($service->type=='couchService')
                                 <a href="{{URL::to('/profile/' . $service->user->id)}}">
                                     <span class="f600-16 color-sleep">{{$service->user->name}}</span>
                                 </a>
-                                <img src='/img/SVG/share_couch_18x18.svg' class='img18 pull-right mt14' alt=''>
+                                <!--img src='/img/SVG/share_couch_18x18.svg' class='img18 pull-right mt14' alt=''-->
                             @elseif($service->type=='walkServices')
                                 <a href="{{URL::to('/profile/' . $service->user->id)}}">
                                     <span class="f600-16 color-walk">{{$service->user->name}}</span>

@@ -1,7 +1,7 @@
 <?php
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.1.35 (LTS) on 2016-05-21.
+ * Generated for Laravel 5.1.36 (LTS) on 2016-06-03.
  *
  * @author Barry vd. Heuvel <barryvdh@gmail.com>
  * @see https://github.com/barryvdh/laravel-ide-helper
@@ -2904,6 +2904,7 @@ namespace {
          * Start a new database transaction.
          *
          * @return void 
+         * @throws Exception
          * @static 
          */
         public static function beginTransaction(){
@@ -12156,7 +12157,335 @@ namespace {
     }
 
 
-    class Form extends \Collective\Html\FormFacade{
+    class Socialite extends \Laravel\Socialite\Facades\Socialite{
+        
+        /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */
+        public static function with($driver){
+            return \Laravel\Socialite\SocialiteManager::with($driver);
+        }
+        
+        /**
+         * Build an OAuth 2 provider instance.
+         *
+         * @param string $provider
+         * @param array $config
+         * @return \Laravel\Socialite\Two\AbstractProvider 
+         * @static 
+         */
+        public static function buildProvider($provider, $config){
+            return \Laravel\Socialite\SocialiteManager::buildProvider($provider, $config);
+        }
+        
+        /**
+         * Format the server configuration.
+         *
+         * @param array $config
+         * @return array 
+         * @static 
+         */
+        public static function formatConfig($config){
+            return \Laravel\Socialite\SocialiteManager::formatConfig($config);
+        }
+        
+        /**
+         * Get the default driver name.
+         *
+         * @throws \InvalidArgumentException
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultDriver(){
+            return \Laravel\Socialite\SocialiteManager::getDefaultDriver();
+        }
+        
+        /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */
+        public static function driver($driver = null){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::driver($driver);
+        }
+        
+        /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function extend($driver, $callback){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::extend($driver, $callback);
+        }
+        
+        /**
+         * Get all of the created "drivers".
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getDrivers(){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \Laravel\Socialite\SocialiteManager::getDrivers();
+        }
+        
+    }
+
+
+    class Image extends \Intervention\Image\Facades\Image{
+        
+        /**
+         * Overrides configuration settings
+         *
+         * @param array $config
+         * @static 
+         */
+        public static function configure($config = array()){
+            return \Intervention\Image\ImageManager::configure($config);
+        }
+        
+        /**
+         * Initiates an Image instance from different input types
+         *
+         * @param mixed $data
+         * @return \Intervention\Image\Image 
+         * @static 
+         */
+        public static function make($data){
+            return \Intervention\Image\ImageManager::make($data);
+        }
+        
+        /**
+         * Creates an empty image canvas
+         *
+         * @param integer $width
+         * @param integer $height
+         * @param mixed $background
+         * @return \Intervention\Image\Image 
+         * @static 
+         */
+        public static function canvas($width, $height, $background = null){
+            return \Intervention\Image\ImageManager::canvas($width, $height, $background);
+        }
+        
+        /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param \Closure $callback
+         * @param integer $lifetime
+         * @param boolean $returnObj
+         * @return \Intervention\Image\Image 
+         * @static 
+         */
+        public static function cache($callback, $lifetime = null, $returnObj = false){
+            return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
+        }
+        
+    }
+
+
+    class Admin extends \SleepingOwl\Admin\Admin{
+        
+    }
+
+
+    class AdminAuth extends \SleepingOwl\AdminAuth\Facades\AdminAuth{
+        
+        /**
+         * Create an instance of the Eloquent driver.
+         *
+         * @return \Illuminate\Auth\Guard 
+         * @static 
+         */
+        public static function createEloquentDriver(){
+            return \SleepingOwl\AdminAuth\AdminAuthManager::createEloquentDriver();
+        }
+        
+        /**
+         * Get the default authentication driver name.
+         *
+         * @return string 
+         * @static 
+         */
+        public static function getDefaultDriver(){
+            return \SleepingOwl\AdminAuth\AdminAuthManager::getDefaultDriver();
+        }
+        
+        /**
+         * Create an instance of the database driver.
+         *
+         * @return \Illuminate\Auth\Guard 
+         * @static 
+         */
+        public static function createDatabaseDriver(){
+            //Method inherited from \Illuminate\Auth\AuthManager            
+            return \SleepingOwl\AdminAuth\AdminAuthManager::createDatabaseDriver();
+        }
+        
+        /**
+         * Set the default authentication driver name.
+         *
+         * @param string $name
+         * @return void 
+         * @static 
+         */
+        public static function setDefaultDriver($name){
+            //Method inherited from \Illuminate\Auth\AuthManager            
+            \SleepingOwl\AdminAuth\AdminAuthManager::setDefaultDriver($name);
+        }
+        
+        /**
+         * Get a driver instance.
+         *
+         * @param string $driver
+         * @return mixed 
+         * @static 
+         */
+        public static function driver($driver = null){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \SleepingOwl\AdminAuth\AdminAuthManager::driver($driver);
+        }
+        
+        /**
+         * Register a custom driver creator Closure.
+         *
+         * @param string $driver
+         * @param \Closure $callback
+         * @return $this 
+         * @static 
+         */
+        public static function extend($driver, $callback){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \SleepingOwl\AdminAuth\AdminAuthManager::extend($driver, $callback);
+        }
+        
+        /**
+         * Get all of the created "drivers".
+         *
+         * @return array 
+         * @static 
+         */
+        public static function getDrivers(){
+            //Method inherited from \Illuminate\Support\Manager            
+            return \SleepingOwl\AdminAuth\AdminAuthManager::getDrivers();
+        }
+        
+    }
+
+
+    class AdminRouter extends \SleepingOwl\Admin\Facades\AdminRouter{
+        
+        /**
+         * Register all admin routes
+         *
+         * @static 
+         */
+        public static function registerRoutes(){
+            return \SleepingOwl\Admin\Router::registerRoutes();
+        }
+        
+        /**
+         * 
+         *
+         * @param string $asset
+         * @return string 
+         * @static 
+         */
+        public static function routeToAsset($asset){
+            return \SleepingOwl\Admin\Router::routeToAsset($asset);
+        }
+        
+        /**
+         * 
+         *
+         * @param $locale
+         * @return string 
+         * @static 
+         */
+        public static function routeToLang($locale){
+            return \SleepingOwl\Admin\Router::routeToLang($locale);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $model
+         * @param array $parameters
+         * @return string 
+         * @static 
+         */
+        public static function routeToModel($model, $parameters = array()){
+            return \SleepingOwl\Admin\Router::routeToModel($model, $parameters);
+        }
+        
+        /**
+         * Get route to admin startpage
+         *
+         * @return string 
+         * @static 
+         */
+        public static function routeHome(){
+            return \SleepingOwl\Admin\Router::routeHome();
+        }
+        
+        /**
+         * 
+         *
+         * @param $url
+         * @return string 
+         * @static 
+         */
+        public static function routeToWildcard($url){
+            return \SleepingOwl\Admin\Router::routeToWildcard($url);
+        }
+        
+        /**
+         * 
+         *
+         * @param $action
+         * @return string 
+         * @static 
+         */
+        public static function routeToAuth($action){
+            return \SleepingOwl\Admin\Router::routeToAuth($action);
+        }
+        
+    }
+
+
+    class AssetManager extends \SleepingOwl\Admin\AssetManager\AssetManager{
+        
+    }
+
+
+    class Column extends \SleepingOwl\Admin\Columns\Column{
+        
+    }
+
+
+    class FormItem extends \SleepingOwl\Admin\Models\Form\FormItem{
+        
+    }
+
+
+    class ModelItem extends \SleepingOwl\Admin\Models\ModelItem{
+        
+    }
+
+
+    class Form extends \Illuminate\Html\FormFacade{
         
         /**
          * Open up a new HTML form.
@@ -12659,7 +12988,7 @@ namespace {
     }
 
 
-    class Html extends \Collective\Html\HtmlFacade{
+    class Html extends \Illuminate\Html\HtmlFacade{
         
         /**
          * Convert an HTML string to entities.
@@ -12934,145 +13263,6 @@ namespace {
          */
         public static function hasMacro($name){
             return \Collective\Html\HtmlBuilder::hasMacro($name);
-        }
-        
-    }
-
-
-    class Socialite extends \Laravel\Socialite\Facades\Socialite{
-        
-        /**
-         * Get a driver instance.
-         *
-         * @param string $driver
-         * @return mixed 
-         * @static 
-         */
-        public static function with($driver){
-            return \Laravel\Socialite\SocialiteManager::with($driver);
-        }
-        
-        /**
-         * Build an OAuth 2 provider instance.
-         *
-         * @param string $provider
-         * @param array $config
-         * @return \Laravel\Socialite\Two\AbstractProvider 
-         * @static 
-         */
-        public static function buildProvider($provider, $config){
-            return \Laravel\Socialite\SocialiteManager::buildProvider($provider, $config);
-        }
-        
-        /**
-         * Format the server configuration.
-         *
-         * @param array $config
-         * @return array 
-         * @static 
-         */
-        public static function formatConfig($config){
-            return \Laravel\Socialite\SocialiteManager::formatConfig($config);
-        }
-        
-        /**
-         * Get the default driver name.
-         *
-         * @throws \InvalidArgumentException
-         * @return string 
-         * @static 
-         */
-        public static function getDefaultDriver(){
-            return \Laravel\Socialite\SocialiteManager::getDefaultDriver();
-        }
-        
-        /**
-         * Get a driver instance.
-         *
-         * @param string $driver
-         * @return mixed 
-         * @static 
-         */
-        public static function driver($driver = null){
-            //Method inherited from \Illuminate\Support\Manager            
-            return \Laravel\Socialite\SocialiteManager::driver($driver);
-        }
-        
-        /**
-         * Register a custom driver creator Closure.
-         *
-         * @param string $driver
-         * @param \Closure $callback
-         * @return $this 
-         * @static 
-         */
-        public static function extend($driver, $callback){
-            //Method inherited from \Illuminate\Support\Manager            
-            return \Laravel\Socialite\SocialiteManager::extend($driver, $callback);
-        }
-        
-        /**
-         * Get all of the created "drivers".
-         *
-         * @return array 
-         * @static 
-         */
-        public static function getDrivers(){
-            //Method inherited from \Illuminate\Support\Manager            
-            return \Laravel\Socialite\SocialiteManager::getDrivers();
-        }
-        
-    }
-
-
-    class Image extends \Intervention\Image\Facades\Image{
-        
-        /**
-         * Overrides configuration settings
-         *
-         * @param array $config
-         * @static 
-         */
-        public static function configure($config = array()){
-            return \Intervention\Image\ImageManager::configure($config);
-        }
-        
-        /**
-         * Initiates an Image instance from different input types
-         *
-         * @param mixed $data
-         * @return \Intervention\Image\Image 
-         * @static 
-         */
-        public static function make($data){
-            return \Intervention\Image\ImageManager::make($data);
-        }
-        
-        /**
-         * Creates an empty image canvas
-         *
-         * @param integer $width
-         * @param integer $height
-         * @param mixed $background
-         * @return \Intervention\Image\Image 
-         * @static 
-         */
-        public static function canvas($width, $height, $background = null){
-            return \Intervention\Image\ImageManager::canvas($width, $height, $background);
-        }
-        
-        /**
-         * Create new cached image and run callback
-         * (requires additional package intervention/imagecache)
-         *
-         * @param \Closure $callback
-         * @param integer $lifetime
-         * @param boolean $returnObj
-         * @return \Intervention\Image\Image 
-         * @static 
-         */
-        public static function cache($callback, $lifetime = null, $returnObj = false){
-            return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
         }
         
     }
