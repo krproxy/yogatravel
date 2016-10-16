@@ -54,11 +54,8 @@
                         <p><img class="h100" width="180px" src="/img/SVG/logo_zaal.svg" alt="logo"></p>
                         <p class="text-uppercase text-big">zaal</p>
                         <p>Ночной клуб-Бар</p>
-                        <p class="markedText"><img class="teaMarker" src="/img/SVG/geometka_tea.svg" alt=""> Киев
-                        </p>
-                        <p>
-                            <ins>Верхний вал 30а</ins>
-                        </p>
+                        <p class="markedText"><img class="teaMarker" src="/img/SVG/geometka_tea.svg" alt=""> Киев</p>
+                        <p>Верхний вал 30а</p>
                         <p>+38 (093) 857 13 75</p>
                         <p>+38 (050) 691 30 23</p>
                     </div>
@@ -67,11 +64,8 @@
                         <p><img class="h100" src="/img/SVG/logo_pacha_mama_105x105.svg" alt="logo"></p>
                         <p class="text-big">Pacha Mama</p>
                         <p>Ресторан-бар</p>
-                        <p class="markedText"><img class="teaMarker" src="/img/SVG/geometka_tea.svg" alt=""> Харьков
-                        </p>
-                        <p>
-                            <ins>Петровского 38</ins>
-                        </p>
+                        <p class="markedText"><img class="teaMarker" src="/img/SVG/geometka_tea.svg" alt=""> Харьков</p>
+                        <p>Петровского 38</p>
                         <p>+38 (066) 689 99 22</p>
                     </div>
 
@@ -79,22 +73,21 @@
                         <p><img class="h100" src="/img/SVG/logo_UFY_105x105.png" alt="logo"></p>
                         <p class="text-big">Инструктора УФЙ</p>
                         <p>Школа йоги</p>
-                        <p class="markedText"><img class="teaMarker" src="/img/SVG/geometka_tea.svg" alt="">
-                            yoga.net.ua</p>
-                        <p class="text-left">
-                            <ins>Филиалы УФЙ в разных городах</ins>
-                        </p>
+                        <p class="markedText"><img class="teaMarker" src="/img/SVG/geometka_tea.svg" alt=""> yoga.net.ua</p>
+                        <p class="text-left">Филиалы УФЙ в разных городах</p>
                     </div>
                 </div>
             </div>
         </div>
 
+        @if (Auth::check())
         <div class="row">
             <div class="col-md-6 col-md-offset-3 pleft37 text-center">
                 {{--                <br><a href="{{asset('NewCheckInn')}}" class="btn btn-yoga">Выложить свой #‎stickeryogatravel</a>--}}
                 <br><a href="{{asset('NewCheckInn')}}" class="btn btn-yoga-custom"><span style="font-size: 24px">Выложить свой #‎stickeryogatravel</span></a>
             </div>
         </div>
+        @endif
 
         <div class="row">
             <div class="col-md-12 text-center">

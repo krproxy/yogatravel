@@ -9,6 +9,11 @@
         <div class="row">
             <div id="vertical-line" class="col-xs-12 col-sm-6 col-md-4 col-md-offset-2 text-right auth-space">
                 <div class="row">
+                  <div class="well text-justify">
+                    Сервис предназначен для внутреннего использования YogaTravel и YogaFriends
+                  </div>
+                </div>
+                <div class="row">
                     <div class="col-xs-12">
                         <p>Для новых пользователей</p>
                     </div>
@@ -43,6 +48,11 @@
             </div>
             <div class="col-xs-12 col-sm-6 col-md-4 auth-space">
                 <div class="row">
+                  <div class="well text-justify">
+                    Авторизуйтесь после активации Вашего профиля инструктором УФЙ
+                  </div>
+                </div>
+                <div class="row">
                     <div class="col-xs-12">
                         <p>Для зарегистрированых ранее</p>
                     </div>
@@ -62,6 +72,9 @@
                         </div>
                         <div class="col-md-9">
                             @include('widgets.form._formitem_btn_submit', ['title' => 'Войти' ])
+                        </div>
+                        <div class="col-md-9 text-center markedText">
+                            <a href={{ url('password/email') }}><small>Восстановление пароля</small></a>
                         </div>
                     </form>
                 </div>

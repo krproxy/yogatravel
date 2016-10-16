@@ -74,10 +74,10 @@
                                     href="/YogaFriends">YogaFriends</a></li>
                         <li @if(isset($currentPage)&&$currentPage=='StickerYogaTravel')class="markedText"@endif><a
                                     href="/StickerYogaTravel">Sticker YogaTravel</a></li>
-                        <li @if(isset($currentPage)&&$currentPage=='Map')class="markedText"@endif><a
+                        <!-- <li @if(isset($currentPage)&&$currentPage=='Map')class="markedText"@endif><a
                                     href="/Map">Карта</a></li>
                         <li @if(isset($currentPage)&&$currentPage=='TravelNotes')class="markedText"@endif><a
-                                    href="/TravelNotes">Путевые заметки</a></li>
+                                    href="/TravelNotes">Путевые заметки</a></li> -->
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -85,7 +85,7 @@
                         <!-- Authentication Links -->
                         @if (Auth::guest())
                             <a class="btn btn-login navbar-btn" href="/auth/login">Войти</a>
-                            <li><a href="/auth/register">Register</a></li>
+                            <!-- <li><a href="/auth/register">Register</a></li> -->
                         @else
                             <div class="btn-group" role="group">
                                 <button type="button" class="btn btn-default">1</button>
@@ -145,9 +145,9 @@
                                 </a>
                             </div>
                         @endif
-                        <li><a class="langItemActive" href="#">Ru</a></li>
+                        <!-- <li><a class="langItemActive" href="#">Ru</a></li>
                         <li class="langItemDelimiter">|</li>
-                        <li><a class="langItem" href="#">En</a></li>
+                        <li><a class="langItem" href="#">En</a></li> -->
                     </div>
                 </div>
             </div>

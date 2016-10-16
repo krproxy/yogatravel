@@ -41,8 +41,10 @@
                             <a href="{{url('YogaFriends')}}">YogaFriends</a></li>
                         <li @if(isset($currentPage)&&$currentPage=='StickerYogaTravel')class="markedText"@endif>
                             <a href="{{url('StickerYogaTravel')}}">Sticker YogaTravel</a></li>
-                        <li @if(isset($currentPage)&&$currentPage=='Map')class="markedText"@endif>
-                            <a href="{{url('Map')}}">Карта</a></li>
+                        @if (Auth::check())
+                          <li @if(isset($currentPage)&&$currentPage=='Map')class="markedText"@endif>
+                              <a href="{{url('Map')}}">Карта</a></li>
+                        @endif
                         <!-- <li @if(isset($currentPage)&&$currentPage=='TravelNotes')class="markedText"@endif>
                             <a href="{{url('TravelNotes')}}">Путевые заметки</a></li> -->
                     </ul>

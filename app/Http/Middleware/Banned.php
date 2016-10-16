@@ -19,7 +19,7 @@ class Banned
         if (Auth::check() && Auth::user()->isBanned()) {
 
             Auth::logout();
-            return redirect('auth/login')->with('customModalMessage', 'На данный момент Ваша учетная запись заблокирована, если Вы только зарегистрировадись - обратитесь к человеку пригласившему Вас для активации. ');
+            return redirect('auth/login')->with('customModalMessage', 'Обратитесь к инструктору для активации вашего профиля.');
         }
 
         return $next($request);

@@ -119,7 +119,7 @@
                                 <li>Выберите тип приглашения:</li>
                                 <div class="form-group">
                                     <div class="row  text-center">
-                                        <div class="col-md-3">
+                                        <div class="col-xs-3">
                                             <label for="type" onclick="inCheckR()" class="label-radio"
                                                    data-toggle="tooltip" data-placement="top"
                                                    title="Чаепитие">
@@ -129,7 +129,7 @@
 
                                             </label>
                                         </div>
-                                        <div class="col-md-3 text-center">
+                                        <div class="col-xs-3 text-center">
                                             <label for="type" onclick="inCheckR2()" class="label-radio"
                                                    data-toggle="tooltip" data-placement="top"
                                                    title="Ночлег">
@@ -138,7 +138,7 @@
                                                 <input type="radio" name="type" id="itr2" value="couchService"><br>
                                             </label>
                                         </div>
-                                        <div class="col-md-3">
+                                        <div class="col-xs-3">
                                             <label for="type" onclick="inCheckR3()" class="label-radio"
                                                    data-toggle="tooltip" data-placement="top"
                                                    title="Прогулка">

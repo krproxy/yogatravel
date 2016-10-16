@@ -310,12 +310,16 @@
                             "</table>"
                             + "</td>"
                             + "</tr>"
-                            + "<tr>"
-                            + "<td colspan=\"2\"><div class='overflow-h'><IMG BORDER=\"0\" ALIGN=\"Left\"  width='270px' SRC=" + image + "></div></td>"
-                            + "<td colspan=\"2\">"
-                            + "</td>"
-                            + "</tr>"
-                            + "<tr>"
+                            + "<tr>";
+
+                            if (image != "default.svg") {
+                                html += "<tr>"
+                                          + "<td colspan=\"2\"><div class='overflow-h'><IMG BORDER=\"0\" ALIGN=\"Left\"  width='270px' SRC=" + image + "></div></td>"
+                                          + "<td colspan=\"2\">"
+                                          + "</td>"
+                                          + "</tr>";
+                            }
+                            html +=  "<tr>"
                             + "<td colspan=\"2\" style='padding-bottom: 5px;'>" + description + " <a href='/service/" + serviceId + "'>подробнее</a></td>"
                             + "</tr>"
                             + "<tr>"

@@ -89,7 +89,7 @@ class HomeController extends Controller
     public function travelNotes()
     {
         $posts = $this->socialConnector->getNews();
-        
+
         return view('TravelNotes', ['currentPage' => 'TravelNotes', 'posts' => $posts]);
     }
 }

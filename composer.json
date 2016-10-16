@@ -10,7 +10,7 @@
         "laravel/socialite": "^2.0",
         "barryvdh/laravel-ide-helper": "^2.1",
         "laravelcollective/html": "^5.1",
-        "cmgmyr/messenger": "~2.0",
+        "cmgmyr/messenger": "2.10.*",
         "intervention/image": "^2.3",
         "angrydeer/attachfiles": "dev-master",
         "intervention/imagecache": "^2.3",
@@ -19,7 +19,7 @@
         "guzzlehttp/guzzle": "^5.0",
         "caouecs/laravel-lang": "^3.0",
         "socialiteproviders/vkontakte": "^2.0",
-        "sleeping-owl/admin": "^2.0"
+        "illuminate/html": "~5.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

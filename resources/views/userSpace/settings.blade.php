@@ -170,9 +170,13 @@
                         <span CLASS="corporateBlue f600-16">Рекомендую:</span>
                         @foreach($myCheckInns as $checkInn)
                             <a href="/service/{{$checkInn->id}}">{{$checkInn->address}};</a>
-                        @endforeach<br>
+                        @endforeach
                         {{--<span class="corporateBlue small">Смотреть все мои места <ins><a href="">на карте</a>--}}
                         {{--</ins></span></span>--}}
+                        <a href="{{url('NewCheckInn')}}">
+                                <img src="{{asset('img/SVG/plus_10x10.svg')}}"
+                                     alt=""
+                                     class="imgMenu-icons"> Рекомендовать место</a>
                     </p>
                     <br>
                     <p>
@@ -194,12 +198,17 @@
                             {{$service->description}}
                             <a href="/service/{{$service->id}}">подробнее</a>
                         </p>
-                    @endforeach<br>
-                    <br>
+                    @endforeach
+                    <a href="{{url('NewServicePoint')}}">
+                            <img src="{{asset('img/SVG/plus_10x10.svg')}}"
+                                 alt=""
+                                 class="imgMenu-icons">
+                            Создать свое приглашение</a>
+                    <!-- <br>
                     <p>
                         <span class="corporateBlue f600-16">Мои путевые заметки:</span>
                         <span></span>
-                    </p>
+                    </p> -->
 
                 </div>
             </div>

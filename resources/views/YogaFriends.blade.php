@@ -77,11 +77,13 @@
                             войти в свой личный кабинет и принять или оставить приглашение для Йога-френдов</p>
                     </div>
                 </div>
+                @if (Auth::check())
                 <div class="row">
                     <div class="col-md-5">
                         <br><a href="{{asset('NewServicePoint')}}" class="btn btn-yoga-custom btn-block"><span style="font-size: 24px">Пригласить</span></a>
                     </div>
                 </div>
+                @endif
             </div>
         </div>
     </div>

@@ -11,6 +11,7 @@
 
 @section('description', $service->description)
 @section('body')
+
     <div class="container spark-screen">
         <div class="row">
             <div class="col-md-offset-3 col-md-6">
@@ -44,11 +45,11 @@
                     {{ date("d.m.Y", strtotime($service->created_at))}}
                 </div>
 
-                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
-                    <ol class="carousel-indicators">
-                        <?php $isActive = true;?>
-                        @if(count($service->attaches) != 0)
+                @if(count($service->attaches) != 0)
+                    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators">
+                            <?php $isActive = true;?>
                             @for($i=0; $i<count($service->attaches); $i++)
                                 <li data-target="#carousel-example-generic" data-slide-to="{{$i}}"
                                 <?php if ($isActive) {
@@ -57,13 +58,11 @@
                                 } ?>
                                 ></li>
                             @endfor
-                        @endif
-                    </ol>
+                        </ol>
 
-                    <!-- Wrapper for slides -->
-                    <div class="carousel-inner" role="listbox">
-                        <?php $isActive = true;?>
-                        @if(count($service->attaches) != 0)
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner" role="listbox">
+                            <?php $isActive = true;?>
                             @foreach($service->attaches as $attach)
                                 <div class="item <?php if ($isActive) {
                                     echo 'active';
@@ -75,21 +74,22 @@
                                                 title="{{$attach->title}}"/></a>
                                 </div>
                             @endforeach
-                        @endif
-                    </div>
+                        </div>
 
-                    <!-- Controls -->
-                    <a class="left carousel-control" href="#carousel-example-generic" role="button"
-                       data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="right carousel-control" href="#carousel-example-generic" role="button"
-                       data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
+                        <!-- Controls -->
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button"
+                           data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button"
+                           data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                @endif
+
 
                 <p class="f300-16">{{$service->description}}</p>
                 <div class="w100p">

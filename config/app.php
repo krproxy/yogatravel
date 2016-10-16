@@ -136,7 +136,7 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        
+
         Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
@@ -146,7 +146,6 @@ return [
         Angrydeer\Attachfiles\AttachfilesServiceProvider::class,
         SammyK\LaravelFacebookSdk\LaravelFacebookSdkServiceProvider::class,
 
-        SleepingOwl\Admin\AdminServiceProvider::class,
         Illuminate\Html\HtmlServiceProvider::class,
 
         /*
@@ -214,17 +213,9 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Image' => Intervention\Image\Facades\Image::class,
 
-        'Admin'             => SleepingOwl\Admin\Admin::class,
-        'AdminAuth'         => SleepingOwl\AdminAuth\Facades\AdminAuth::class,
-        'AdminRouter'       => SleepingOwl\Admin\Facades\AdminRouter::class,
-        'AssetManager'      => SleepingOwl\Admin\AssetManager\AssetManager::class,
-        'Column'            => SleepingOwl\Admin\Columns\Column::class,
-        'FormItem'          => SleepingOwl\Admin\Models\Form\FormItem::class,
-        'ModelItem'         => SleepingOwl\Admin\Models\ModelItem::class,
-
         'Form'      => Illuminate\Html\FormFacade::class,
         'Html'      => Illuminate\Html\HtmlFacade::class,
-        
+
     ],
 
 ];
