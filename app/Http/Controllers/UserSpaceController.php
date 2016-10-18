@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use PhpParser\Comment;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
+use App\Http\Requests\NewYogaPointRequest;
 
 class UserSpaceController extends Controller
 {
@@ -87,7 +88,7 @@ class UserSpaceController extends Controller
     }
 
     public function NewYogaPoint(NewYogaPointRequest $request, LaravelFacebookSdk $fb)
-    {      
+    {
 //        dd($request);
 
         $point = new YogaPoint();
