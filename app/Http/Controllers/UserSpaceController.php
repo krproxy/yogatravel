@@ -86,8 +86,8 @@ class UserSpaceController extends Controller
         return redirect('Settings')->with('customModalMessage', '"Настройки сохранены"');
     }
 
-    public function NewYogaPoint(Request $request, LaravelFacebookSdk $fb)
-    {
+    public function NewYogaPoint(NewYogaPointRequest $request, LaravelFacebookSdk $fb)
+    {      
 //        dd($request);
 
         $point = new YogaPoint();
