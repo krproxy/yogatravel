@@ -28,7 +28,7 @@ class NewYogaPointRequest extends Request
      public function rules()
      {
          return [
-             'description' => ['required'],
+             'foo' => ['required'],
              'checkIn_lat' => ['required'],
              'checkIn_lng' => ['required'],
          ];
@@ -37,7 +37,7 @@ class NewYogaPointRequest extends Request
      public function messages()
      {
          return [
-             'description.required' => "как же мы без описания",
+             'foo.required' => "как же мы без описания",
              'checkIn_lat.required' => "Из введенного адреса не сгенерировалась широта, возможно Вы ввели адрес который отстутсвует в нашей навигационной базе, пожалуйста выбирайте адрес из выпадающего списка.",
              'checkIn_lng.required' => "Из введенного адреса не сгенерировалась долгота, возможно Вы ввели адрес который отстутсвует в нашей навигационной базе, пожалуйста выбирайте адрес из выпадающего списка.",
          ];
