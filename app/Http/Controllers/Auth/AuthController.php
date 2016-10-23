@@ -110,9 +110,13 @@ class AuthController extends Controller
      * @param $socialUser
      * @return static
      */
+    // TODO: Тестируем новый способ социальной авторизации
     private function findOrCreateUser($socialUser)
     {
-        if ($authUser = User::where('social_id', $socialUser->getId())->first()) {
+        // if ($authUser = User::where('social_id', $socialUser->getId())->first()) {
+        //     return $authUser;
+        // }
+        if ($authUser = User::where('email', $socialUser->getEmail())->first()) {
             return $authUser;
         }
         return User::create([
