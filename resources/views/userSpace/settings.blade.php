@@ -114,19 +114,35 @@
                     </button>
 
                     <div class="collapse" id="collapseExample">
-                      <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                          <br><input type="text"
+
+                        @include('widgets.form._formitem_text', [
+                            'name' => 'email', 
+                            'title' => 'Ваш E-mail',
+                            'value' => isset(Auth::user()->email)?Auth::user()->email:'',
+                            'placeholder' => 'Укажите Ваш E-mail адрес' 
+                        ])
+
+{{--                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <br><input type="text"
                                  class="form-control inputNew"
                                  name="email"
                                  value="{{ isset(Auth::user()->email)?Auth::user()->email:'' }}"
                                  onchange="disableFalse()">
-                          @if ($errors->has('email'))
-                              <span class="help-block">
+                            @if ($errors->has('email'))
+                                <span class="help-block">
                                           <strong>{{ $errors->first('email') }}</strong>
-                                      </span>
-                          @endif
+                                </span>
+                            @endif
+                        </div> --}}
 
-                      </div>
+                        @include('widgets.form._formitem_select', [
+                            'name' => 'instructor',
+                            'values' => $instructors,
+                            'value' => Auth::user()->instructor,
+                            'title' => 'Ваш инструктор',
+                            'placeholder' => 'Укажите Вашего инструктора'
+
+                        ])
 
                       <div class="form-group">
                           <input type="password" class="form-control inputNew" placeholder="новый пароль">

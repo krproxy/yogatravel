@@ -30,7 +30,8 @@
                     @include('widgets.form._formitem_select', [
                         'name' => 'instructor',
                         'values' => $values,
-                        'title' => 'Ваш инструктор'
+                        'value' => null,
+                        'placeholder' => 'Укажите Вашего инструктора'
                     ])
                 </div>
                 <div class="col-md-4 col-md-offset-4">

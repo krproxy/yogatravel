@@ -10,7 +10,7 @@
     @if(isset($title))
         <label for="{!! $name !!}">{{ $title }}</label>
     @endif
-    {!! Form::text($name, $value, array('placeholder' =>  $placeholder ,'class' => "form-control")) !!}
+    {!! Form::text($name, $value, array('placeholder' =>  $placeholder ,'class' => "form-control", 'onchange' => "disableFalse()")) !!}
     @if ($errors->has($name))
         <span class="help-block"><strong>{{ $errors->first($name) }}</strong></span>
     @endif

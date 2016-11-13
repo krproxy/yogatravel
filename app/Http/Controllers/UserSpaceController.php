@@ -45,22 +45,30 @@ class UserSpaceController extends Controller
             ->whereIn('type', ['teaService', 'couchService', 'walkServices'])
             ->get();
 
+        $tmp = User::on('mysql_admin')
+            ->where('role', '=', 'instructor')
+            ->get();
 
-        return view('userSpace.settings', compact('myCheckInns', 'myServices'));
+        $instructors = [];
+
+
+        $tmp->each(function ($item, $key) use (&$instructors) {
+                $instructors[$item->email] = trim($item->name);
+            });
+
+        return view('userSpace.settings', compact('myCheckInns', 'myServices', 'instructors'));
     }
 
     public function SettingPost(Request $request)
     {
-//        dd($request);
         $user = User::findOrNew(\Auth::id());
         if (isset($request->name)) $user->name = $request->name;
         if (isset($request->surname)) $user->surname = $request->surname;
         if (isset($request->shortStory)) $user->shortStory = $request->shortStory;
         if (isset($request->email)) $user->email = $request->email;
+        if (isset($request->instructor)) $user->instructor = $request->instructor;
         $user->fb_in_wall_posting_allowed = isset($request->fb_in_wall_posting_allowed) ? true : false;
         $user->fb_in_group_posting_allowed = isset($request->fb_in_group_posting_allowed) ? true : false;
-
-        //dd($request->file('avatar')->getError());
 
         if (!empty($request->file('avatar'))) {
             $imageName = \Auth::id() . '.' .

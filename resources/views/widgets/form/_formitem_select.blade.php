@@ -4,7 +4,7 @@
     @if(isset($title))
         <label for="{!! $name !!}">{{ $title }}</label>
     @endif
-    {!! Form::select($name, $values, $value, ['placeholder' => $placeholder, 'class' => "form-control"]) !!}
+    {!! Form::select($name, $values, $value, ['placeholder' => $placeholder, 'class' => "form-control", 'onchange' => "disableFalse()"]) !!}
     @if ($errors->has($name))
         <span class="help-block"><strong>{{ $errors->first($name) }}</strong></span>
     @endif
