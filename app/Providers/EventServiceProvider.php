@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'SocialiteProviders\Manager\SocialiteWasCalled' => [
             // add your listeners (aka providers) here
             'SocialiteProviders\VKontakte\VKontakteExtendSocialite@handle',
+        ],        
+        'auth.login' => [
+            'App\Listeners\LogSuccessfulLogin',
         ],
     ];
 

@@ -65,6 +65,19 @@ return [
             'strict'    => false,
         ],
 
+        'mysql_admin' => [
+            'driver'    => 'mysql',
+            'host'      => env('DB_ADMIN_HOST', 'localhost'),
+            'port'      => env('DB_ADMIN_PORT', '3306'),
+            'database'  => env('DB_ADMIN_DATABASE', 'forge'),
+            'username'  => env('DB_ADMIN_USERNAME', 'forge'),
+            'password'  => env('DB_ADMIN_PASSWORD', ''),
+            'charset'   => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix'    => '',
+            'strict'    => false,
+        ],
+
         'pgsql' => [
             'driver'   => 'pgsql',
             'host'     => env('DB_HOST', 'localhost'),

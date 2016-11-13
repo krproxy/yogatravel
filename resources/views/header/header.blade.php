@@ -53,7 +53,10 @@
                     <div class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @if (Auth::guest())
-                            <a class="btn btn-login navbar-btn" href="{{url('auth/login')}}">Войти</a>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-login navbar-btn" href="{{url('auth/login')}}">Вход</a>
+                                <a class="btn btn-mail navbar-btn" href="{{url('auth/register')}}">Регистрация</a>
+                            </div>
                         @else
                             <div class="btn-group" role="group">
                                 <div class="btn-group" role="group">
