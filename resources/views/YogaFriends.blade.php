@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Пить кофе, переночевать, прогуляться. Yoga Friends - каучсерфинг')
+@section('title', 'Пить кофе, переночевать, прогуляться у друзей - Yoga Friends')
 
 @section('description', 'Yoga Friends – couchsurfing для йогов по всем странам мира. Альтернатива хостелам, отелям, гостиницам, кемпингу. Развитие культуры путешествия.')
 

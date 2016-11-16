@@ -121,12 +121,14 @@ class AuthController extends Controller
         if ($authUser = User::where('email', $socialUser->getEmail())->first()) {
             return $authUser;
         }
-        return User::create([
-            'name' => $socialUser->getName(),
-            'email' => $socialUser->getEmail(),
-            'social_id' => $socialUser->getId(),
-            'avatar' => $socialUser->getAvatar()
-        ]);
+        return redirect('auth/login')->with('customModalMessage', '"Нужно зарегистрироватся вначале!"');
+
+        // return User::create([
+        //     'name' => $socialUser->getName(),
+        //     'email' => $socialUser->getEmail(),
+        //     'social_id' => $socialUser->getId(),
+        //     'avatar' => $socialUser->getAvatar()
+        // ]);
     }
 
     public function fbLoginPost(LaravelFacebookSdk $fb)

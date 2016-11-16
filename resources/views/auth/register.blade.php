@@ -56,7 +56,7 @@
             <div class="hidden-xs col-md-8 col-md-offset-2 text-right">
                 <hr>
             </div>
-            <div class="col-md-6 col-md-offset-3 text-center">
+{{--             <div class="col-md-6 col-md-offset-3 text-center">
                 Войти через соцсети:
                 <div class="row"><br>
                     <div class="col-sm-6">
@@ -69,7 +69,7 @@
                             <i class="fa fa-vk"></i> Vkontakte</a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 @endsection

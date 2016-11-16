@@ -19,7 +19,7 @@ class Banned
         if (Auth::check() && Auth::user()->isBanned()) {
 
             Auth::logout();
-            return redirect('auth/login')->with('customModalMessage', 'Обратитесь к инструктору для активации вашего профиля.');
+            return redirect('auth/login')->with('customModalMessage', 'Обратитесь к инструктору УФЙ для активации вашего профиля.');
         }
 
         return $next($request);

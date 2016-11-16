@@ -7,11 +7,11 @@
 @section('body')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2 well text-center">
+{{--             <div class="col-md-8 col-md-offset-2 well text-center">
                 Авторизуйтесь после активации Вашего профиля инструктором УФЙ
-            </div>
+            </div> --}}
             <div class="col-xs-12 text-center">
-                <p class="text-bigger markedText">Авторизация:</p><br>
+                <p class="text-bigger markedText">Вход:</p><br>
             </div>
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">
                 {!! csrf_field() !!}
