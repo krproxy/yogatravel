@@ -121,7 +121,7 @@ class AuthController extends Controller
         if ($authUser = User::where('email', $socialUser->getEmail())->first()) {
             return $authUser;
         }
-        dd("Нужно зарегистрироватся вначале!");
+        dd("Пожалуйста пройдите регистрацию на сайте - " . url('/auth/register'));
 
         // return User::create([
         //     'name' => $socialUser->getName(),
