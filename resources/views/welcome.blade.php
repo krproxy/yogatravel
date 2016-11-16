@@ -2,7 +2,10 @@
 
 @section('title', 'Yoga Travel - о йоге и путешествиях')
 
-@section('description', 'Сайт проекта Украинской Федерации Йоги Yoga Travel.  Информация о гостиницах, хостелах, транспорте. Новости мира от йогов и путешественников')
+{{-- @section('description', 'Сайт проекта Украинской Федерации Йоги Yoga Travel.  Информация о гостиницах, хостелах, транспорте. Новости мира от йогов и путешественников') --}}
+
+@section('description', 'Yoga Travel - о йоге и путешествиях')
+
 
 @section('body')
     <div class="container-fluid yoga-screen">

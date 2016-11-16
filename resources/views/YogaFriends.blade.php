@@ -2,7 +2,9 @@
 
 @section('title', 'Пить кофе, переночевать, прогуляться у друзей - Yoga Friends')
 
-@section('description', 'Yoga Friends – couchsurfing для йогов по всем странам мира. Альтернатива хостелам, отелям, гостиницам, кемпингу. Развитие культуры путешествия.')
+{{-- @section('description', 'Yoga Friends – couchsurfing для йогов по всем странам мира. Альтернатива хостелам, отелям, гостиницам, кемпингу. Развитие культуры путешествия.') --}}
+
+@section('description', 'Пить кофе, переночевать, прогуляться у друзей - Yoga Friends')
 
 @section('body')
     <div class="container spark-screen">
