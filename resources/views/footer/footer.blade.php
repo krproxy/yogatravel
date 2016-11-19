@@ -21,9 +21,9 @@
                     <li class="footer-text">
                         <ul style="list-style-type:none">
                             <li><a href="#" data-toggle="modal" data-target="#FEEDBACK">Написать нам</a></li>
-                            <li><a href="#" data-toggle="modal" data-target="#FAQ">
+{{--                             <li><a href="#" data-toggle="modal" data-target="#FAQ">
                                     Часто задаваемые вопросы
-                                </a></li>
+                                </a></li> --}}
                             <li><a href="#" data-toggle="modal" data-target="#rules">
                                     Правила пользования сайтом
                                 </a></li>

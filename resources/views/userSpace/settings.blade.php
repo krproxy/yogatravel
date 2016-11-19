@@ -31,7 +31,7 @@
                     <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
 
                         <div class="col-md-6">
-                            <input type="file" name="avatar" id="file-load-tr" class="cursor" onchange="disableFalse()">
+                            <input type="file" name="avatar" id="file-load-tr" class="cursor" onchange="disableFalse();this.form.submit()">
 
                             @if ($errors->has('avatar'))
                                 <span class="help-block">
@@ -293,7 +293,7 @@
             inp.setAttribute("autofocus", "autofocus");
             inp.setAttribute("value", "{{ isset(Auth::user()->name)?Auth::user()->name:'' }}");
             inp.setAttribute("id", "newNameInp");
-            inp.setAttribute("onchange", "disableFalse()");
+            inp.setAttribute("onchange", "disableFalse();this.form.submit()");
             inp.setAttribute("name", "name");
             inp.classList.add('newInpInline');
             inp.classList.add('form-control');
@@ -330,7 +330,7 @@
             };
             inp.setAttribute("autofocus", "autofocus");
             inp.setAttribute("id", "newNameArea");
-            inp.setAttribute("onchange", "disableFalse()");
+            inp.setAttribute("onchange", "disableFalse();this.form.submit()");
             inp.setAttribute("name", "shortStory");
             inp.classList.add('newInpInline');
             inp.classList.add('form-control');

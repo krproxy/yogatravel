@@ -35,19 +35,19 @@
             <div class="col-md-11 col-lg-9">
                 <div class="collapse navbar-collapse" id="spark-navbar-collapse">
                     <!-- Left Side Of Navbar -->
+                    @if (Auth::check())
+                        <ul class="nav navbar-nav">
+                            <li @if(isset($currentPage)&&$currentPage=='YogaFriends')class="markedText"@endif>
+                                <a href="{{url('YogaFriends')}}">YogaFriends</a></li>
+                            <li @if(isset($currentPage)&&$currentPage=='StickerYogaTravel')class="markedText"@endif>
+                                <a href="{{url('StickerYogaTravel')}}">Sticker YogaTravel</a></li>
 
-                    <ul class="nav navbar-nav">
-                        <li @if(isset($currentPage)&&$currentPage=='YogaFriends')class="markedText"@endif>
-                            <a href="{{url('YogaFriends')}}">YogaFriends</a></li>
-                        <li @if(isset($currentPage)&&$currentPage=='StickerYogaTravel')class="markedText"@endif>
-                            <a href="{{url('StickerYogaTravel')}}">Sticker YogaTravel</a></li>
-                        @if (Auth::check())
-                          <li @if(isset($currentPage)&&$currentPage=='Map')class="markedText"@endif>
-                              <a href="{{url('Map')}}">Карта</a></li>
-                        @endif
-                        <!-- <li @if(isset($currentPage)&&$currentPage=='TravelNotes')class="markedText"@endif>
-                            <a href="{{url('TravelNotes')}}">Путевые заметки</a></li> -->
-                    </ul>
+                              <li @if(isset($currentPage)&&$currentPage=='Map')class="markedText"@endif>
+                                  <a href="{{url('Map')}}">Карта</a></li>
+                            <!-- <li @if(isset($currentPage)&&$currentPage=='TravelNotes')class="markedText"@endif>
+                                <a href="{{url('TravelNotes')}}">Путевые заметки</a></li> -->
+                        </ul>
+                    @endif
 
                     <!-- Right Side Of Navbar -->
                     <div class="nav navbar-nav navbar-right">
