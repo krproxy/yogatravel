@@ -15,7 +15,7 @@
     <div class="container spark-screen">
         <div class="row">
             <div class="col-md-6 col-md-offset-3 text-left">
-                <h1 class="corporateBlue string pleft37"># Sticker <span class="string600">Yoga</span>Travel</h1><br>
+                <h1 class="corporateBlue string pleft37">#Sticker<span class="string600">Yoga</span>Travel</h1><br>
             </div>
         </div>
         <div class="row">
@@ -25,22 +25,11 @@
             <div class="col-xs-12 col-sm-8 col-md-9 text-justify pleft37">
                 <div class="row">
                     <div class="col-md-12">
-                        <p>Яркие <span class="markedText">#‎stickeryogatravel</span> в виде логотипа Yoga Travel – это
-                            маркеры, которые можно увидеть по
-                            всему миру и ощутить чувство сопричастности с теми, кто отождествляет себя с идеями и
-                            переживаниями нашего проекта.</p>
+                        <p>Яркие <span class="markedText">#‎stickeryogatravel</span> в виде логотипа YogaTravel – это маркеры, которые можно увидеть по всему миру и ощутить чувство сопричастности с теми, кто отождествляет себя с идеями нашего проекта.</p>
 
-                        <p>Йоги путешествуют много, и на своем пути встречаются с множеством интересных и вкусных мест.
-                            Дабы собрать информацию по всем кафе, хостелам, гостиницам, перевозчикам, экстрим-паркам,
-                            достопримечательностям, ашрамам йоги, осознанные путешественники отмечают самые впечатляющие
-                            места наклейками <span class="markedText">#‎stickeryogatravel</span>. После чего
-                            фотографируются вместе с наклеечкой Yoga
-                            Travel и выкладывают фото вместе со своими впечатлениями на карте этого сайта. Другие же
-                            путешественники имеют возможность оставить свой комментарии о том месте, где был наклеен
-                            <span class="markedText">#‎stickeryogatravel</span>.</p>
+                        <p>Йоги много путешествуют и встречают на своем пути потоковые, интересные и просто вкусные места. Некоторые из них особенно впечатляют и запоминаются. Такие места хочется порекомендовать друзьям. Это может быть место силы, дружелюбное кафе, гостеприимный хостел/гостиница, заботливый перевозчик, уникальная достопримечательность, ключевые ашрамы йоги. Это очень ценные переживания и значимая информация для других путешественников. В этих местах ты можешь наклеить <span class="markedText">#‎stickeryogatravel</span> или просто сфотографироваться, а потом выложить свою фото-рекомендацию на карте YogaTravel с описанием того, что именно тебя впечатлило. Также ты можешь комментировать подсказки других путешественников и делиться своими переживаниями, дополняя информацию об этом месте.</p>
 
-                        <p>Таким образом, ценный опыт наших путешественников останется не только в их памяти, но и будет
-                            подсказкой и информационной опорой всем последующим за ними!</p>
+                        <p>Таким образом, ценный опыт наших путешественников остается не только в их памяти, но и становится информационной опорой и подсказкой всем последующим за ними!</p>
 
                         <p> Всем желающим взять в свое путешествие <span class="markedText">#‎stickeryogatravel</span>
                             можно обратится в следующие места:</p>
@@ -54,13 +43,12 @@
             <div class="col-md-offset-3 col-md-9 pleft37">
                 <div class="row text-center">
                     <div class="col-sm-4 listbar">
-                        <p><img class="h100" width="180px" src="/img/SVG/logo_zaal.svg" alt="logo"></p>
-                        <p class="text-uppercase text-big">zaal</p>
-                        <p>Ночной клуб-Бар</p>
-                        <p class="markedText"><img class="teaMarker" src="/img/SVG/geometka_tea.svg" alt=""> Киев</p>
-                        <p>Верхний вал 30а</p>
-                        <p>+38 (093) 857 13 75</p>
-                        <p>+38 (050) 691 30 23</p>
+                        <p><img class="h100" src="/img/SVG/pKhkwqSp5lc.jpg" alt="logo"></p>
+                        <p class="text-uppercase text-big">Kamalaya</p>
+                        <p>Sutra Bar</p>
+                        <p class="markedText"><img class="teaMarker" src="/img/SVG/geometka_tea.svg" alt=""> Харьков</p>
+                        <p>Алчевских, 31</p>
+                        <p>+38 (050) 864 53 84</p>
                     </div>
 
                     <div class="col-sm-4 listbar">
@@ -94,7 +82,7 @@
 
         <div class="row">
             <div class="col-md-12 text-center">
-                <h1 class="corporateBlue">Новые места отмеченные стикерами <strong>Yoga</strong>travel:</h1><br>
+                <h1 class="corporateBlue">Новые места, отмеченные стикерами <strong>Yoga</strong>travel:</h1><br>
             </div>
 
             <div class="slider1" style="line-height: 100%;vertical-align: bottom">
