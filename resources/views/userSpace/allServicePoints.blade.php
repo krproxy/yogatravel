@@ -13,7 +13,7 @@
                             <th class="active">адрес</th>
                             <th class="warning">описание</th>
                             <th class="success">редактировать</th>
-                            <th class="danger">удалить</th>
+                            {{-- <th class="danger">удалить</th> --}}
                         </tr>
                         @foreach($myServices as $service)
                             <tr>
@@ -22,8 +22,8 @@
                                 <td class="warning">{{$service->description}}</td>
                                 <td class="success"><a href="{{asset('editYogaPoint/'.$service->id)}}"
                                                        class="btn btn-yoga-custom">редактировать</a></td>
-                                <td class="danger"><a href="{{asset('deleteYogaPoint/'.$service->id)}}"
-                                                      class="btn btn-danger">удалить</a></td>
+                                {{-- <td class="danger"><a href="{{asset('deleteYogaPoint/'.$service->id)}}" --}}
+                                                      {{-- class="btn btn-danger">удалить</a></td> --}}
                             </tr>
                         @endforeach
                     </table>

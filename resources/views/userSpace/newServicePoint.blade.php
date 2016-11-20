@@ -1,99 +1,6 @@
 @extends('layouts.master')
 
 @section('body')
-    {{--<div class="container spark-screen">--}}
-    {{--<div class="row">--}}
-    {{--<div class="col-md-6 col-md-offset-3">--}}
-    {{--<form class="form-horizontal" role="form" method="POST" enctype="multipart/form-data"--}}
-    {{--action="{{ url('/NewYogaPoint') }}"--}}
-    {{--enctype="multipart/form-data">--}}
-    {{--{!! csrf_field() !!}--}}
-
-    {{--<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">--}}
-
-    {{--<div class="col-md-6 col-md-offset-3">--}}
-    {{--<input type="text" class="form-control inputNew" name="name"--}}
-    {{--value="" placeholder="Название" autofocus>--}}
-
-    {{--@if ($errors->has('name'))--}}
-    {{--<span class="help-block">--}}
-    {{--<strong>{{ $errors->first('name') }}</strong>--}}
-    {{--</span>--}}
-    {{--@endif--}}
-    {{--</div>--}}
-    {{--</div>--}}
-
-    {{--<div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">--}}
-
-
-    {{--<div class="col-md-6 col-md-offset-3">--}}
-    {{--<textarea id="textareaNew" class="form-control inputNew" name="description"--}}
-    {{--placeholder="Описание"></textarea>--}}
-
-    {{--@if ($errors->has('description'))--}}
-    {{--<span class="help-block">--}}
-    {{--<strong>{{ $errors->first('description') }}</strong>--}}
-    {{--</span>--}}
-    {{--@endif--}}
-    {{--</div>--}}
-    {{--</div>--}}
-
-    {{--<div class="form-group">--}}
-    {{--<div class="col-md-6 col-md-offset-3">--}}
-    {{--<label for="type">Выберите тип:</label>--}}
-    {{--<select class="form-control" id="type" name="type">--}}
-    {{--<option value="teaService">чаепитие</option>--}}
-    {{--<option value="couchService">ночлег</option>--}}
-    {{--<option value="walkServices">прогулка</option>--}}
-    {{--</select>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-
-    {{--<div class="form-group">--}}
-
-    {{--<div class="col-md-6 col-md-offset-3">--}}
-    {{--<input id="pac-input" class="pac-input1 form-control inputNew" type="text" name="address"--}}
-    {{--placeholder=" расположение">--}}
-    {{--</div>--}}
-    {{--</div>--}}
-
-    {{--<div class="form-group">--}}
-
-    {{--<div class="col-md-6 col-md-offset-3">--}}
-    {{--<label for=""><span class="markedText"><ins>Выберите фотографию:</ins></span> </label>--}}
-    {{--<input type="file" id="upload" name="images[]" class="cursor" multiple--}}
-    {{--accept="image/jpeg,image/png,image/gif">--}}
-
-    {{--</div>--}}
-
-    {{--</div>--}}
-    {{--<br>--}}
-    {{--<div class="form-group">--}}
-
-    {{--<div class="col-md-6 col-md-offset-3 text-center">--}}
-    {{--<input type="reset" class="btn-form" value="Отменить">--}}
-    {{--<input type="submit" id="load" class="btn-form btn-form1" disabled="disabled"--}}
-    {{--value="Загрузить">--}}
-    {{--</div>--}}
-    {{--</div>--}}
-
-
-    {{--?????????????????????????????????-----------------------}}
-    {{--<div id="latFromSearch"></div>--}}
-    {{--<div id="longFromSearch"></div>--}}
-
-    {{--<div class="form-group">--}}
-    {{--<div class="col-md-offset-4 col-md-6">--}}
-    {{--<div id="okBtn"></div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</form>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-    {{--</div>--}}
-
-
-
     <div class="container spark-screen">
         <div class="row">
             <div class="col-sm-6 col-sm-offset-3">
@@ -105,16 +12,6 @@
                         {!! csrf_field() !!}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-
-
-                            <p class="text-left">
-                                Опыт человека состоит из связей и коммуникаций с другими людьми. Чем шире и
-                                разнообразнее
-                                ваш круг общения, тем богаче опыт! Ресурс YogaFriends позволяет йогинам из разных
-                                городов и
-                                стран встречаться за кофе во время путешествия, селиться друг у друга и знакомиться для
-                                совместной поездки:
-                            </p>
                             <ol class="text-left count-bracket">
                                 <li>Выберите тип приглашения:</li>
                                 <div class="form-group">

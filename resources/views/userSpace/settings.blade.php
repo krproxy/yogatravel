@@ -23,11 +23,7 @@
                             </div>
                         </div>
                     </div>
-                    {{--<div class="text-center">--}}
-                    {{--@if(isset(Auth::user()->avatar))--}}
-                    {{--<img src="{!! asset(Auth::user()->avatar) !!}" alt="">--}}
-                    {{--@endif--}}
-                    {{--</div>--}}
+
                     <div class="form-group{{ $errors->has('avatar') ? ' has-error' : '' }}">
 
                         <div class="col-md-6">
@@ -35,21 +31,11 @@
 
                             @if ($errors->has('avatar'))
                                 <span class="help-block">
-                                        <strong>{{ $errors->first('avatar') }}</strong>
-                                    {{--<a href="" class="menuBtn">bbbbbbb--}}
-                                    {{--<i class="fa fa-envelope"></i>--}}
-                                    {{--count new mail--}}
-                                    {{--<span> 2</span>--}}
-                                    {{--</a>--}}
-
+                                    <strong>{{ $errors->first('avatar') }}</strong>
                                 </span>
                             @endif
                         </div>
                     </div>
-                    {{--<div class="form-group">--}}
-                    {{--<input id="pac-input" class="pac-input1 form-control inputNew" type="text" name="address"--}}
-                    {{--placeholder=" расположение" onchange="disableFalse()">--}}
-                    {{--</div>--}}
 
                     <a href="{{ URL::to('messages') }}"
                        class="btn btn-yoga-custom inputNew form-control f300-22 padding-0 sizeToNI">
@@ -58,55 +44,6 @@
                         <span> {{ Auth::user()->newMessagesCount() }}</span>
                     </a>
                     <br><br>
-                    {{--<p>Настройки моего профиля:</p>--}}
-
-
-                    {{--<div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">--}}
-                    {{--<label class="col-md-4 control-label">Имя</label>--}}
-
-                    {{--<div class="col-md-6">--}}
-                    {{--<input type="text" class="form-control" name="name"--}}
-                    {{--value="{{ isset(Auth::user()->name)?Auth::user()->name:'' }}">--}}
-
-                    {{--@if ($errors->has('name'))--}}
-                    {{--<span class="help-block">--}}
-                    {{--<strong>{{ $errors->first('name') }}</strong>--}}
-                    {{--</span>--}}
-                    {{--@endif--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-
-                    {{--<div class="form-group{{ $errors->has('surname') ? ' has-error' : '' }}">--}}
-                    {{--<label class="col-md-4 control-label">Фамилия</label>--}}
-
-                    {{--<div class="col-md-6">--}}
-                    {{--<input type="text" class="form-control" name="surname"--}}
-                    {{--value="{{ isset(Auth::user()->surname) ? Auth::user()->surname : '' }}">--}}
-
-                    {{--@if ($errors->has('surname'))--}}
-                    {{--<span class="help-block">--}}
-                    {{--<strong>{{ $errors->first('surname') }}</strong>--}}
-                    {{--</span>--}}
-                    {{--@endif--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-
-                    {{--<div class="form-group{{ $errors->has('shortStory') ? ' has-error' : '' }}">--}}
-                    {{--<label class="col-md-4 control-label">Коротко о себе</label>--}}
-
-                    {{--<div class="col-md-6">--}}
-                    {{--<textarea class="form-control"--}}
-                    {{--name="shortStory">{{ isset(Auth::user()->shortStory)?Auth::user()->shortStory:'' }}</textarea>--}}
-
-
-                    {{--@if ($errors->has('shortStory'))--}}
-                    {{--<span class="help-block">--}}
-                    {{--<strong>{{ $errors->first('shortStory') }}</strong>--}}
-                    {{--</span>--}}
-                    {{--@endif--}}
-                    {{--</div>--}}
-                    {{--</div>--}}
-
 
 
                     <button class="btn btn-yoga-custom inputNew form-control f300-22 padding-0 sizeToNI" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
@@ -122,27 +59,15 @@
                             'placeholder' => 'Укажите Ваш E-mail адрес' 
                         ])
 
-{{--                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <br><input type="text"
-                                 class="form-control inputNew"
-                                 name="email"
-                                 value="{{ isset(Auth::user()->email)?Auth::user()->email:'' }}"
-                                 onchange="disableFalse()">
-                            @if ($errors->has('email'))
-                                <span class="help-block">
-                                          <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                            @endif
-                        </div> --}}
 
-                        @include('widgets.form._formitem_select', [
+{{--                         @include('widgets.form._formitem_select', [
                             'name' => 'instructor',
                             'values' => $instructors,
                             'value' => Auth::user()->instructor,
                             'title' => 'Ваш инструктор',
                             'placeholder' => 'Укажите Вашего инструктора'
 
-                        ])
+                        ]) --}}
 
                       <div class="form-group">
                           <input type="password" class="form-control inputNew" placeholder="новый пароль">
@@ -168,15 +93,34 @@
                 <div class="col-xs-12 col-sm-8 col-md-9 pleft37">
                     <p id="newName">
                         <span class="corporateBlue f400-24"
-                              id="nameDel">{{ isset(Auth::user()->name)?Auth::user()->name:'' }}</span>
-                        <img src="/img/SVG/edit_profile_normal_16x16.svg" alt="" class="img20 cursor" id="imgDel"
+                              id="nameDel"
+                              style="{{isset(Auth::user()->name) && Auth::user()->name != '' ? '':'color: grey;opacity: 0.5;'}}">
+                              {{ isset(Auth::user()->name) && Auth::user()->name != '' ? Auth::user()->name : 'Ваше имя' }}
+                        </span>
+                        <img src="/img/SVG/edit_profile_normal_16x16.svg"
+                             alt="" 
+                             class="img20 cursor" 
+                             id="imgDel"
                              onclick="visibleInput()">
-
-
+                    </p>
+                    <p id="newSurName">
+                        <span class="corporateBlue f400-24" 
+                              id="nameDelSurName"
+                              style="{{isset(Auth::user()->surname) && Auth::user()->surname != '' ? '':'color: grey;opacity: 0.5;'}}">
+                              {{ isset(Auth::user()->surname) && Auth::user()->surname != '' ? Auth::user()->surname : 'Ваша фамилия' }}
+                        </span>
+                        <img src="/img/SVG/edit_profile_normal_16x16.svg"
+                             alt="" 
+                             class="img20 cursor" 
+                             id="imgDelSurName"
+                             onclick="visibleInputSurName()">
                     </p>
                     <p id="newStatus">
                         <span class="f300-16"
-                              id="span-area">{{ isset(Auth::user()->shortStory)?Auth::user()->shortStory:'' }}</span>
+                              id="span-area"
+                              style="{{isset(Auth::user()->shortStory) && Auth::user()->shortStory != '' ? '':'color: grey;opacity: 0.5;'}}">
+                              {{ isset(Auth::user()->shortStory) && Auth::user()->shortStory != '' ? Auth::user()->shortStory : 'Коротко о себе' }}
+                        </span>
                         <img src="/img/SVG/edit_profile_normal_16x16.svg" class="imgMenu-icons cursor" alt=""
                              onclick="visibleArea()" id="imgArea">
                     </p>
@@ -312,19 +256,65 @@
             newName.removeChild(s1);
             var sps = document.createElement("span");
             newName.insertBefore(sps, i3);
-            sps.innerHTML = "{{ isset(Auth::user()->name)?Auth::user()->name:'' }} ";
+            sps.innerHTML = "{{ isset(Auth::user()->name) && Auth::user()->name != '' ? Auth::user()->name : 'Ваше имя' }} ";
+            sps.style.color = "{{ isset(Auth::user()->name) && Auth::user()->name != '' ? '' : 'grey' }}";
+            sps.style.opacity = "{{ isset(Auth::user()->name) && Auth::user()->name != '' ? '1' : '0.5' }}";
             sps.classList.add("corporateBlue");
             sps.classList.add("f400-24");
             sps.setAttribute("id", "nameDel");
             i3.setAttribute("width", "20px");
         }
+
+
+        function visibleInputSurName() {
+            var i3 = document.getElementById("imgDelSurName");
+            i3.setAttribute("width", "0");
+            var sp = document.getElementById("nameDelSurName");
+            newSurName.removeChild(sp);
+            var inp = document.createElement("input");
+            newSurName.appendChild(inp);
+            inp.oninput = function () {
+                disableFalse();
+            };
+            inp.setAttribute("autofocus", "autofocus");
+            inp.setAttribute("value", "{{ isset(Auth::user()->surname)?Auth::user()->surname:'' }}");
+            inp.setAttribute("id", "newSurNameInp");
+            inp.setAttribute("onchange", "disableFalse();this.form.submit()");
+            inp.setAttribute("name", "surname");
+            inp.classList.add('newInpInline');
+            inp.classList.add('form-control');
+            var close = document.createElement("span");
+            newSurName.appendChild(close);
+            close.innerHTML = " X ";
+            close.classList.add("span-close");
+            close.setAttribute("id", "close-sur-name");
+            close.setAttribute("onclick", "closeVisibleInputSurName()");
+        }
+        function closeVisibleInputSurName() {
+            var s1 = document.getElementById("newSurNameInp");
+            var s2 = document.getElementById("close-sur-name");
+            var i3 = document.getElementById("imgDelSurName");
+            newSurName.removeChild(s2);
+            newSurName.removeChild(s1);
+            var sps = document.createElement("span");
+            newSurName.insertBefore(sps, i3);
+            sps.innerHTML = "{{ isset(Auth::user()->surname) && Auth::user()->surname != '' ? Auth::user()->surname : 'Ваша фамилия' }} ";
+            sps.style.color = "{{ isset(Auth::user()->surname) && Auth::user()->surname != '' ? '' : 'grey' }}";
+            sps.style.opacity = "{{ isset(Auth::user()->surname) && Auth::user()->surname != '' ? '1' : '0.5' }}";
+            sps.classList.add("corporateBlue");
+            sps.classList.add("f400-24");
+            sps.setAttribute("id", "nameDelSurName");
+            i3.setAttribute("width", "20px");
+        }
+
+
         function visibleArea() {
             var i3 = document.getElementById("imgArea");
             var sp = document.getElementById("span-area");
             newStatus.removeChild(sp);
             var inp = document.createElement("textarea");
             newStatus.appendChild(inp);
-            inp.innerHTML = "{{ isset(Auth::user()->shortStory)?Auth::user()->shortStory:'' }}";
+            inp.innerHTML = "{{ isset(Auth::user()->shortStory) ? Auth::user()->shortStory : '' }}";
             inp.oninput = function () {
                 disableFalse();
             };
@@ -350,7 +340,9 @@
             newStatus.removeChild(s1);
             var sps = document.createElement("span");
             newStatus.insertBefore(sps, i3);
-            sps.innerHTML = "{{ isset(Auth::user()->shortStory)?Auth::user()->shortStory:'' }}";
+            sps.innerHTML = "{{ isset(Auth::user()->shortStory) && Auth::user()->shortStory != '' ? Auth::user()->shortStory : 'Коротко о себе' }}";
+            sps.style.color = "{{ isset(Auth::user()->shortStory) && Auth::user()->shortStory != '' ? '' : 'grey' }}";
+            sps.style.opacity = "{{ isset(Auth::user()->shortStory) && Auth::user()->shortStory != '' ? '1' : '0.5' }}";
             sps.setAttribute("id", "span-area");
             i3.setAttribute("width", "20px");
         }
