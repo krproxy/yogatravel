@@ -26,7 +26,7 @@
             <div class="col-md-9 pleft37">
                 <p id="newName">
                         <span class="corporateBlue f400-24"
-                              id="span-name">{{ $user->name + ' ' + $user->surname}}</span>
+                              id="span-name">{{ $user->name . ' ' . $user->surname}}</span>
                 </p>
                 <p id="newStatus">
                         <span class="f300-16"
