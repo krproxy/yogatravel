@@ -79,7 +79,7 @@ class HomeController extends Controller
             'text' => 'required',
         ]);
 //        dd($request);
-        Mail::raw($request->text, function ($message) {
+        Mail::raw("От {$request->name}, {$request->email}. Сообщение: {$request->text}", function ($message) {
             $message->to('krproxy@gmail.com')->subject('Новое сообщение с сайта YOGATRAWEL');
         });
 
