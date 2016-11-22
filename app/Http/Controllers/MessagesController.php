@@ -62,8 +62,15 @@ class MessagesController extends Controller
      */
     public function create($userId)
     {
-        $users = User::where('id', '!=', Auth::id())->get();
-        return view('messenger.create', compact('users', 'userId'));
+        $threads = Thread::all();
+        foreach ($threads as $thread) {
+            $participants = $thread->participants()
+                                   ->whereIn('user_id', [Auth::id(), $userId])
+                                   ->get();
+            if(count($participants) == 2) return redirect('messages/' . $thread->id);
+        }
+
+        return view('messenger.create', compact('userId'));
     }
 
     /**
@@ -151,7 +158,7 @@ class MessagesController extends Controller
         foreach ($thread->participantsUserIds() as $userId) {
             if ($userId != Auth::id()) {
                 $recipient = User::find($userId);
-                Mail::raw("Вам пришло новое сообщение", function ($message) use ($recipient) {
+                Mail::raw("Вам пришло новое сообщение: " . Input::get('message'), function ($message) use ($recipient) {
                     $message->to($recipient->email)->subject('новое сообщение на сайте YogaTravel');
                 });
             }

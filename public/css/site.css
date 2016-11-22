@@ -1326,3 +1326,11 @@ input[type="password"].inputNew {
     background-size: contain;
     vertical-align: middle;
 }
+
+.messages-row {
+    cursor:pointer;    
+}
+
+.messages-row:hover {
+    background-color: #FAFAFA; 
+}

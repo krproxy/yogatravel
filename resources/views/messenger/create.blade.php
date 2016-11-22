@@ -9,10 +9,10 @@
         {!! Form::hidden('recipients[]', $userId) !!}
         <div class="col-md-6 col-md-offset-3">
             <!-- Subject Form Input -->
-            <div class="form-group">
+{{--             <div class="form-group">
                 {!! Form::label('subject', 'Тема', ['class' => 'control-label pull-right']) !!}
                 {!! Form::text('subject', null, ['class' => 'form-control messageTextSubject']) !!}
-            </div>
+            </div> --}}
 
             <!-- Message Form Input -->
             <div class="form-group">
@@ -25,20 +25,6 @@
                 {!! Form::submit('Отправить', ['class' => 'btn btn-yoga-custom form-control']) !!}
             </div>
         </div>
-        {{--<div class="col-md-4 pull-right">--}}
-            {{--@if($users->count() > 0)--}}
-                {{--<div class="checkbox">--}}
-                    {{--@foreach($users as $user)--}}
-                        {{--<p>--}}
-                            {{--<label title="{!!$user->name!!}">--}}
-                                {{--<input type="checkbox" name="recipients[]" @if($userId==$user->id)checked="checked"--}}
-                                       {{--@endif value="{!!$user->id!!}">{!!$user->name!!}--}}
-                            {{--</label>--}}
-                        {{--</p>--}}
-                    {{--@endforeach--}}
-                {{--</div>--}}
-            {{--@endif--}}
-        {{--</div>--}}
         {!! Form::close() !!}
     </div>
 @stop

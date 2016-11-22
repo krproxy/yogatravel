@@ -34,7 +34,7 @@
                                 @endif
                                 <?php
                                 $d1 = strtotime($message->created_at);
-                                $date2 = date("d,m,Y H:m", $d1);
+                                $date2 = date("d.m.Y H:m", $d1);
                                 ?>
                                 <img src="/img/SVG/clock_14x14.svg" alt="" width="14px">
                                 <span class="grey-check-map">{{$date2}}</span>

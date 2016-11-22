@@ -21,25 +21,38 @@
         @endif
         @if($threads->count() > 0)
             @foreach($threads as $thread)
+                <?php
+                    // получаем нашего собеседника
+                    $companions = $thread->participants()->whereNotIn('user_id', [Auth::id()])->get();
+                    $companion = ($companions[0]->user()->get())[0];                    
+                ?>
                 <?php $class = $thread->isUnread($currentUserId) ? 'alert-info' : ''; ?>
-                <div class="row">
+                <div class="row messages-row" onclick="location.href='messages/{{ $thread->id }}'">
                     <div class="col-xs-6 col-xs-offset-3 pleft37 media alert {!!$class!!}">
                         <div class="row">
-                            <div class="col-xs-12">
+{{--                             <div class="col-xs-12">
                                 <h4>{{$thread->subject}}</h4>
-                            </div>
+                            </div> --}}
+{{--                             <div class="col-xs-2 messageAvatarCol">
+                                <a href="/profile/{{$thread->creator()->id}}">
+                                    <img class="img-responsive img-circle messageAvatar"
+                                         src="{!! $thread->creator()->avatar !!}" alt="">
+                                </a>
+                            </div> --}}
                             <div class="col-xs-2 messageAvatarCol">
-                                <img class="img-responsive img-circle messageAvatar"
-                                     src="{!! $thread->creator()->avatar !!}" alt="">
+                                <a href="/profile/{{$companion->id}}">
+                                    <img class="img-responsive img-circle messageAvatar"
+                                         src="{!! $companion->avatar !!}" alt="">
+                                </a>
                             </div>
                             <div class="col-xs-10">
                                 <div class="row">
                                     <div class="col-xs-12">
                                         <?php
                                         $d1 = strtotime($thread->created_at);
-                                        $date2 = date("d,m,Y H:m", $d1);
+                                        $date2 = date("d.m.Y H:m", $d1);
                                         ?>
-                                        <strong><a href="/profile/{{$thread->creator()->id}}">{!! $thread->creator()->name !!}</a>: </strong>
+                                        <strong><a href="/profile/{{$companion->id}}">{!! $companion->name !!}</a>: </strong>
                                         <img src="/img/SVG/clock_14x14.svg" alt="" width="14px">
                                         <span class="grey-check-map">{{$date2}}</span>
                                     </div>
@@ -47,7 +60,8 @@
                                         @if($thread->latestMessage->user_id == Auth::id())
                                             <strong>Вы: </strong>
                                         @endif
-                                        {!! link_to('messages/' . $thread->id, $thread->latestMessage->body) !!}
+                                        {{-- {!! link_to('messages/' . $thread->id, $thread->latestMessage->body) !!} --}}
+                                        {!! $thread->latestMessage->body !!}
                                     </div>
                                 </div>
                             </div>
@@ -68,7 +82,11 @@
                 </div>
             @endforeach
         @else
-            <p>Извините, нет активных разговоров.</p>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 corporateBlue text-left pleft37">
+                    <h2>Извините, нет активных разговоров.</h2>
+                </div>
+            </div>
         @endif
     </div>
 @stop
