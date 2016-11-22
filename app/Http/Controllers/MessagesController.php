@@ -83,7 +83,8 @@ class MessagesController extends Controller
         $input = Input::all();
         $thread = Thread::create(
             [
-                'subject' => $input['subject'],
+                // 'subject' => $input['subject'],
+                'subject' => '',
             ]
         );
         // Message
