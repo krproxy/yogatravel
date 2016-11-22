@@ -24,8 +24,14 @@
                 <?php
                     // получаем нашего собеседника
                     $companions = $thread->participants()->whereNotIn('user_id', [Auth::id()])->get();
-                    $companion = count($companions) > 0 ? $companions[0]->user()->get() : Auth::user();      
-                    $companion = count($companion) > 0 ? $companion[0] : Auth::user();
+                    $companion = null;
+                    if (count($companions) == 0){
+                        $companion = Auth::user();                    
+                    }
+                    else {
+                        $companion = $companions[0]->user()->get();   
+                        $companion = $companion[0];   
+                    }
                 ?>
                 <?php $class = $thread->isUnread($currentUserId) ? 'alert-info' : ''; ?>
                 <div class="row messages-row" onclick="location.href='messages/{{ $thread->id }}'">
