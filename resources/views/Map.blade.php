@@ -6,6 +6,14 @@
 
 @section('description', 'Карта мира Yoga Travel – информация об интересных и значимых местах. Приглашения друзей в разных городах')
 
+@section('customHeader')
+    <style type="text/css">
+        body {
+            /* Margin bottom by footer height */
+            margin-bottom: 0!important;
+        }
+    </style>
+@endsection
 
 @section('body')
     <div class="container-fluid spark-screen">
