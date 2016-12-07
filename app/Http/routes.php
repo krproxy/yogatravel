@@ -103,8 +103,8 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 // via social networks
-Route::get('auth/registerViaSocial', 'Auth\AuthController@registerViaSocial')
-Route::post('auth/registerViaSocialSet', 'Auth\AuthController@registerViaSocialSet')
+Route::get('auth/registerViaSocial', 'Auth\AuthController@registerViaSocial');
+Route::post('auth/registerViaSocialSet', 'Auth\AuthController@registerViaSocialSet');
 
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');
