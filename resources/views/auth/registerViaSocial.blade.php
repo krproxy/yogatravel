@@ -15,9 +15,9 @@
             </div>
             <form class="form-horizontal " role="form" method="POST" action="{{ url('auth/registerViaSocialSet') }}">
                 {!! csrf_field() !!}
-                {{ Form::hidden('name', $name) }}
-                {{ Form::hidden('email', $email) }}
-                {{ Form::hidden('avatar', $avatar) }}
+                {!! Form::hidden('name', $name) !!}
+                {!! Form::hidden('email', $email) !!}
+                {!! Form::hidden('avatar', $avatar) !!}
 
                 <?php
 

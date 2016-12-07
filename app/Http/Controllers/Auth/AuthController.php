@@ -15,6 +15,8 @@ use Redirect;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 use Session;
 use Validator;
+use Illuminate\Http\Request;
+
 
 class AuthController extends Controller
 {
