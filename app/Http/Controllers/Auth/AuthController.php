@@ -76,7 +76,7 @@ class AuthController extends Controller
             'name' => $data['name'],
             'surname' => $data['surname'],
             'email' => $data['email'],
-            'eula' => $data['eula'],
+            'eula' => $data['eula'] ? true : false,
             'password' => bcrypt($data['password']),
         ]);
     }
@@ -111,7 +111,8 @@ class AuthController extends Controller
         // если пользовтеля нет - отправляем на форму регистрации через соц сети
         } else {
             return redirect()->route('auth/registerViaSocial')
-              ->with('name', $socialUser->getName())
+              ->with('name', explode(" ", $socialUser->getName())[0])
+              ->with('surname', explode(" ", $socialUser->getName())[1])
               ->with('email', $socialUser->getEmail()) 
               ->with('avatar', $socialUser->getAvatar());
         }        
@@ -121,6 +122,7 @@ class AuthController extends Controller
     {
         return view('auth/registerViaSocial', [
                 'name' => Session::get('name'),
+                'surname' => Session::get('surname'),
                 'email' => Session::get('email'),
                 'avatar' => Session::get('avatar'),
 
@@ -137,9 +139,10 @@ class AuthController extends Controller
         $newUser = User::create([
             'instructor' => $request->instructor,
             'name' => $request->name,
+            'surname' => $request->surname,
             'email' => $request->email,
             'avatar' => $request->avatar,
-            'eula' => $request->eula
+            'eula' => $request->eula ? true : false
         ]);
 
         Auth::login($newUser, true);
