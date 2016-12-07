@@ -117,7 +117,7 @@ class AuthController extends Controller
 
     public function registerViaSocial()
     {
-        return view('registerViaSocial', [
+        return view('auth/registerViaSocial', [
                 'name' => Session::get('name'),
                 'email' => Session::get('email'),
                 'avatar' => Session::get('avatar'),
