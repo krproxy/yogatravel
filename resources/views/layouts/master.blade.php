@@ -33,7 +33,7 @@
 <header id="header" class="">
     @include('header.header')
 </header>
-@include('errors.errmsg')
+{{-- @include('errors.errmsg') --}}
 @yield('body')
 @include('footer.footer')
 @include('footer.foot_script')

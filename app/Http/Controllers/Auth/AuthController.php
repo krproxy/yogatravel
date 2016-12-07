@@ -56,6 +56,7 @@ class AuthController extends Controller
             'name' => 'required|max:255',
             'surname' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
+            'eula' => 'required',
             'password' => 'required|confirmed|min:6',
         ]);
     }
@@ -73,6 +74,7 @@ class AuthController extends Controller
             'name' => $data['name'],
             'surname' => $data['surname'],
             'email' => $data['email'],
+            'eula' => $data['eula'],
             'password' => bcrypt($data['password']),
         ]);
     }
@@ -100,11 +102,46 @@ class AuthController extends Controller
         } catch (Exception $e) {
             return Redirect::to("auth/$socialProvider");
         }
+        // если пользователь есть в базе - авторизуем и отправляем на страницу профиля
+        if ($authUser = User::where('email', $socialUser->getEmail())->first()) {
+            Auth::login($authUser, true);
+            return Redirect::to($this->redirectPath);
+        // если пользовтеля нет - отправляем на форму регистрации через соц сети
+        } else {
+            return redirect()->route('auth/registerViaSocial')
+              ->with('name', $socialUser->getName())
+              ->with('email', $socialUser->getEmail()) 
+              ->with('avatar', $socialUser->getAvatar());
+        }        
+    }
 
-        $authUser = $this->findOrCreateUser($socialUser);
+    public function registerViaSocial()
+    {
+        return view('registerViaSocial', [
+                'name' => Session::get('name'),
+                'email' => Session::get('email'),
+                'avatar' => Session::get('avatar'),
 
-        Auth::login($authUser, true);
+            ]);
+    }
 
+    public function registerViaSocialSet(Request $request)
+    {
+        $this->validate($request, [
+            'instructor' => 'required|email',
+            'eula' => 'required'
+        ]);
+
+        $newUser = User::create([
+            'instructor' => $request->instructor,
+            'name' => $request->name,
+            'email' => $request->email,
+            'avatar' => $request->avatar,
+            'eula' => $request->eula
+        ]);
+
+        Auth::login($newUser, true);
+        
         return Redirect::to($this->redirectPath);
     }
 

@@ -1334,3 +1334,7 @@ input[type="password"].inputNew {
 .messages-row:hover {
     background-color: #FAFAFA; 
 }
+
+.eula > p, li {
+    text-align: justify;
+}

@@ -102,6 +102,9 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 // Registration routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
+// via social networks
+Route::get('auth/registerViaSocial', 'Auth\AuthController@registerViaSocial')
+Route::post('auth/registerViaSocialSet', 'Auth\AuthController@registerViaSocialSet')
 
 // Password reset link request routes...
 Route::get('password/email', 'Auth\PasswordController@getEmail');
@@ -153,3 +156,5 @@ Route::get('attaches/{dateImg}/{filename}/{width}/{height}/{type?}/{anchor?}', '
 Route::get('attaches/{dateImg}/{filename}/', 'ImageController@fullImage');
 
 Route::post('feedback', 'HomeController@feedback');
+
+Route::get('eula', 'HomeController@eula');

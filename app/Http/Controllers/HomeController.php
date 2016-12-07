@@ -92,4 +92,9 @@ class HomeController extends Controller
 
         return view('TravelNotes', ['currentPage' => 'TravelNotes', 'posts' => $posts]);
     }
+
+    public function eula()
+    {
+        return view('eula');
+    }
 }

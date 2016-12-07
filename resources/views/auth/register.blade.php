@@ -50,14 +50,18 @@
                     @include('widgets.form._formitem_password', ['name' => 'password_confirmation', 'placeholder' => 'Введите пароль повторно' ])
                 </div>
                 <div class="col-md-4 col-md-offset-4">
+                    @include('widgets.form._formitem_checkbox', ['name' => 'eula', 'label' => 'я соглашаюсь с <a href="' . url('eula') . '">пользовательским соглашением</a> на использование сервиса yogatravel.guru' ])
+                </div>
+                <div class="col-md-4 col-md-offset-4">
+                <br>
                     @include('widgets.form._formitem_btn_submit', ['title' => 'Зарегистрироваться' ])
                 </div>
             </form>
             <div class="hidden-xs col-md-8 col-md-offset-2 text-right">
                 <hr>
             </div>
-{{--             <div class="col-md-6 col-md-offset-3 text-center">
-                Войти через соцсети:
+             <div class="col-md-6 col-md-offset-3 text-center">
+                Зарегистрироваться с помощью:
                 <div class="row"><br>
                     <div class="col-sm-6">
                         <a class="btn btn-socials" href="{{asset('auth/social/facebook')}}">
@@ -69,7 +73,7 @@
                             <i class="fa fa-vk"></i> Vkontakte</a>
                     </div>
                 </div>
-            </div> --}}
+            </div>
         </div>
     </div>
 @endsection
