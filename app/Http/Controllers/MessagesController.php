@@ -109,7 +109,6 @@ class MessagesController extends Controller
         }
 
         foreach ($input['recipients'] as $recipient) {
-//            dd($recipient);
             $addresat=User::find($recipient);
             Mail::raw('Вы получили новое сообщение: ' . $input['message'], function ($message) use ($addresat) {
                 $message->to($addresat->email)->subject('новое сообщение на сайте YogaTravel');
