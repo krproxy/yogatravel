@@ -97,4 +97,25 @@ class HomeController extends Controller
     {
         return view('eula');
     }
+
+    public function new()
+    {
+        return view('new');
+    }
+
+    public function getNews() {
+            $currentPoints = YogaPoint::orderBy('created_at', 'desc')->get();//->sortByDesc('created_at');
+            $currentPoints = $currentPoints->each(function ($point, $key) {
+                $author = User::find($point->user_id);
+                $authorName = isset($author->name) && !empty($author->name) ? $author->name : "";
+                $authorName .= isset($author->surname) && !empty($author->surname) ? " {$author->surname}" : "";
+                $point->authorName = $authorName;
+
+                $point->authorAvatar = isset($author->avatar) && !empty($author->avatar) ? $author->avatar : "/img/SVG/profile_12x13.svg";
+                $point->images = $point->attaches;
+            });
+// dd($currentPoints);
+
+        return response()->json($currentPoints->toArray());
+    }
 }

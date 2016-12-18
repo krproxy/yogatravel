@@ -358,6 +358,7 @@ body {
     color: #ffffff;
     background: url("/img/SVG/png/check-in.png") no-repeat center, #cecece !important;
     background-size: contain, 100%;
+    outline: none !important;
 }
 
 .checkInnString {
@@ -395,6 +396,7 @@ body {
     /*background: linear-gradient(#dbdbdb,#cecece); !* W3C *!*/
     color: #ffffff;
     background: url("/img/SVG/png/tea.png") no-repeat center, #cecece !important;
+    outline: none !important;
 }
 
 .teaString {
@@ -426,6 +428,7 @@ body {
 .open .dropdown-toggle.btn-couch {
     color: #ffffff;
     background: url("/img/SVG/png/couch.png") no-repeat center, #cecece !important;
+    outline: none !important;
 }
 
 .couchString {
@@ -457,6 +460,33 @@ body {
 .open .dropdown-toggle.btn-walk {
     color: #ffffff;
     background: url("/img/SVG/png/walk.png") no-repeat center, #cecece !important;
+    outline: none !important;
+}
+
+/*Кнопка Все*/
+.btn-all {
+    color: #ffffff;
+    background: -moz-linear-gradient(top,  #33a6cc 50%, #0099cc 50%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,#33a6cc), color-stop(50%,#0099cc)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  #33a6cc 50%,#0099cc 50%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  #33a6cc 50%,#0099cc 50%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  #33a6cc 50%,#0099cc 50%); /* IE10+ */
+    background: url("/img/SVG/png/all.png") no-repeat center, linear-gradient(to bottom,  #33a6cc 50%,#0099cc 50%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#33a6cc', endColorstr='#0099cc',GradientType=0 ); /* IE6-9 */
+    border-radius: 50px;
+    background-size: contain;
+    height: 43px;
+    width: 65px;
+}
+
+.btn-all:hover,
+.btn-all:focus,
+.btn-all:active,
+.btn-all.active,
+.open .dropdown-toggle.btn-all {
+    color: #ffffff;
+    background: url("/img/SVG/png/all.png") no-repeat center, #cecece !important;
+    outline: none !important;
 }
 
 .navbar-btn {
@@ -1229,7 +1259,7 @@ input[type="password"].inputNew {
 }
 
 .img37 {
-    height: 50px;
+    height: 27px;
     vertical-align: top;
 }
 
@@ -1337,4 +1367,41 @@ input[type="password"].inputNew {
 
 .eula > p, li {
     text-align: justify;
+}
+
+/* Лоадер */
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 150px;
+  height: 150px;
+  margin: -75px 0 0 -75px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+/* Лоадер */
+
+.transparent {
+    color: transparent;
+}
+
+.btn-news {
+    margin: 5px
 }

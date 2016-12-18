@@ -158,3 +158,7 @@ Route::get('attaches/{dateImg}/{filename}/', 'ImageController@fullImage');
 Route::post('feedback', 'HomeController@feedback');
 
 Route::get('eula', 'HomeController@eula');
+
+Route::get('New', 'HomeController@new');
+
+Route::get('getNews', 'HomeController@getNews');
