@@ -47,7 +47,7 @@ export default class Page extends Component {
 				{points.length == 0 ? 
 					<div className='text-center'>
 						<h3>Загружаем события</h3>
-						<div className='loader'></div>
+						{/* <div className='loader'></div>*/}
 					</div> :
 					points.map(point => {
 						return showMode.indexOf(ALL) != -1 ? <Point key={point.id} point={point} /> :
