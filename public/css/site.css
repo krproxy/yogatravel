@@ -464,7 +464,7 @@ body {
 }
 
 /*Кнопка Все*/
-.btn-all {
+.btn-allNews {
     color: #ffffff;
     background: -moz-linear-gradient(top,  #33a6cc 50%, #0099cc 50%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(50%,#33a6cc), color-stop(50%,#0099cc)); /* Chrome,Safari4+ */
@@ -479,11 +479,11 @@ body {
     width: 65px;
 }
 
-.btn-all:hover,
-.btn-all:focus,
-.btn-all:active,
-.btn-all.active,
-.open .dropdown-toggle.btn-all {
+.btn-allNews:hover,
+.btn-allNews:focus,
+.btn-allNews:active,
+.btn-allNews.active,
+.open .dropdown-toggle.btn-allNews {
     color: #ffffff;
     background: url("/img/SVG/png/all.png") no-repeat center, #cecece !important;
     outline: none !important;
