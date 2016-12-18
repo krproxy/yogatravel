@@ -98,9 +98,9 @@ class HomeController extends Controller
         return view('eula');
     }
 
-    public function New()
+    public function NewOnSite()
     {
-        return view('new');
+        return view('newOnSite');
     }
 
     public function getNews() {

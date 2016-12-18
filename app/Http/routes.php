@@ -159,6 +159,6 @@ Route::post('feedback', 'HomeController@feedback');
 
 Route::get('eula', 'HomeController@eula');
 
-Route::get('New', 'HomeController@New');
+Route::get('New', 'HomeController@NewOnSite');
 
 Route::get('getNews', 'HomeController@getNews');
