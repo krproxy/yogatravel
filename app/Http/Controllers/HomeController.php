@@ -98,7 +98,7 @@ class HomeController extends Controller
         return view('eula');
     }
 
-    public function new()
+    public function New()
     {
         return view('new');
     }
