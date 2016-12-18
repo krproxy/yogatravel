@@ -28,20 +28,17 @@ export default class Page extends Component {
 
 		return <div className ='row'>
 			<div className='col-xs-12'>
-				<div className='media'>
-					<a className={point_class} href={ '/service/' + point.id } >
-						<div className='media-left'>
-							<img className='img37' src={point_img_src} />							
-						</div>
-						<div className='media-body media-middle'>
-							<a className={point_class} href={ '/service/' + point.id }>
-								{point.address}</a>
-						</div>
-					</a>
-				</div>				
+				<a className={point_class} href={ '/service/' + point.id }>{point.address}</a>				
 			</div>
 			<div className='col-xs-12'>
-				<span className={point_class}>{point.created_at.split(' ').shift()}</span>
+				<div className='media'>
+				<div className='media-left'>
+					<img className='img37' src={point_img_src} />							
+				</div>
+				<div className='media-body media-middle'>
+					<span className={point_class}>{point.created_at.split(' ').shift()}</span>
+				</div>				
+				</div>
 			</div>
 			<div className='col-xs-12'>
 				{point.images.map(image => <img
