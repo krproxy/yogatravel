@@ -12,6 +12,8 @@ use Intervention\Image\Facades\Image;
 use PhpParser\Comment;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 use App\Http\Requests\NewYogaPointRequest;
+use Illuminate\Support\Facades\Mail;
+
 
 class UserSpaceController extends Controller
 {
@@ -284,6 +286,17 @@ class UserSpaceController extends Controller
         $comment->text = $request->comment;
 
         $comment->save();
+
+        // получаем данные по поинту
+        $point = YogaPoint::find($request->yoga_point_id);
+        // получаем автора поинта
+        // TODO: сделать получение автора через релейшн
+        $author = User::find($point->user_id);
+
+        Mail::raw('Ваше приглашение или рекомендацию прокоментировали: ' . $request->comment, function ($message) use ($author)
+        {
+            $message->to($author->email)->subject('новый коментарий на сайте YogaTravel');
+        });
 
         return redirect()->back();
     }

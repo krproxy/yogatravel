@@ -12,7 +12,7 @@
                             <th class="active">адрес</th>
                             <th class="warning">описание</th>
                             <th class="success">редактировать</th>
-                            {{-- <th class="danger">удалить</th> --}}
+                            <th class="danger">удалить</th>
                         </tr>
                         @foreach($allCheckInns as $checkInn)
                             <tr>
@@ -20,8 +20,8 @@
                                 <td class="warning">{{$checkInn->description}}</td>
                                 <td class="success"><a href="{{asset('editYogaPoint/'.$checkInn->id)}}"
                                                        class="btn btn-yoga-custom">редактировать</a></td>
-                                {{-- <td class="danger"><a href="{{asset('deleteYogaPoint/'.$checkInn->id)}}" --}}
-                                                      {{-- class="btn btn-danger">удалить</a></td> --}}
+                                <td class="danger"><a href="{{asset('deleteYogaPoint/'.$checkInn->id)}}"
+                                                      class="btn btn-danger">удалить</a></td>
                             </tr>
                         @endforeach
                     </table>

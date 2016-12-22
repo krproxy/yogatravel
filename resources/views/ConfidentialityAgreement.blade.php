@@ -1,8 +1,8 @@
 @extends('layouts.master')
 
-@section('title', 'ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ')
+@section('title', 'Соглашение о конфиденциальности')
 
-@section('description', 'ПОЛЬЗОВАТЕЛЬСКОЕ СОГЛАШЕНИЕ НА ИСПОЛЬЗОВАНИЕ СЕРВИСА YOGATRAVEL.GURU')
+@section('description', 'Соглашение о конфиденциальности YOGATRAVEL.GURU')
 
 @section('body')
 
