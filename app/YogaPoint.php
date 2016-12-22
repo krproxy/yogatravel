@@ -5,10 +5,12 @@ namespace App;
 use Angrydeer\Attachfiles\AttachableInterface;
 use Angrydeer\Attachfiles\AttachableTrait;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class YogaPoint extends Model implements AttachableInterface
 {
-    use AttachableTrait;
+    use AttachableTrait, SoftDeletes;
 
     /**
      * The database table used by the model.
@@ -16,6 +18,14 @@ class YogaPoint extends Model implements AttachableInterface
      * @var string
      */
     protected $table = 'yoga_points';
+
+    
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['deleted_at'];
 
     public function user()
     {

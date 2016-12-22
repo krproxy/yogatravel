@@ -24,6 +24,7 @@ class CreateYogaPointsTable extends Migration
             $table->string('type');
 
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

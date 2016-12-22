@@ -158,6 +158,7 @@ Route::get('attaches/{dateImg}/{filename}/', 'ImageController@fullImage');
 Route::post('feedback', 'HomeController@feedback');
 
 Route::get('eula', 'HomeController@eula');
+Route::get('ConfidentialityAgreement', 'HomeController@ConfidentialityAgreement');
 
 Route::get('New', 'HomeController@NewOnSite');
 

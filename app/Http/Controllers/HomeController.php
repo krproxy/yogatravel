@@ -98,6 +98,11 @@ class HomeController extends Controller
         return view('eula');
     }
 
+    public function ConfidentialityAgreement()
+    {
+        return view('ConfidentialityAgreement');
+    }
+
     public function NewOnSite()
     {
         return view('newOnSite');
