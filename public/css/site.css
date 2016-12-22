@@ -345,7 +345,7 @@ body {
 }
 
 .btn-checkInn:hover,
-.btn-checkInn.focus,
+/*.btn-checkInn.focus,*/
 .btn-checkInn:active,
 .btn-checkInn.active,
 .open .dropdown-toggle.btn-checkInn {
@@ -384,7 +384,7 @@ body {
 }
 
 .btn-tea:hover,
-.btn-tea.focus,
+/*.btn-tea.focus,*/
 .btn-tea:active,
 .btn-tea.active,
 .open .dropdown-toggle.btn-tea {
@@ -422,7 +422,7 @@ body {
 }
 
 .btn-couch:hover,
-.btn-couch:focus,
+/*.btn-couch:focus,*/
 .btn-couch:active,
 .btn-couch.active,
 .open .dropdown-toggle.btn-couch {
@@ -454,7 +454,7 @@ body {
 }
 
 .btn-walk:hover,
-.btn-walk:focus,
+/*.btn-walk:focus,*/
 .btn-walk:active,
 .btn-walk.active,
 .open .dropdown-toggle.btn-walk {
@@ -480,7 +480,7 @@ body {
 }
 
 .btn-allNews:hover,
-.btn-allNews:focus,
+/*.btn-allNews:focus,*/
 .btn-allNews:active,
 .btn-allNews.active,
 .open .dropdown-toggle.btn-allNews {
@@ -510,7 +510,7 @@ body {
 }
 
 .btn-login:hover,
-.btn-login:focus,
+/*.btn-login:focus,*/
 .btn-login:active,
 .btn-login.active,
 .open .dropdown-toggle.btn-login {
@@ -533,7 +533,7 @@ body {
 }
 
 .btn-yoga-custom:hover,
-.btn-yoga-custom:focus,
+/*.btn-yoga-custom:focus,*/
 .btn-yoga-custom:active,
 .btn-yoga-custom.active,
 .open .dropdown-toggle.btn-yoga-custom {
@@ -581,7 +581,7 @@ fieldset[disabled] .btn-yoga-custom.active {
 }
 
 .btn-socials:hover,
-.btn-socials:focus,
+/*.btn-socials:focus,*/
 .btn-socials:active,
 .btn-socials.active,
 .open .dropdown-toggle.btn-socials {

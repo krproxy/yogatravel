@@ -13,31 +13,31 @@ export default class Page extends Component {
 				<div data-spy='affix' data-offset-top='60'>
 					<button 
 						type='button' 
-						className={showMode.indexOf(ALL) != -1 ? 'btn btn-news btn-allNews active' : 'btn btn-news btn-allNews'}
+						className={showMode.indexOf(ALL) == -1 ? 'btn btn-news btn-allNews active' : 'btn btn-news btn-allNews'}
 						onClick={::this.onYearBtnClick}>
 						<span className='transparent'>{ALL}</span>
 					</button><br/>
 					<button
 						type='button' 
-						className={showMode.indexOf(CHECK_INN) != -1 ? 'btn btn-news btn-checkInn active' : 'btn btn-news btn-checkInn'} 
+						className={showMode.indexOf(CHECK_INN) == -1 ? 'btn btn-news btn-checkInn active' : 'btn btn-news btn-checkInn'} 
 						onClick={::this.onYearBtnClick}>
 						<span className='transparent'>{CHECK_INN}</span>
 					</button><br/>
 					<button 
 						type='button' 
-						className={showMode.indexOf(TEA_SERVICE) != -1 ? 'btn btn-news btn-tea active' : 'btn btn-news btn-tea'}
+						className={showMode.indexOf(TEA_SERVICE) == -1 ? 'btn btn-news btn-tea active' : 'btn btn-news btn-tea'}
 						onClick={::this.onYearBtnClick}>
 						<span className='transparent'>{TEA_SERVICE}</span>
 					</button><br/>
 					<button
 						type='button'
-						className={showMode.indexOf(COUCH_SERVICE) != -1 ? 'btn btn-news btn-couch active' : 'btn btn-news btn-couch'}
+						className={showMode.indexOf(COUCH_SERVICE) == -1 ? 'btn btn-news btn-couch active' : 'btn btn-news btn-couch'}
 						onClick={::this.onYearBtnClick}>
 						<span className='transparent'>{COUCH_SERVICE}</span>
 					</button><br/>
 					<button
 						type='button'
-						className={showMode.indexOf(WALK_SERVICE) != -1 ? 'btn btn-news btn-walk active' : 'btn btn-news btn-walk'}
+						className={showMode.indexOf(WALK_SERVICE) == -1 ? 'btn btn-news btn-walk active' : 'btn btn-news btn-walk'}
 						onClick={::this.onYearBtnClick}>
 						<span className='transparent'>{WALK_SERVICE}</span>
 					</button>
