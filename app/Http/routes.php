@@ -42,22 +42,10 @@ Route::get('Settings', 'UserSpaceController@Settings');
 Route::post('SettingPost', 'UserSpaceController@SettingPost');
 
 Route::get('NewCheckInn', 'UserSpaceController@newCheckInn');
-Route::get('AllCheckInns', function () {
-    $allCheckInns = \DB::table('yoga_points')
-        ->where('user_id', \Auth::id())
-        ->where('type', 'checkInn')
-        ->get();
-    return view('userSpace.allCheckInns', compact('allCheckInns'));
-});
+Route::get('AllCheckInns', 'UserSpaceController@AllCheckInns');
 
 Route::get('NewServicePoint', 'UserSpaceController@newServicePoint');
-Route::get('AllServicePoints', function () {
-    $myServices = \DB::table('yoga_points')
-        ->where('user_id', \Auth::id())
-        ->whereIn('type', ['teaService', 'couchService', 'walkServices'])
-        ->get();
-    return view('userSpace.allServicePoints', compact('myServices'));
-});
+Route::get('AllServicePoints', 'UserSpaceController@AllServicePoints');
 
 Route::post('NewYogaPoint', 'UserSpaceController@NewYogaPoint');
 

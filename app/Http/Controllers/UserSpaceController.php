@@ -166,6 +166,24 @@ class UserSpaceController extends Controller
         return redirect()->action('HomeController@Map', ['Lat' => $request->checkIn_lat, 'Lng' => $request->checkIn_lng]);
     }
 
+    public function AllCheckInns()
+    {
+        $allCheckInns = YogaPoint::where('user_id', \Auth::id())
+        ->where('type', 'checkInn')
+        ->get();
+
+        return view('userSpace.allCheckInns', compact('allCheckInns'));
+    }
+
+    public function AllServicePoints()
+    {
+        $myServices = YogaPoint::where('user_id', \Auth::id())
+        ->whereIn('type', ['teaService', 'couchService', 'walkServices'])
+        ->get();
+
+        return view('userSpace.allServicePoints', compact('myServices'));
+    }
+
     public function editYogaPointPost(Request $request)
     {
         if (isset($request->pointId)) {
