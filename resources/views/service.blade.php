@@ -1,5 +1,4 @@
 @extends('layouts.master')
-{{dd($service->address)}}
 @section('ogUrl', asset('/service/'.$service->id))
 @section('ogType', "article")
 @section('ogTitle', $service->address)
