@@ -67,10 +67,12 @@
                                     echo 'active';
                                     $isActive = false;
                                 }  ?>">
-                                    <a class="fancybox" rel="group" href="{{URL::to($attach->filename)}}"><img
-                                                src="{{URL::to($attach->filename.'/600/400/')}}"
+                                <!-- <a class="fancybox" rel="group" href="{{URL::to($attach->filename)}}"><img -->
+                                  <img
+                                                src="{{URL::to($attach->filename.'/600/400/chunk')}}"
                                                 alt="{{$attach->alt}}"
-                                                title="{{$attach->title}}"/></a>
+                                                title="{{$attach->title}}"/>
+                                    <!-- </a> -->
                                 </div>
                             @endforeach
                         </div>

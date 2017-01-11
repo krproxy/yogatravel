@@ -21,8 +21,7 @@ class ImageController extends Controller
     public function fullImage($dateImg = null, $filename = null)
     {
         $filePath = 'attaches/' . $dateImg . '/' . $filename;
-        $respImg = Image::make(Storage::get($filePath))->orientate();
-        return $respImg;
+        return Storage::get($filePath);
     }
 
     /**
