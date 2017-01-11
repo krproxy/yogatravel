@@ -75,7 +75,7 @@ class ImageController extends Controller
                 }, $this->cacheTime, false);
                 break;
         }
-        return Response::make($cacheImage->orientate(), 200, array('Content-Type' => 'image/jpeg'));
+        return Response::make($cacheImage, 200, array('Content-Type' => 'image/jpeg'));
     }
 
     protected function resizeAndChunk($params)
