@@ -53,7 +53,7 @@ class ImageController extends Controller
         switch ($type) {
             case 'asis':
                 $cacheImage = Image::cache(function ($image) use ($filePath, $w, $h, $type) {
-                    return $image->make($filePath)->resize($w, $h)->orientate();
+                    return $image->make($filePath)->orientate()->resize($w, $h);
                 });
                 break;
             case 'prop':
@@ -68,10 +68,10 @@ class ImageController extends Controller
                 break;
             case 'outbox':
                 $cacheImage = Image::cache(function ($image) use ($params) {
-                    return $image->make($params->filePath)->resize($params->w, $params->h, function ($constraint) {
+                    return $image->make($params->filePath)->orientate()->resize($params->w, $params->h, function ($constraint) {
                         $constraint->aspectRatio();
                         $constraint->upsize();
-                    })->orientate();
+                    });
                 }, $this->cacheTime, false);
                 break;
         }
@@ -81,10 +81,10 @@ class ImageController extends Controller
     protected function resizeAndChunk($params)
     {
         return Image::cache(function ($image) use ($params) {
-            return $image->make($params->filePath)->resize($params->w, $params->h, function ($constraint) {
+            return $image->make($params->filePath)->orientate()->resize($params->w, $params->h, function ($constraint) {
                 $constraint->aspectRatio();
 //                $constraint->upsize();
-            })->resizeCanvas($params->cw, $params->ch, $params->anchor)->orientate();
+            })->resizeCanvas($params->cw, $params->ch, $params->anchor);
         }, $this->cacheTime, false);
     }
 
