@@ -69,7 +69,7 @@
                                 }  ?>">
                                 <!-- <a class="fancybox" rel="group" href="{{URL::to($attach->filename)}}"><img -->
                                   <img
-                                                src="{{URL::to($attach->filename.'/600/400/chunk')}}"
+                                                src="{{URL::to($attach->filename.'/600/400/prop')}}"
                                                 alt="{{$attach->alt}}"
                                                 title="{{$attach->title}}"/>
                                     <!-- </a> -->
