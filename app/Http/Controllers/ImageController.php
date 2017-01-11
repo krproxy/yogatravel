@@ -75,7 +75,7 @@ class ImageController extends Controller
                 }, $this->cacheTime, false);
                 break;
         }
-        return Response::make($cacheImage, 200, array('Content-Type' => 'image/jpeg'))->orientate();;
+        return Response::make($cacheImage, 200, array('Content-Type' => 'image/jpeg'));
     }
 
     protected function resizeAndChunk($params)
@@ -85,7 +85,7 @@ class ImageController extends Controller
                 $constraint->aspectRatio();
 //                $constraint->upsize();
             })->resizeCanvas($params->cw, $params->ch, $params->anchor);
-        }, $this->cacheTime, false)->orientate();;
+        }, $this->cacheTime, false);
     }
 
 }
