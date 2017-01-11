@@ -154,22 +154,10 @@
             <script>
                 var infoWindow = new google.maps.InfoWindow();
                 var customIcons = {
-                    checkInn: {
-                        icon: new google.maps.MarkerImage('img/SVG/png/geometka_check-in.png',
-                                null, null, null, new google.maps.Size(28, 46))
-                    },
-                    teaService: {
-                        icon: new google.maps.MarkerImage('img/SVG/png/geometka_tea.png',
-                                null, null, null, new google.maps.Size(28, 46))
-                    },
-                    couchService: {
-                        icon: new google.maps.MarkerImage('img/SVG/png/geometka_couch.png',
-                                null, null, null, new google.maps.Size(28, 46))
-                    },
-                    walkServices: {
-                        icon: new google.maps.MarkerImage('img/SVG/png/geometka_walk.png',
-                                null, null, null, new google.maps.Size(28, 46))
-                    }
+                    checkInn:     new google.maps.MarkerImage('img/SVG/png/geometka_check-in.png', null, null, null, new google.maps.Size(28, 46)),
+                    teaService:   new google.maps.MarkerImage('img/SVG/png/geometka_tea.png', null, null, null, new google.maps.Size(28, 46)),
+                    couchService: new google.maps.MarkerImage('img/SVG/png/geometka_couch.png', null, null, null, new google.maps.Size(28, 46)),
+                    walkServices: new google.maps.MarkerImage('img/SVG/png/geometka_walk.png', null, null, null, new google.maps.Size(28, 46))
                 };
 
                 var markerGroups = {
@@ -180,16 +168,10 @@
                 };
 
                 function xmlParse(str) {
-                    if (typeof ActiveXObject != 'undefined' && typeof GetObject != 'undefined') {
-                        var doc = new ActiveXObject('Microsoft.XMLDOM');
-                        doc.loadXML(str);
-                        return doc;
-                    }
-
-                    if (typeof DOMParser != 'undefined') {
-                        return (new DOMParser()).parseFromString(str, 'text/xml');
-                    }
-
+                    if (typeof ActiveXObject != 'undefined' && typeof GetObject != 'undefined')
+                      return (new ActiveXObject('Microsoft.XMLDOM')).loadXML(str);
+                    if (typeof DOMParser != 'undefined')
+                      return (new DOMParser()).parseFromString(str, 'text/xml');
                     return createElement('div', null);
                 }
 
@@ -250,34 +232,30 @@
                         map.setCenter(pos);
                     });
 
-                    var xml = xmlParse('{!! $markerXML !!}');
-                    var markers = xml.documentElement.getElementsByTagName("marker");
-                    for (var i = 0; i < markers.length; i++) {
-                        var description = markers[i].getAttribute("description");
-                        var image = markers[i].getAttribute("image");
-                        var date = markers[i].getAttribute("date");
-                        var author = markers[i].getAttribute("author");
-                        var authorId = markers[i].getAttribute("authorId");
-                        var serviceId = markers[i].getAttribute("serviceId");
-                        var avatar = markers[i].getAttribute("avatar");
-                        var address = markers[i].getAttribute("address");
-                        var type = markers[i].getAttribute("type");
-
-                        var point = new google.maps.LatLng(
-                                parseFloat(markers[i].getAttribute("lat")),
-                                parseFloat(markers[i].getAttribute("lng")));
-
-                        var marker = createMarker(point, description, image, author, authorId, serviceId, avatar, date, address, type, map);
-                    }
+                    var markers = xmlParse('{!! $markerXML !!}').documentElement.getElementsByTagName("marker");
+                    for (var i = 0; i < markers.length; i++)
+                        createMarker(
+                          new google.maps.LatLng(
+                            parseFloat(markers[i].getAttribute("lat")),
+                            parseFloat(markers[i].getAttribute("lng"))
+                          ),
+                          markers[i].getAttribute("description"),
+                          markers[i].getAttribute("image"),
+                          markers[i].getAttribute("author"),
+                          markers[i].getAttribute("authorId"),
+                          markers[i].getAttribute("serviceId"),
+                          markers[i].getAttribute("avatar"),
+                          markers[i].getAttribute("date"),
+                          markers[i].getAttribute("address"),
+                          markers[i].getAttribute("type"),
+                          map);
                 }
 
                 function createMarker(point, description, image, author, authorId, serviceId, avatar, date, address, type, map) {
-                    var icon = customIcons[type] || {};
                     var marker = new google.maps.Marker({
                         map: map,
                         position: point,
-                        icon: icon.icon,
-                        // shadow: icon.shadow,
+                        icon: customIcons[type] || {},
                         type: type
                     });
                     if (!markerGroups[type]) markerGroups[type] = [];
@@ -286,7 +264,6 @@
                     var colorStyle;
                     var colorGeo;
                     var colorShare;
-
 
                     if (type === "checkInn") {
                         colorStyle = "style='color: #1099cc; vertical-align: top; padding-bottom: 5px'";
@@ -331,7 +308,7 @@
                                           + "</tr>";
                             }
                             html +=  "<tr>"
-                            + "<td colspan=\"2\" style='padding-bottom: 5px;'>" + description + " <a href='/service/" + serviceId + "'>подробнее</a></td>"
+                            + "<td colspan=\"2\" style='padding-bottom: 5px; line-height: normal; text-align: justify;'>" + description + " <a href='/service/" + serviceId + "'>подробнее</a></td>"
                             + "</tr>"
                             + "<tr>"
                             + "<td>" +

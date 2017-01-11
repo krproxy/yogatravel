@@ -1358,11 +1358,11 @@ input[type="password"].inputNew {
 }
 
 .messages-row {
-    cursor:pointer;    
+    cursor:pointer;
 }
 
 .messages-row:hover {
-    background-color: #FAFAFA; 
+    background-color: #FAFAFA;
 }
 
 .eula > p, li {
