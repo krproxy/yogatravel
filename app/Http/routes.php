@@ -150,4 +150,6 @@ Route::get('ConfidentialityAgreement', 'HomeController@ConfidentialityAgreement'
 
 Route::get('New', 'HomeController@NewOnSite');
 
+// API Routes
 Route::get('getNews', 'HomeController@getNews');
+Route::get('getMarkers', 'HomeController@getMarkers');

@@ -26,14 +26,14 @@
                     <div class="mapInfoPanel">
                         <img src="/img/SVG/menu_map/left_circle_98x85.png" alt="">
                         <div class="mapInfoPanelCenter inline" data-toggle="buttons">
-                            <label class="mapInfoPanelBtn btn btn-checkInn" onclick="toggleGreyAll()">
+                            <label class="mapInfoPanelBtn btn btn-checkInn" onclick="toggle('inputAll', 'checkInnAll')">
                                 <input class="checkInnBox" type="checkbox" autocomplete="off" id="inputAll">
                             </label>
                                     <span class="mapInfoPanelCell checkInnString" id="checkInnAll">
                                         {{ isset($checkInnCount) ? $checkInnCount : 0 }}
                                     </span>
 
-                            <label class="mapInfoPanelBtn btn btn-tea" onclick="toggleGreyTea()">
+                            <label class="mapInfoPanelBtn btn btn-tea" onclick="toggle('inputTea', 'checkInnTea')">
                                 <input class="teaPointsBox" type="checkbox" autocomplete="off"
                                        id="inputTea">
                             </label>
@@ -41,7 +41,7 @@
                                         {{ isset($teaServiceCount) ? $teaServiceCount : 0 }}
                                     </span>
 
-                            <label class="mapInfoPanelBtn btn btn-couch" onclick="toggleGreySleep()">
+                            <label class="mapInfoPanelBtn btn btn-couch" onclick="toggle('inputSleep', 'checkInnSleep')">
                                 <input class="couchPointsBox" type="checkbox" autocomplete="off"
                                        id="inputSleep">
                             </label>
@@ -49,7 +49,7 @@
                                         {{ isset($couchServiceCount) ? $couchServiceCount : 0 }}
                                     </span>
 
-                            <label class="mapInfoPanelBtn btn btn-walk" onclick="toggleGreyWalk()">
+                            <label class="mapInfoPanelBtn btn btn-walk" onclick="toggle('inputWalk', 'checkInnWalk')">
                                 <input class="tableCell walkPointsBox" type="checkbox" autocomplete="off"
                                        id="inputWalk">
                             </label>
@@ -82,6 +82,94 @@
             <script src="https://maps.googleapis.com/maps/api/js?v=3&ext=.js&libraries=places"></script>
 
             <script>
+                var infoWindow = new google.maps.InfoWindow();
+                var markerGroups = {
+                    "checkInns": [],
+                    "walkServices": [],
+                    "couchService": [],
+                    "teaService": []
+                };
+
+                var map = new google.maps.Map(document.getElementById("map"), {
+                    center: new google.maps.LatLng({{$Lat}}, {{$Lng}}),
+                    zoom: 10,
+                    mapTypeId: 'roadmap',
+                    mapTypeControl: false
+                });
+
+                // Try HTML5 geolocation.
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var pos = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        map.setCenter(pos);
+                    }, function () {
+                        handleLocationError(true, infoWindow, map.getCenter());
+                    });
+                } else {
+                    // Browser doesn't support Geolocation
+                    handleLocationError(false, infoWindow, map.getCenter());
+                }
+
+                // для боьших екранов
+                var addressSearch = (document.getElementById('pac-input'));
+                var autocomplete = new google.maps.places.Autocomplete(addressSearch);
+                autocomplete.setTypes(['geocode']);
+                google.maps.event.addListener(autocomplete, 'place_changed', function () {
+                    var place = autocomplete.getPlace();
+                    if (!place.geometry) {
+                        return;
+                    }
+                    var pos = {
+                        lat: place.geometry.location.lat(),
+                        lng: place.geometry.location.lng()
+                    };
+                    map.setCenter(pos);
+                });
+
+                // для малых екранов
+                var addressSearchXs = (document.getElementById('pac-inputXs'));
+                var autocompleteXs = new google.maps.places.Autocomplete(addressSearchXs);
+                autocompleteXs.setTypes(['geocode']);
+                google.maps.event.addListener(autocompleteXs, 'place_changed', function () {
+                    var place = autocompleteXs.getPlace();
+                    if (!place.geometry) {
+                        return;
+                    }
+                    var pos = {
+                        lat: place.geometry.location.lat(),
+                        lng: place.geometry.location.lng()
+                    };
+                    map.setCenter(pos);
+                });
+
+
+                $.ajax({
+                  dataType: 'json',
+                  url: 'getMarkers',
+                  success: function(markers){
+                    markers.forEach(function(marker){
+                      createMarker(
+                        new google.maps.LatLng(
+                          parseFloat(marker.lat),
+                          parseFloat(marker.lng)
+                        ),
+                        marker.description,
+                        marker.image,
+                        marker.author,
+                        marker.authorId,
+                        marker.serviceId,
+                        marker.avatar,
+                        marker.date,
+                        marker.address,
+                        marker.type,
+                        map);
+                    });
+                  }
+                });
+
                 $(".checkInnBox").change(function () {
                     toggleGroup('checkInn')
                 });
@@ -96,162 +184,23 @@
                 });
 
                 function toggleGroup(type) {
-                    for (var i = 0; i < markerGroups[type].length; i++) {
-                        var marker = markerGroups[type][i];
-                        if (!marker.getVisible()) {
-                            marker.setVisible(true);
-                        } else {
-                            marker.setVisible(false);
-                        }
-                    }
+                  markerGroups[type].forEach(function(x){x.setVisible(!x.getVisible())});
                 }
 
-                function toggleGreyAll() {
-                    var l = document.getElementById("checkInnAll");
-                    var c = document.getElementById("inputAll");
-                    if (c.checked != true) {
-                        l.classList.add("grey-check-map");
-                    }
-                    else {
-                        l.classList.remove("grey-check-map");
-                    }
-                }
-
-                function toggleGreyTea() {
-                    var l = document.getElementById("checkInnTea");
-                    var c = document.getElementById("inputTea");
-                    if (c.checked != true) {
-                        l.classList.add("grey-check-map");
-                    }
-                    else {
-                        l.classList.remove("grey-check-map");
-                    }
-                }
-
-                function toggleGreySleep() {
-                    var l = document.getElementById("checkInnSleep");
-                    var c = document.getElementById("inputSleep");
-                    if (c.checked != true) {
-                        l.classList.add("grey-check-map");
-                    }
-                    else {
-                        l.classList.remove("grey-check-map");
-                    }
-                }
-
-                function toggleGreyWalk() {
-                    var l = document.getElementById("checkInnWalk");
-                    var c = document.getElementById("inputWalk");
-                    if (c.checked != true) {
-                        l.classList.add("grey-check-map");
-                    }
-                    else {
-                        l.classList.remove("grey-check-map");
-                    }
-                }
-            </script>
-
-            <script>
-                var infoWindow = new google.maps.InfoWindow();
-                var customIcons = {
-                    checkInn:     new google.maps.MarkerImage('img/SVG/png/geometka_check-in.png', null, null, null, new google.maps.Size(28, 46)),
-                    teaService:   new google.maps.MarkerImage('img/SVG/png/geometka_tea.png', null, null, null, new google.maps.Size(28, 46)),
-                    couchService: new google.maps.MarkerImage('img/SVG/png/geometka_couch.png', null, null, null, new google.maps.Size(28, 46)),
-                    walkServices: new google.maps.MarkerImage('img/SVG/png/geometka_walk.png', null, null, null, new google.maps.Size(28, 46))
-                };
-
-                var markerGroups = {
-                    "checkInns": [],
-                    "walkServices": [],
-                    "couchService": [],
-                    "teaService": []
-                };
-
-                function xmlParse(str) {
-                    if (typeof ActiveXObject != 'undefined' && typeof GetObject != 'undefined')
-                      return (new ActiveXObject('Microsoft.XMLDOM')).loadXML(str);
-                    if (typeof DOMParser != 'undefined')
-                      return (new DOMParser()).parseFromString(str, 'text/xml');
-                    return createElement('div', null);
-                }
-
-                function load() {
-                    var map = new google.maps.Map(document.getElementById("map"), {
-                        center: new google.maps.LatLng({{$Lat}}, {{$Lng}}),
-                        zoom: 10,
-                        mapTypeId: 'roadmap',
-                        mapTypeControl: false
-                    });
-
-                    // Try HTML5 geolocation.
-                    var infoWindow = new google.maps.InfoWindow();
-                    if (navigator.geolocation) {
-                        navigator.geolocation.getCurrentPosition(function (position) {
-                            var pos = {
-                                lat: position.coords.latitude,
-                                lng: position.coords.longitude
-                            };
-                            map.setCenter(pos);
-                        }, function () {
-                            handleLocationError(true, infoWindow, map.getCenter());
-                        });
-                    } else {
-                        // Browser doesn't support Geolocation
-                        handleLocationError(false, infoWindow, map.getCenter());
-                    }
-
-                    // для боьших екранов
-                    var addressSearch = (document.getElementById('pac-input'));
-                    var autocomplete = new google.maps.places.Autocomplete(addressSearch);
-                    autocomplete.setTypes(['geocode']);
-                    google.maps.event.addListener(autocomplete, 'place_changed', function () {
-                        var place = autocomplete.getPlace();
-                        if (!place.geometry) {
-                            return;
-                        }
-                        var pos = {
-                            lat: place.geometry.location.lat(),
-                            lng: place.geometry.location.lng()
-                        };
-                        map.setCenter(pos);
-                    });
-
-                    // для малых екранов
-                    var addressSearchXs = (document.getElementById('pac-inputXs'));
-                    var autocompleteXs = new google.maps.places.Autocomplete(addressSearchXs);
-                    autocompleteXs.setTypes(['geocode']);
-                    google.maps.event.addListener(autocompleteXs, 'place_changed', function () {
-                        var place = autocompleteXs.getPlace();
-                        if (!place.geometry) {
-                            return;
-                        }
-                        var pos = {
-                            lat: place.geometry.location.lat(),
-                            lng: place.geometry.location.lng()
-                        };
-                        map.setCenter(pos);
-                    });
-
-                    var markers = xmlParse('{!! $markerXML !!}').documentElement.getElementsByTagName("marker");
-                    for (var i = 0; i < markers.length; i++)
-                        createMarker(
-                          new google.maps.LatLng(
-                            parseFloat(markers[i].getAttribute("lat")),
-                            parseFloat(markers[i].getAttribute("lng"))
-                          ),
-                          markers[i].getAttribute("description"),
-                          markers[i].getAttribute("image"),
-                          markers[i].getAttribute("author"),
-                          markers[i].getAttribute("authorId"),
-                          markers[i].getAttribute("serviceId"),
-                          markers[i].getAttribute("avatar"),
-                          markers[i].getAttribute("date"),
-                          markers[i].getAttribute("address"),
-                          markers[i].getAttribute("type"),
-                          map);
+                function toggle(buttonLabel, counterLabel) {
+                    if (document.getElementById(buttonLabel).checked != true)
+                      document.getElementById(counterLabel).classList.add("grey-check-map");
+                    else
+                      document.getElementById(counterLabel).classList.remove("grey-check-map");
                 }
 
                 function createMarker(point, description, image, author, authorId, serviceId, avatar, date, address, type, map) {
+                    var customIcons = {
+                        checkInn:     new google.maps.MarkerImage('img/SVG/png/geometka_check-in.png',  null, null, null, new google.maps.Size(28, 46)),
+                        teaService:   new google.maps.MarkerImage('img/SVG/png/geometka_tea.png',       null, null, null, new google.maps.Size(28, 46)),
+                        couchService: new google.maps.MarkerImage('img/SVG/png/geometka_couch.png',     null, null, null, new google.maps.Size(28, 46)),
+                        walkServices: new google.maps.MarkerImage('img/SVG/png/geometka_walk.png',      null, null, null, new google.maps.Size(28, 46))
+                    };
                     var marker = new google.maps.Marker({
                         map: map,
                         position: point,
@@ -302,7 +251,7 @@
 
                             if (image != "default.svg") {
                                 html += "<tr>"
-                                          + "<td colspan=\"2\"><div class='overflow-h'><IMG BORDER=\"0\" ALIGN=\"Left\"  width='270px' SRC=" + image + "></div></td>"
+                                          + "<td colspan=\"2\"><div class='overflow-h'><IMG BORDER=\"0\" ALIGN=\"Center\"  width='270px' SRC=" + image + "></div></td>"
                                           + "<td colspan=\"2\">"
                                           + "</td>"
                                           + "</tr>";
@@ -314,26 +263,12 @@
                             + "<td>" +
                             "<table>" +
                             "<tr>" +
-                            "<td style='padding-right: 5px;'><IMG class='img-circle' BORDER=\"0\" width='50px' ALIGN=\"Left\" SRC=\"" + avatar + "\"></td>" +
+                            "<td style='padding-right: 5px;'><IMG class='img-circle' BORDER=\"0\" height='50px' ALIGN=\"Left\" SRC=\"" + avatar + "\"></td>" +
                             "<td>Автор:<br><a href='/profile/" + authorId + "' " + colorStyle + "><b>" + author + "</b></a></td>" +
                             "</tr>" +
                             "</table>"
                             + "</td>"
-//                    + "<td style='float: right'>" + colorShare + "</td>"
                             + "<td style='float: right'>"
-////                    + "<td style='float: right'><span class='fb-share-button' data-href='/service/" + serviceId + "' data-layout='icon' data-mobile-iframe='true'></span></td>"
-//
-//
-//                    + "<a href=\"http://vk.com/share.php?url=_URL_&title=_TITLE_&description=_DESCRIPTION_&image=_URL_TO_IMAGE_\" class=\"btn btn-default\">"
-//                    + "<i class=\"fa fa-vk fa-lg vk\"></i>"
-//                    + "</a>"
-//
-//
-//                    + "<a href=\"http://www.facebook.com/sharer.php?u=http://yogatravel.guru//service/" + serviceId + "\" class=\"btn btn-default\">"
-//                    + "<i class=\"fa fa-thumbs-o-up fa-lg fb\"></i>"
-//                    + "</a>"
-//
-//
                             + "<div id=\"share\"></div>"
                             + "</td>"
                             + "</tr>"
@@ -360,8 +295,6 @@
                             'Error: The Geolocation service failed.' :
                             'Error: Your browser doesn\'t support geolocation.');
                 }
-
-                google.maps.event.addDomListener(window, 'load', load);
             </script>
 
 @endsection
